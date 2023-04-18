@@ -3,30 +3,44 @@
 namespace App\Form;
 
 use App\Entity\Product;
+use Doctrine\DBAL\Types\BooleanType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class ProductType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name')
+            ->add('name', TextType::class)
             ->add('price')
-            ->add('type')
-            ->add('prod_dimensions')
-            ->add('short_description')
-            ->add('description')
-            ->add('color')
-            ->add('power_max')
-            ->add('power_source')
-            ->add('availability')
-            ->add('quantity_left')
-            ->add('material')
-            ->add('special_features')
-            ->add('style')
-            ->add('sale')
+            ->add('type', TextType::class)
+            ->add('prod_dimensions', TextType::class)
+            ->add('short_description', TextType::class)
+            ->add('description', TextType::class)
+            ->add('color', TextType::class)
+            ->add('power_max', TextType::class)
+            ->add('power_source', TextType::class)
+            ->add('availability', ChoiceType::class,  [
+                'choices'  => [
+                    'Yes' => true,
+                    'No' => false,
+                ],
+            ])
+            ->add('quantity_left', IntegerType::class)
+            ->add('material', TextType::class)
+            ->add('special_features', TextType::class)
+            ->add('style', TextType::class)
+            ->add('sale', ChoiceType::class,  [
+                'choices'  => [
+                    'Yes' => true,
+                    'No' => false,
+                ],
+            ])
         ;
     }
 
