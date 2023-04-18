@@ -1,11 +1,7 @@
 {{ form_start(form) }}
     {{ form_widget(form) }}
-   
+    {# {% for rolesField in form.roles %}
+             {{ form_widget(rolesField) }}
+    {% endfor %} #}
     <button class="btn">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
- {% for rolesField in form.roles %}
-    
-    
-
-    
-{% endfor %}

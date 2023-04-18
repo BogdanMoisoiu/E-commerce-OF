@@ -1,12 +1,43 @@
 <ul class="nav">
+  {% if app.user %}   
+  <li class="nav-item">
+    <a class="nav-link disabled">Hello, {{ app.user.userIdentifier }}</a>
+  </li>            
+  {% endif %}
+
+  {% if is_granted('ROLE_ADMIN') %}
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{{ path('app_product_index') }}">Products</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ path('app_product_new') }}">Add Product</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ path('app_user_index') }}">Users</a>
+            </li>
+              {% elseif is_granted('ROLE_USER') %}
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{{ path('app_user_access') }}">Products</a>
+              </li>
+              {% else %}
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{{ path('app_static') }}">Products</a>
+              </li>
+              {% endif %}
+           
+              <li class="nav-item">
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <a class="nav-link" href="{{ path('app_logout') }}">Log out</a>
+                {% else %}
+                <a class="nav-link" href="{{ path('app_login') }}">Log in</a>
+                {% endif %} 
+              </li>
+
     <li class="nav-item">
-      <a class="nav-link active" aria-current="page" href="{{ path('app_login') }}">Log in</a>
+      <a class="nav-link" href="#">About</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="{{ path('app_logout') }}">Log out</a>
+      <a class="nav-link" href="#">Contact</a>
     </li>
-    {# <li class="nav-item">
-      <a class="nav-link" href="{{ path('') }}">Link</a>
-    </li> #}
 
   </ul>

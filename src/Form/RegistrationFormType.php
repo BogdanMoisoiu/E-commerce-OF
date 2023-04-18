@@ -25,10 +25,10 @@ class RegistrationFormType extends AbstractType
             ->add('first_name', TextType::class)
             ->add('last_name', TextType::class)
             ->add('email', EmailType::class)
-            // ->add('date_of_birth', DateType::class, [
-            //     'years' => range(date('Y')-100, date('Y'))
-            //     ])
-            ->add('date_of_birth', BirthdayType::class)
+            ->add('date_of_birth', DateType::class, [
+                'years' => range(date('Y')-100, date('Y'))
+                ])
+            // ->add('date_of_birth', BirthdayType::class)
             ->add('picture', TextType::class)
             ->add('phone_number', TextType::class)
             ->add('city', TextType::class)

@@ -33,6 +33,7 @@ security:
     access_control:
         - { path: ^/app_product_index, roles: ROLE_ADMIN }
         - { path: ^/app_user_access, roles: ROLE_USER }
+        # - { path: ^/app_static, roles: ROLE_BANNED }
 
 when@test:
     security:
