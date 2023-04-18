@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 18, 2023 at 11:23 AM
+-- Generation Time: Apr 18, 2023 at 04:02 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -26,6 +26,21 @@ USE `team-3-project`;
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `brand`
+--
+
+DROP TABLE IF EXISTS `brand`;
+CREATE TABLE `brand` (
+  `id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `country` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `address` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `messenger_messages`
 --
 
@@ -38,6 +53,19 @@ CREATE TABLE `messenger_messages` (
   `created_at` datetime NOT NULL,
   `available_at` datetime NOT NULL,
   `delivered_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_item`
+--
+
+DROP TABLE IF EXISTS `order_item`;
+CREATE TABLE `order_item` (
+  `id` int(11) NOT NULL,
+  `fk_product_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -58,12 +86,13 @@ CREATE TABLE `product` (
   `color` varchar(50) DEFAULT NULL,
   `power_max` varchar(50) DEFAULT NULL,
   `power_source` varchar(50) DEFAULT NULL,
-  `availability` tinyint(1) NOT NULL DEFAULT 1,
+  `availability` tinyint(1) NOT NULL,
   `quantity_left` int(11) NOT NULL,
   `material` varchar(50) NOT NULL,
   `special_features` varchar(255) DEFAULT NULL,
   `style` varchar(50) DEFAULT NULL,
-  `sale` tinyint(1) NOT NULL DEFAULT 0
+  `sale` tinyint(1) NOT NULL,
+  `fk_brand_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -94,14 +123,20 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `email`, `roles`, `password`, `first_name`, `last_name`, `date_of_birth`, `picture`, `phone_number`, `city`, `street`, `str_number_ap_number`, `post_code`) VALUES
-(1, 'user@gmail.com', '[]', '$2y$13$RZ6fFVV3zF/rAAtvYa2RoO5fNGfhQXvFeZY8HLVTj0kzWXhbbmU6u', 'John', 'Doe', '1927-01-01', 'https://cdn.pixabay.com/photo/2016/01/08/18/48/kitten-1129026_960_720.png', '+436701231212', 'Vienna', 'Kettenbrükckengasse', '23/2/12', '1050'),
-(2, 'user2@gmail.com', '[]', '$2y$13$SsCvcqYGrJRB9vhRkIqR2efpy5ADXdHxjOfELarLn5qgFdyms2LX6', 'Jane', 'Doe', '1940-06-01', 'https://cdn.pixabay.com/photo/2016/01/08/18/48/kitten-1129026_960_720.png', '+436701232222', 'Vienna', 'Kettenbrükckengasse', '23/2/12', '1050'),
-(3, 'admin@gmail.com', '[\"ROLE_ADMIN\"]', '$2y$13$1kugxeUm7qPVEyqjoA3XWO1fyCGEPxc66X7bEpSaREwbjXCaS0ewG', 'James', 'Doe', '1981-10-01', 'https://cdn.pixabay.com/photo/2016/01/08/18/48/kitten-1129026_960_720.png', '+436701231222', 'Vienna', 'Kettenbrükckengasse', '23/2/12', '1050'),
-(4, 'user3@gmail.com', '[\"BANNED\"]', '$2y$13$Gq48KAtpB3HmGOmBRNge8.BTQdJhSK.jFkBnO3lnDp.DA/AJnbgLW', 'Emily', 'Mill', '1937-05-01', 'https://cdn.pixabay.com/photo/2016/01/08/18/48/kitten-1129026_960_720.png', '+436701233212', 'Vienna', 'Kettenbrükckengasse', '23/2/12', '1050');
+(1, 'user@gmail.com', '[]', '$2y$13$RZ6fFVV3zF/rAAtvYa2RoO5fNGfhQXvFeZY8HLVTj0kzWXhbbmU6u', 'John', 'Doe', '1927-01-01', 'https://cdn.pixabay.com/photo/2016/01/08/18/48/kitten-1129026_960_720.png', '+436701231212', 'Vienna', 'Kettenbrückengasse', '23/2/12', '1050'),
+(2, 'user2@gmail.com', '[]', '$2y$13$SsCvcqYGrJRB9vhRkIqR2efpy5ADXdHxjOfELarLn5qgFdyms2LX6', 'Jane', 'Doe', '1940-06-01', 'https://cdn.pixabay.com/photo/2016/01/08/18/48/kitten-1129026_960_720.png', '+436701232222', 'Vienna', 'Kettenbrückengasse', '23/2/12', '1050'),
+(3, 'admin@gmail.com', '[\"ROLE_ADMIN\"]', '$2y$13$1kugxeUm7qPVEyqjoA3XWO1fyCGEPxc66X7bEpSaREwbjXCaS0ewG', 'James', 'Doe', '1981-10-01', 'https://cdn.pixabay.com/photo/2016/01/08/18/48/kitten-1129026_960_720.png', '+436701231222', 'Vienna', 'Kettenbrückengasse', '23/2/12', '1050'),
+(4, 'user3@gmail.com', '[\"ROLE_BANNED\"]', '$2y$13$Gq48KAtpB3HmGOmBRNge8.BTQdJhSK.jFkBnO3lnDp.DA/AJnbgLW', 'Emily', 'Mill', '1937-05-01', 'https://cdn.pixabay.com/photo/2016/01/08/18/48/kitten-1129026_960_720.png', '+436701233212', 'Vienna', 'Kettenbrückengasse', '23/2/12', '1050');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `brand`
+--
+ALTER TABLE `brand`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `messenger_messages`
@@ -113,10 +148,18 @@ ALTER TABLE `messenger_messages`
   ADD KEY `IDX_75EA56E016BA31DB` (`delivered_at`);
 
 --
+-- Indexes for table `order_item`
+--
+ALTER TABLE `order_item`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `IDX_52EA1F09B5EAACC9` (`fk_product_id`);
+
+--
 -- Indexes for table `product`
 --
 ALTER TABLE `product`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `IDX_D34A04AD76DD93D6` (`fk_brand_id`);
 
 --
 -- Indexes for table `user`
@@ -130,10 +173,22 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT for table `brand`
+--
+ALTER TABLE `brand`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `messenger_messages`
 --
 ALTER TABLE `messenger_messages`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `order_item`
+--
+ALTER TABLE `order_item`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `product`
@@ -146,6 +201,22 @@ ALTER TABLE `product`
 --
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `order_item`
+--
+ALTER TABLE `order_item`
+  ADD CONSTRAINT `FK_52EA1F09B5EAACC9` FOREIGN KEY (`fk_product_id`) REFERENCES `product` (`id`);
+
+--
+-- Constraints for table `product`
+--
+ALTER TABLE `product`
+  ADD CONSTRAINT `FK_D34A04AD76DD93D6` FOREIGN KEY (`fk_brand_id`) REFERENCES `brand` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

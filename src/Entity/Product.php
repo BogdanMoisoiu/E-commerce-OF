@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ProductRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -58,6 +60,10 @@ class Product
 
     #[ORM\Column]
     private ?bool $sale = null;
+
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Brand $Fk_brand = null;
 
     public function getId(): ?int
     {
@@ -243,4 +249,17 @@ class Product
 
         return $this;
     }
+
+    public function getFkBrand(): ?Brand
+    {
+        return $this->Fk_brand;
+    }
+
+    public function setFkBrand(?Brand $Fk_brand): self
+    {
+        $this->Fk_brand = $Fk_brand;
+
+        return $this;
+    }
+
 }
