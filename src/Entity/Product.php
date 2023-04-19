@@ -65,6 +65,9 @@ class Product
     #[ORM\JoinColumn(nullable: false)]
     private ?Brand $Fk_brand = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $picture = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -258,6 +261,18 @@ class Product
     public function setFkBrand(?Brand $Fk_brand): self
     {
         $this->Fk_brand = $Fk_brand;
+
+        return $this;
+    }
+
+    public function getPicture(): ?string
+    {
+        return $this->picture;
+    }
+
+    public function setPicture(?string $picture): self
+    {
+        $this->picture = $picture;
 
         return $this;
     }

@@ -24,6 +24,11 @@
                 <td>{{ product.type }}</td>
             </tr>
             <tr>
+            <tr>
+                <th>Brand</th>
+                <td>{{ brand.name }}</td>
+            </tr>
+            <tr>
                 <th>Prod_dimensions</th>
                 <td>{{ product.prodDimensions }}</td>
             </tr>
@@ -70,6 +75,10 @@
             <tr>
                 <th>Sale</th>
                 <td>{{ product.sale ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Picture</th>
+                <td><img src="{{ product.picture }}" alt="" height="70px"></td>
             </tr>
         </tbody>
     </table>

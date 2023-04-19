@@ -6,6 +6,7 @@ use App\Service\FileUploader;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use App\Entity\Product;
+use App\Entity\Brand;
 use App\Form\ProductType;
 use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,10 +18,12 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProductController extends AbstractController
 {
     #[Route('/', name: 'app_product_index', methods: ['GET'])]
-    public function index(ProductRepository $productRepository): Response
+    public function index(ProductRepository $productRepository, Product $product, Brand $brand): Response
     {
+        // $brand = $product->getFkBrand();
         return $this->render('product/index.html.twig', [
             'products' => $productRepository->findAll(),
+            // 'brand' => $brand,
         ]);
     }
 
@@ -37,7 +40,7 @@ class ProductController extends AbstractController
             $picture = $form->get('picture')->getData();
             if ($picture) {
                 $pictureName = $fileUploader->upload($picture);
-                // $product->setPicture($pictureName);
+                $product->setPicture($pictureName);
             }
 
             return $this->redirectToRoute('app_product_index', [], Response::HTTP_SEE_OTHER);
@@ -50,10 +53,12 @@ class ProductController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_product_show', methods: ['GET'])]
-    public function show(Product $product): Response
+    public function show(Product $product, Brand $brand): Response
     {
+        $brand = $product->getFkBrand();
         return $this->render('product/show.html.twig', [
             'product' => $product,
+            'brand' => $brand,
         ]);
     }
 

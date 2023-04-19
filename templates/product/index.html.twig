@@ -12,6 +12,7 @@
                 <th>Name</th>
                 <th>Price</th>
                 <th>Type</th>
+                {# <th>Brand</th> #}
                 <th>Prod_dimensions</th>
                 <th>Short_description</th>
                 <th>Description</th>
@@ -24,6 +25,7 @@
                 <th>Special_features</th>
                 <th>Style</th>
                 <th>Sale</th>
+                <th>Picture</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -34,6 +36,7 @@
                 <td>{{ product.name }}</td>
                 <td>{{ product.price }}</td>
                 <td>{{ product.type }}</td>
+                {# <td>{{ brand.name }}</td> #}
                 <td>{{ product.prodDimensions }}</td>
                 <td>{{ product.shortDescription }}</td>
                 <td>{{ product.description }}</td>
@@ -46,6 +49,7 @@
                 <td>{{ product.specialFeatures }}</td>
                 <td>{{ product.style }}</td>
                 <td>{{ product.sale ? 'Yes' : 'No' }}</td>
+                <td><img src="{{ product.picture }}" alt="" height="70px"></td>
                 <td>
                     <a href="{{ path('app_product_show', {'id': product.id}) }}">show</a>
                     <a href="{{ path('app_product_edit', {'id': product.id}) }}">edit</a>
