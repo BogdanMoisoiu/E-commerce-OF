@@ -15,4 +15,11 @@ class ContactController extends AbstractController
             'controller_name' => 'ContactController',
         ]);
     }
+    #[Route('/about', name: 'app_about')]
+    public function about(): Response
+    {
+        return $this->render('contact/about.html.twig', [
+            'controller_name' => 'ContactController',
+        ]);
+    }
 }
