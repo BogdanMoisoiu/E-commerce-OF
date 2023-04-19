@@ -48,4 +48,10 @@ class OrderItem
 
         return $this;
     }
+
+    /*public function equals(OrderItem $orderItem): bool
+    {
+        return $this->getFkProduct()->getId() === $orderItem->getFKProduct()->getId();
+    }
+    */
 }

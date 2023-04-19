@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 18, 2023 at 04:02 PM
+-- Generation Time: Apr 18, 2023 at 07:45 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -53,6 +53,19 @@ CREATE TABLE `messenger_messages` (
   `created_at` datetime NOT NULL,
   `available_at` datetime NOT NULL,
   `delivered_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order`
+--
+
+DROP TABLE IF EXISTS `order`;
+CREATE TABLE `order` (
+  `id` int(11) NOT NULL,
+  `fk_order_item_id` int(11) NOT NULL,
+  `date_time_stamp` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -126,7 +139,7 @@ INSERT INTO `user` (`id`, `email`, `roles`, `password`, `first_name`, `last_name
 (1, 'user@gmail.com', '[]', '$2y$13$RZ6fFVV3zF/rAAtvYa2RoO5fNGfhQXvFeZY8HLVTj0kzWXhbbmU6u', 'John', 'Doe', '1927-01-01', 'https://cdn.pixabay.com/photo/2016/01/08/18/48/kitten-1129026_960_720.png', '+436701231212', 'Vienna', 'Kettenbrückengasse', '23/2/12', '1050'),
 (2, 'user2@gmail.com', '[]', '$2y$13$SsCvcqYGrJRB9vhRkIqR2efpy5ADXdHxjOfELarLn5qgFdyms2LX6', 'Jane', 'Doe', '1940-06-01', 'https://cdn.pixabay.com/photo/2016/01/08/18/48/kitten-1129026_960_720.png', '+436701232222', 'Vienna', 'Kettenbrückengasse', '23/2/12', '1050'),
 (3, 'admin@gmail.com', '[\"ROLE_ADMIN\"]', '$2y$13$1kugxeUm7qPVEyqjoA3XWO1fyCGEPxc66X7bEpSaREwbjXCaS0ewG', 'James', 'Doe', '1981-10-01', 'https://cdn.pixabay.com/photo/2016/01/08/18/48/kitten-1129026_960_720.png', '+436701231222', 'Vienna', 'Kettenbrückengasse', '23/2/12', '1050'),
-(4, 'user3@gmail.com', '[\"ROLE_BANNED\"]', '$2y$13$Gq48KAtpB3HmGOmBRNge8.BTQdJhSK.jFkBnO3lnDp.DA/AJnbgLW', 'Emily', 'Mill', '1937-05-01', 'https://cdn.pixabay.com/photo/2016/01/08/18/48/kitten-1129026_960_720.png', '+436701233212', 'Vienna', 'Kettenbrückengasse', '23/2/12', '1050');
+(4, 'user3@gmail.com', '[\"ROLE_ADMIN\",\"ROLE_USER\"]', '$2y$13$Gq48KAtpB3HmGOmBRNge8.BTQdJhSK.jFkBnO3lnDp.DA/AJnbgLW', 'Emily', 'Mill', '1937-05-01', 'https://cdn.pixabay.com/photo/2016/01/08/18/48/kitten-1129026_960_720.png', '+436701233212', 'Vienna', 'Kettenbrückengasse', '23/2/12', '1050');
 
 --
 -- Indexes for dumped tables
@@ -146,6 +159,13 @@ ALTER TABLE `messenger_messages`
   ADD KEY `IDX_75EA56E0FB7336F0` (`queue_name`),
   ADD KEY `IDX_75EA56E0E3BD61CE` (`available_at`),
   ADD KEY `IDX_75EA56E016BA31DB` (`delivered_at`);
+
+--
+-- Indexes for table `order`
+--
+ALTER TABLE `order`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `IDX_F5299398805F8ED7` (`fk_order_item_id`);
 
 --
 -- Indexes for table `order_item`
@@ -185,6 +205,12 @@ ALTER TABLE `messenger_messages`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `order`
+--
+ALTER TABLE `order`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `order_item`
 --
 ALTER TABLE `order_item`
@@ -194,7 +220,7 @@ ALTER TABLE `order_item`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -205,6 +231,12 @@ ALTER TABLE `user`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `order`
+--
+ALTER TABLE `order`
+  ADD CONSTRAINT `FK_F5299398805F8ED7` FOREIGN KEY (`fk_order_item_id`) REFERENCES `order_item` (`id`);
 
 --
 -- Constraints for table `order_item`
