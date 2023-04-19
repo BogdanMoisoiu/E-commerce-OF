@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+use App\Service\FileUploader;
+use Symfony\Component\Validator\Constraints\File;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use App\Entity\Product;
 use App\Form\ProductType;
 use App\Repository\ProductRepository;
@@ -22,7 +25,7 @@ class ProductController extends AbstractController
     }
 
     #[Route('/new', name: 'app_product_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, ProductRepository $productRepository): Response
+    public function new(Request $request, ProductRepository $productRepository, FileUploader $fileUploader): Response
     {
         $product = new Product();
         $form = $this->createForm(ProductType::class, $product);
@@ -30,6 +33,12 @@ class ProductController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $productRepository->save($product, true);
+
+            $picture = $form->get('picture')->getData();
+            if ($picture) {
+                $pictureName = $fileUploader->upload($picture);
+                // $product->setPicture($pictureName);
+            }
 
             return $this->redirectToRoute('app_product_index', [], Response::HTTP_SEE_OTHER);
         }

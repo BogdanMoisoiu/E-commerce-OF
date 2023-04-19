@@ -44,6 +44,9 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
+        if ($this->security->isGranted('ROLE_BANNED')) {
+            return  new RedirectResponse($this->urlGenerator->generate("app_logout", ['banMessage'=>'Sorry, you have been only baned.']));
+        }
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
             return new RedirectResponse($targetPath);
         }

@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+use App\Service\FileUploader;
+use Symfony\Component\Validator\Constraints\File;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
