@@ -12,7 +12,7 @@
                 <th>Name</th>
                 <th>Price</th>
                 <th>Type</th>
-                {# <th>Brand</th> #}
+                <th>Brand</th>
                 <th>Prod_dimensions</th>
                 <th>Short_description</th>
                 <th>Description</th>
@@ -36,7 +36,7 @@
                 <td>{{ product.name }}</td>
                 <td>{{ product.price }}</td>
                 <td>{{ product.type }}</td>
-                {# <td>{{ brand.name }}</td> #}
+                <td>{{ product.FkBrand.name }}</td>
                 <td>{{ product.prodDimensions }}</td>
                 <td>{{ product.shortDescription }}</td>
                 <td>{{ product.description }}</td>

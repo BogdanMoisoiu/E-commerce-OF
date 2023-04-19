@@ -8,6 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use App\Entity\Product;
 use App\Entity\Brand;
 use App\Form\ProductType;
+use App\Repository\BrandRepository;
 use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,12 +19,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProductController extends AbstractController
 {
     #[Route('/', name: 'app_product_index', methods: ['GET'])]
-    public function index(ProductRepository $productRepository, Product $product, Brand $brand): Response
+    public function index(ProductRepository $productRepository): Response
     {
-        // $brand = $product->getFkBrand();
+
         return $this->render('product/index.html.twig', [
             'products' => $productRepository->findAll(),
-            // 'brand' => $brand,
         ]);
     }
 
@@ -35,13 +35,14 @@ class ProductController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $productRepository->save($product, true);
 
             $picture = $form->get('picture')->getData();
             if ($picture) {
                 $pictureName = $fileUploader->upload($picture);
                 $product->setPicture($pictureName);
             }
+
+            $productRepository->save($product, true);
 
             return $this->redirectToRoute('app_product_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -63,12 +64,19 @@ class ProductController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_product_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Product $product, ProductRepository $productRepository): Response
+    public function edit(Request $request, Product $product, ProductRepository $productRepository, FileUploader $fileUploader): Response
     {
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $picture = $form->get('picture')->getData();
+            if ($picture) {
+                $pictureName = $fileUploader->upload($picture);
+                $product->setPicture($pictureName);
+            }
+
+
             $productRepository->save($product, true);
 
             return $this->redirectToRoute('app_product_index', [], Response::HTTP_SEE_OTHER);

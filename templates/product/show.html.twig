@@ -26,7 +26,10 @@
             <tr>
             <tr>
                 <th>Brand</th>
-                <td>{{ brand.name }}</td>
+                {# for admin #}
+                <td><a href="{{ path('app_brand_show', {'id': brand.id}) }}">{{ brand.name }}</a></td>
+                {# for users #}
+                {# <td><a href="{{ path('app_user_access_brand', {'id': brand.id}) }}">{{ brand.name }}</a></td> #}
             </tr>
             <tr>
                 <th>Prod_dimensions</th>
