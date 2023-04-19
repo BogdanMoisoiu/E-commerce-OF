@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\OrderItemRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: OrderItemRepository::class)]
 class OrderItem
@@ -19,6 +20,10 @@ class OrderItem
 
     #[ORM\Column]
     private ?int $quantity = null;
+
+    #[ORM\ManyToOne(inversedBy: 'fk_orderitem')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Order $orderRef = null;
 
     public function getId(): ?int
     {
@@ -51,7 +56,35 @@ class OrderItem
 
     /*public function equals(OrderItem $orderItem): bool
     {
+        
         return $this->getFkProduct()->getId() === $orderItem->getFKProduct()->getId();
     }
     */
+
+    public function getOrderRef(): ?Order
+    {
+        return $this->orderRef;
+    }
+
+    public function setOrderRef(?Order $orderRef): self
+    {
+        $this->orderRef = $orderRef;
+
+        return $this;
+    }
+
+    public function equals(OrderItem $item): bool
+{
+    return $this->getFkProduct()->getId() === $item->getFkProduct()->getId();
+}
+
+/**
+ * Calculates the item total.
+ *
+ * @return float|int
+ */
+public function getTotal(): float
+{
+    return $this->getFkProduct()->getPrice() * $this->getQuantity();
+}
 }
