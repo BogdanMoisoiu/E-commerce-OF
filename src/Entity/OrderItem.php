@@ -23,7 +23,7 @@ class OrderItem
 
     #[ORM\ManyToOne(inversedBy: 'fk_orderitem')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Order $orderRef = null;
+    private ?Cart $orderRef = null;
 
     public function getId(): ?int
     {
@@ -61,12 +61,12 @@ class OrderItem
     }
     */
 
-    public function getOrderRef(): ?Order
+    public function getOrderRef(): ?Cart
     {
         return $this->orderRef;
     }
 
-    public function setOrderRef(?Order $orderRef): self
+    public function setOrderRef(?Cart $orderRef): self
     {
         $this->orderRef = $orderRef;
 

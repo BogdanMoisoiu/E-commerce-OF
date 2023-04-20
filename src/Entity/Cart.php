@@ -2,15 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\OrderRepository;
+use App\Repository\CartRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: OrderRepository::class)]
-#[ORM\Table(name: '`order`')]
-class Order
+#[ORM\Entity(repositoryClass: CartRepository::class)]
+#[ORM\Table(name: '`cart`')]
+class Cart
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -21,17 +21,17 @@ class Order
     private ?\DateTimeInterface $date_time_stamp = null;
 
     #[ORM\Column(length: 255)]
-    // private ?string $status = null;
-    private ?string $status = self::STATUS_CART;
+     private ?string $status = null;
+    #private ?string $status = self::STATUS_CART;
 
-    const STATUS_CART = 'cart';
+    #const STATUS_CART = 'cart';
 
-    #[ORM\OneToMany(mappedBy: 'orderRef', targetEntity: OrderItem::class, cascade: ["persist", "remove"], orphanRemoval: true)]
-    private Collection $fk_orderitem;
+    #[ORM\OneToMany]
+    # private Collection $fk_orderitem;
 
     public function __construct()
     {
-        $this->fk_orderitem = new ArrayCollection();
+        #$this->fk_orderitem = new ArrayCollection();
     }  
 
     public function getId(): ?int
@@ -81,7 +81,7 @@ class Order
     /**
      * @return Collection<int, OrderItem>
      */
-    public function getFkOrderitem(): Collection
+ /*   public function getFkOrderitem(): Collection
     {
         return $this->fk_orderitem;
     }
@@ -89,7 +89,7 @@ class Order
     public function addFkOrderitem(OrderItem $item): self
 {
     foreach ($this->getFkOrderitem() as $existingItem) {
-        // The item already exists, update the quantity
+        # // The item already exists, update the quantity
         if ($existingItem->equals($item)) {
             $existingItem->setQuantity(
                 $existingItem->getQuantity() + $item->getQuantity()
@@ -102,6 +102,7 @@ class Order
 
     return $this;
 }
+*/
     // public function addFkOrderitem(OrderItem $fkOrderitem): self
     // {
     //     if (!$this->fk_orderitem->contains($fkOrderitem)) {
@@ -111,11 +112,11 @@ class Order
 
     //     return $this;
     // }
-
+/*
     public function removeFkOrderitem(OrderItem $fkOrderitem): self
     {
         if ($this->fk_orderitem->removeElement($fkOrderitem)) {
-            // set the owning side to null (unless already changed)
+          #  // set the owning side to null (unless already changed)
             if ($fkOrderitem->getOrderRef() === $this) {
                 $fkOrderitem->setOrderRef(null);
             }
@@ -130,13 +131,14 @@ class Order
         }
         return $this;
     }
-
+*/
     
 /**
  * Removes all items from the order.
  *
  * @return $this
  */
+/*
 public function removeItems(): self
 {
     foreach ($this->getFkOrderitem() as $item) {
@@ -156,5 +158,5 @@ public function getTotal(): float
     }
     return $total;
 }
-
+*/
 }
