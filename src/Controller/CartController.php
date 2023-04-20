@@ -7,6 +7,7 @@ use App\Entity\OrderItem;
 use App\Entity\Product;
 use App\Form\CartType;
 use App\Repository\CartRepository;
+use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,22 +25,26 @@ class CartController extends AbstractController
     }
 
     #[Route('/new', name: 'app_cart_new', methods: ['GET', 'POST'])]
-    public function AddToCart(Request $request, CartRepository $cartRepository, Product $product): Response
+    public function AddToCart(Request $request, CartRepository $cartRepository, ProductRepository $productRepository, $id): Response
     {
-        $cart = new Cart();
-         $product = new Product();
-         $form = $this->createForm(CartType::class, $product);
-         $form->handleRequest($request);
-
-         if ($form->isSubmitted() && $form->isValid()) {
-             $cartRepository->save($cart, true);
-
-             return $this->redirectToRoute('app_cart_index', [], Response::HTTP_SEE_OTHER);
         
-        }
+         $cart = new Cart();
+         $product = $productRepository->find($id);
+        $cart
+        ->add
+
+        //  $form = $this->createForm(CartType::class, $cart);
+        //  $form->handleRequest($request);
+
+        //  if ($form->isSubmitted() && $form->isValid()) {
+        //      $cartRepository->save($cart, true);
+
+        //      return $this->redirectToRoute('app_cart_index', [], Response::HTTP_SEE_OTHER);
+        
+        
         
         return $this->render('cart/new.html.twig', [
-            'cart' => $product,
+            'cart' => $cart,
             'form' => $form,
         ]);
     }
