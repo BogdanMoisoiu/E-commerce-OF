@@ -57,6 +57,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 10)]
     private ?string $post_code = null;
 
+    #[ORM\Column]
+    private ?bool $banned = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -231,6 +234,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPostCode(string $post_code): self
     {
         $this->post_code = $post_code;
+
+        return $this;
+    }
+
+    public function isBanned(): ?bool
+    {
+        return $this->banned;
+    }
+
+    public function setBanned(bool $banned): self
+    {
+        $this->banned = $banned;
 
         return $this;
     }

@@ -29,7 +29,6 @@ class UserType extends AbstractType
                 'choices'  => [
                     "Admin" => 'ROLE_ADMIN',
                     "User" => 'ROLE_USER',
-                    "Banned" => 'ROLE_BANNED'
                 ],  
             ], 
             ])
@@ -78,6 +77,12 @@ class UserType extends AbstractType
             ->add('street', TextType::class)
             ->add('str_number_ap_number', TextType::class)
             ->add('post_code', TextType::class)
+            ->add('banned', ChoiceType::class, [
+                'choices'  => [
+                    'Yes' => true,
+                    'No' => false,
+                ],
+            ])
         ;
     }
 

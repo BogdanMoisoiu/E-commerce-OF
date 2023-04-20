@@ -2,9 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Brand;
+use App\Entity\Product;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Form\RegistrationFormType;
+use App\Repository\ProductRepository;
 use App\Repository\UserRepository;
 use App\Service\FileUploader;
 use Doctrine\Persistence\ManagerRegistry;
@@ -19,11 +22,22 @@ use Symfony\Component\Routing\Annotation\Route;
 class UserAccessController extends AbstractController
 {
     #[Route('/', name: 'app_user_access')]
-    public function index(): Response
+    public function index(ProductRepository $productRepository): Response
     {
         return $this->render('user_access/index.html.twig', [
             'controller_name' => 'UserAccessController',
+            'products' => $productRepository->findAll(),
 
+        ]);
+    }
+    #[Route('/{id}', name: 'app_user_access_show')]
+    public function show(Product $product, Brand $brand): Response
+    {
+        $brand = $product->getFkBrand();
+        return $this->render('user_access/show.html.twig', [
+            'controller_name' => 'UserAccessController',
+            'product' => $product,
+            'brand' => $brand,
         ]);
     }
 
@@ -53,21 +67,15 @@ class UserAccessController extends AbstractController
         ]);
     }
 
-    #[Route('/delete', name: 'app_user_access_delete', methods: ['POST'])]
-    public function delete(User $user, ManagerRegistry $doctrine ): Response
+    #[Route('/delete', name: 'app_user_access_delete', methods: ['GET'])]
+    public function delete( ManagerRegistry $doctrine ): Response
     {
         $user = $this->getUser();
-
-        $em = $doctrine()->getManager();
-        $user = $em->getRepository('App:User')->find($user);
+        $em = $doctrine->getManager();
         $em->remove($user);
         
         $em->flush();
-        $this->addFlash(
-            'notice',
-            'Account Deleted'
-        );
 
-        return $this->redirectToRoute('app_logout', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_login', [], Response::HTTP_SEE_OTHER);
     }
 }

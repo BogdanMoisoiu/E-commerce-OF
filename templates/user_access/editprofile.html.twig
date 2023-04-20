@@ -11,6 +11,5 @@
     <button class="btn">{{ button_label|default('Update') }}</button>
 {{ form_end(form) }}
 
-{{ include('user_access/_delete_profile_form.html.twig') }}
-
+<a href="/user/delete">Delete</a>
 {% endblock %}

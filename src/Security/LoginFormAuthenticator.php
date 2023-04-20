@@ -15,16 +15,19 @@ use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Credentials\PasswordCredentials;
 use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
+use App\Entity\User;
+use App\Repository\UserRepository;
 
 class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
 {
     use TargetPathTrait;
     private $security;
-
+    private $em;
     public const LOGIN_ROUTE = 'app_login';
 
-    public function __construct(private UrlGeneratorInterface $urlGenerator, Security $sec)
+    public function __construct(private UrlGeneratorInterface $urlGenerator, Security $sec, UserRepository $repo)
     {
+        $this->em = $repo;
         $this->security = $sec;
     }
 
@@ -33,7 +36,13 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
         $email = $request->request->get('email', '');
 
         $request->getSession()->set(Security::LAST_USERNAME, $email);
+        // $user = $request->request->all();
+        // $userEmail = $user["email"];
+        // $userData = $this->em->findOneByEmail($userEmail);
+        // if($userData->isBan()){
+        //     dd("error");
 
+        // }
         return new Passport(
             new UserBadge($email),
             new PasswordCredentials($request->request->get('password', '')),
@@ -45,21 +54,12 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
-        if ($this->security->isGranted('ROLE_BANNED')) {
-            return  new RedirectResponse($this->urlGenerator->generate("app_logout", ['banMessage'=>'Sorry, you have been only baned.']));
-        }
+        
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
             return new RedirectResponse($targetPath);
         }
 
-
-        /*if ($this->security->isGranted('ROLE_ADMIN')) {
-            return new RedirectResponse($this->urlGenerator->generate('app_product_index'));
-        }
-        else {
-            return new RedirectResponse($this->urlGenerator->generate('app_user_access'));
-        }
-*/
+        // redirecting user, admin and non user to difrent pages
         if ($this->security->isGranted( 'ROLE_ADMIN')) {
             return  new RedirectResponse($this ->urlGenerator->generate("app_product_index"));
         } elseif($this->security->isGranted( 'ROLE_USER')){
