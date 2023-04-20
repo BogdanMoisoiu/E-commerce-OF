@@ -6,7 +6,6 @@ use App\Service\FileUploader;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use App\Entity\Product;
-use App\Entity\Brand;
 use App\Form\ProductType;
 use App\Repository\BrandRepository;
 use App\Repository\ProductRepository;
@@ -25,6 +24,7 @@ class ProductController extends AbstractController
         
         // $repository = $doctrine->getRepository(Product::class);
         // $type = $repository->findBy(['type' => 'food', 'type' => '1']);
+
 
         return $this->render('product/index.html.twig', [
             'products' => $productRepository->findAll(),
