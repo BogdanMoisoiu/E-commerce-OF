@@ -3,15 +3,15 @@
 namespace App\Controller;
 
 use App\Entity\Brand;
-use App\Entity\Product;
 use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+#[Route('/user')]
 class UserAccessBrandController extends AbstractController
 {
-    #[Route('/user/brand/{id}', name: 'app_user_access_brand')]
+    #[Route('/brand/{id}', name: 'app_user_access_brand')]
     public function index(Brand $brand, ProductRepository $productRepository, $id): Response
     {
         return $this->render('user_access_brand/index.html.twig', [

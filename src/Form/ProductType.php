@@ -37,7 +37,7 @@ class ProductType extends AbstractType
             ->add('short_description', TextType::class)
             ->add('description', TextType::class)
             ->add('color', TextType::class)
-            ->add('power_max', TextType::class)
+            ->add('power_max', TextType::class, ["attr"=>["value"=> null]])
             ->add('power_source', TextType::class)
             ->add('availability', ChoiceType::class,  [
                 'choices'  => [
@@ -49,10 +49,19 @@ class ProductType extends AbstractType
             ->add('material', TextType::class)
             ->add('special_features', TextType::class)
             ->add('style', TextType::class)
-            ->add('sale', ChoiceType::class,  [
+            ->add('discount', ChoiceType::class,  [
                 'choices'  => [
-                    'Yes' => true,
-                    'No' => false,
+                    '0' => 'choice_value',
+                    '5%' => 'choice_value',
+                    '10%' => 'choice_value',
+                    '15%' => 'choice_value',
+                    '20%' => 'choice_value',
+                    '25%' => 'choice_value',
+                    '30%' => 'choice_value',
+                    '35%' => 'choice_value',
+                    '40%' => 'choice_value',
+                    '45%' => 'choice_value',
+                    '50%' => 'choice_value',
                 ],
             ])
             ->add('picture', FileType::class, [

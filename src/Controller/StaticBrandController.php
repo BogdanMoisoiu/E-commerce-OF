@@ -14,7 +14,6 @@ class StaticBrandController extends AbstractController
     public function index(Brand $brand, ProductRepository $productRepository, $id): Response
     {
         return $this->render('static_brand/index.html.twig', [
-            'controller_name' => 'StaticBrandController',
             'brand' => $brand,
             'products' => $productRepository->findBy(["Fk_brand" => $id]),
         ]);

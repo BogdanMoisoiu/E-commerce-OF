@@ -25,17 +25,15 @@ class UserAccessController extends AbstractController
     public function index(ProductRepository $productRepository): Response
     {
         return $this->render('user_access/index.html.twig', [
-            'controller_name' => 'UserAccessController',
             'products' => $productRepository->findAll(),
 
         ]);
     }
-    #[Route('/{id}', name: 'app_user_access_show')]
-    public function show(Product $product, Brand $brand): Response
+    #[Route('/show/{id}', name: 'app_user_access_show')]
+    public function show(Product $product): Response
     {
         $brand = $product->getFkBrand();
         return $this->render('user_access/show.html.twig', [
-            'controller_name' => 'UserAccessController',
             'product' => $product,
             'brand' => $brand,
         ]);
@@ -68,7 +66,7 @@ class UserAccessController extends AbstractController
     }
 
     #[Route('/delete', name: 'app_user_access_delete', methods: ['GET'])]
-    public function delete( ManagerRegistry $doctrine ): Response
+    public function delete(ManagerRegistry $doctrine): Response
     {
         $user = $this->getUser();
         $em = $doctrine->getManager();

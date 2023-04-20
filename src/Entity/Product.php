@@ -58,8 +58,8 @@ class Product
     #[ORM\Column(length: 50, nullable: true)]
     private ?string $style = null;
 
-    #[ORM\Column]
-    private ?bool $sale = null;
+    #[ORM\Column(length: 50, nullable: true)]
+    private ?string $discount = null;
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
@@ -241,14 +241,14 @@ class Product
         return $this;
     }
 
-    public function isSale(): ?bool
+    public function getDiscount(): ?string
     {
-        return $this->sale;
+        return $this->discount;
     }
 
-    public function setSale(bool $sale): self
+    public function setDiscount(string $discount): self
     {
-        $this->sale = $sale;
+        $this->discount = $discount;
 
         return $this;
     }

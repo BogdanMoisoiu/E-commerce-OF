@@ -3,6 +3,13 @@
 {% block title %}Product index{% endblock %}
 
 {% block body %}
+
+<div>
+    <h2>Categories</h2>
+    {# {% for product in products %}
+        <a href="{{ type }}" class="btn btn-secondary">{{ product.type }}</a>
+    {% endfor %} #}
+</div>
     <h1>Product index</h1>
 
     <table class="table">
@@ -24,7 +31,7 @@
                 <th>Material</th>
                 <th>Special_features</th>
                 <th>Style</th>
-                <th>Sale</th>
+                <th>discount</th>
                 <th>Picture</th>
                 <th>actions</th>
             </tr>
@@ -48,7 +55,7 @@
                 <td>{{ product.material }}</td>
                 <td>{{ product.specialFeatures }}</td>
                 <td>{{ product.style }}</td>
-                <td>{{ product.sale ? 'Yes' : 'No' }}</td>
+                <td>{{ product.discount}}</td>
                 <td><img src="{{ product.picture }}" alt="" height="70px"></td>
                 <td>
                     <a href="{{ path('app_product_show', {'id': product.id}) }}">show</a>

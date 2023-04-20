@@ -34,7 +34,7 @@ class UserType extends AbstractType
             ])
 
 
-            ->add('plainPassword', PasswordType::class, [
+            ->add('plainPassword', PasswordType::class, [ 'label' => 'Password',
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'mapped' => false,
@@ -51,9 +51,9 @@ class UserType extends AbstractType
                          ]),
                         ],
                         ])
-            ->add('first_name', TextType::class)
-            ->add('last_name', TextType::class)
-            ->add('date_of_birth', DateType::class, [
+            ->add('first_name', TextType::class, ['label' => 'First Name'])
+            ->add('last_name', TextType::class, ['label' => 'Last Name'])
+            ->add('date_of_birth', DateType::class, ['label' => 'Date of Birth', 
                 'years' => range(date('Y')-100, date('Y'))
                 ])
                 ->add('picture', FileType::class, [
@@ -72,10 +72,10 @@ class UserType extends AbstractType
                         ])
                     ],
                 ])
-            ->add('phone_number', TextType::class)
+            ->add('phone_number', TextType::class, ['label' => 'Phone Number',])
             ->add('city', TextType::class)
             ->add('street', TextType::class)
-            ->add('str_number_ap_number', TextType::class)
+            ->add('str_number_ap_number', TextType::class, ['label' => 'House Number/Appartment Number'])
             ->add('post_code', TextType::class)
             ->add('banned', ChoiceType::class, [
                 'choices'  => [
