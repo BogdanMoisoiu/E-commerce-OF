@@ -71,6 +71,7 @@ class UserType extends AbstractType
                             'mimeTypesMessage' => 'Please upload a valid image file',
                         ])
                     ],
+                    "attr"=>["value"=> null],
                 ])
             ->add('phone_number', TextType::class, ['label' => 'Phone Number',])
             ->add('city', TextType::class)

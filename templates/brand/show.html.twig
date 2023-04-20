@@ -3,7 +3,7 @@
 {% block title %}Brand{% endblock %}
 
 {% block body %}
-    <h1>Brand</h1>
+    <h1>Brand info</h1>
 
     <table class="table">
         <tbody>
@@ -35,8 +35,9 @@
     <a href="{{ path('app_brand_edit', {'id': brand.id}) }}">edit</a>
 
     {{ include('brand/_delete_form.html.twig') }}
-
+<hr>
 <div class="products">
+    <h2>All product from this brand</h2>
     {% for product in products %}
     <div>
         <img src="{{ asset('pictures/' ~ product.picture) }}" alt="{{ product.name }}" height="70px">

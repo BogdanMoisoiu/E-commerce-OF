@@ -30,12 +30,16 @@ class UserAccessController extends AbstractController
         ]);
     }
     #[Route('/show/{id}', name: 'app_user_access_show')]
-    public function show(Product $product): Response
+    public function show(Product $product, ProductRepository $productRepository): Response
     {
         $brand = $product->getFkBrand();
+
+        $type = $product->getType();
         return $this->render('user_access/show.html.twig', [
             'product' => $product,
             'brand' => $brand,
+            'type' => $type,
+            'products' => $productRepository->findAll(),
         ]);
     }
 

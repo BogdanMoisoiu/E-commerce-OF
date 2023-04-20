@@ -23,7 +23,7 @@ class Product
     private ?float $price = null;
 
     #[ORM\Column(length: 50)]
-    private ?string $type = null;
+    public ?string $type = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $prod_dimensions = null;

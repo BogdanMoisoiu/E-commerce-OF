@@ -63,7 +63,7 @@ class ProductType extends AbstractType
                     '45%' => '45%',
                     '50%' => '50%',
                 ],
-                "attr"=>["value"=> null]
+                "attr"=>["value"=> null],
             ])
             ->add('picture', FileType::class, [
                 'label' => 'Upload Picture',
@@ -80,7 +80,7 @@ class ProductType extends AbstractType
                         'mimeTypesMessage' => 'Please upload a valid image file',
                     ])
                 ],
-                "attr"=>["value"=> null]
+                "attr"=>["value"=> null],
             ])
         ;
     }

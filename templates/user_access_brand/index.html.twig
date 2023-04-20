@@ -1,7 +1,45 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello UserAccessBrandController!{% endblock %}
+{% block title %}Brand{% endblock %}
 
 {% block body %}
+    <h1>Brand info</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ brand.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ brand.name }}</td>
+            </tr>
+            <tr>
+                <th>Country</th>
+                <td>{{ brand.country }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ brand.email }}</td>
+            </tr>
+            <tr>
+                <th>Address</th>
+                <td>{{ brand.address }}</td>
+            </tr>
+        </tbody>
+    </table>
+<hr>
+
+<div class="products">
+<h2>All product from this brand</h2>
+    {% for product in products %}
+    <div>
+        <img src="{{ asset('pictures/' ~ product.picture) }}" alt="{{ product.name }}" height="70px">
+        <p>{{ product.name }}</p>
+    </div>
+        
+    {% endfor %}
+</div>
 
 {% endblock %}

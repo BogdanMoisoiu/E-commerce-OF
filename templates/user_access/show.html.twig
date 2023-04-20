@@ -27,9 +27,9 @@
             <tr>
                 <th>Brand</th>
                 {# for admin #}
-                <td><a href="{{ path('app_brand_show', {'id': brand.id}) }}">{{ brand.name }}</a></td>
+                {# <td><a href="{{ path('app_brand_show', {'id': brand.id}) }}">{{ brand.name }}</a></td> #}
                 {# for users #}
-                {# <td><a href="{{ path('app_user_access_brand', {'id': brand.id}) }}">{{ brand.name }}</a></td> #}
+                <td><a href="{{ path('app_user_access_brand', {'id': brand.id}) }}">{{ brand.name }}</a></td>
             </tr>
             <tr>
                 <th>Prod_dimensions</th>
@@ -86,4 +86,16 @@
         </tbody>
     </table>
 
+    <div>
+        <h2>All products from category {{ type }}</h2>
+        {% if type %}{% endif %}
+        {% for product in products %}
+           <div>
+            <img src="{{ product.picture }}" alt="" height="70px">
+            <p>{{ product.name }}</p>
+            <p>{{ product.price }}</p>
+            <a href="{{ path('app_product_show', {'id': product.id}) }}">show</a>
+           </div>
+        {% endfor %}
+    </div>
 {% endblock %}

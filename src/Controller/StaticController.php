@@ -21,13 +21,16 @@ class StaticController extends AbstractController
         ]);
     }
     #[Route('/show/{id}', name: 'app_static_show')]
-    public function show(Product $product): Response
+    public function show(Product $product, ProductRepository $productRepository): Response
     {
         $brand = $product->getFkBrand();
+
+        $type = $product->getType();
         return $this->render('static/show.html.twig', [
-            'controller_name' => 'StaticController',
             'product' => $product,
             'brand' => $brand,
+            'type' => $type,
+            'products' => $productRepository->findAll(),
         ]);
     }
 }

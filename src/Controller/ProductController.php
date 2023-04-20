@@ -21,14 +21,9 @@ class ProductController extends AbstractController
     #[Route('/', name: 'app_product_index', methods: ['GET'])]
     public function index(ProductRepository $productRepository): Response
     {
-        
-        // $repository = $doctrine->getRepository(Product::class);
-        // $type = $repository->findBy(['type' => 'food', 'type' => '1']);
-
 
         return $this->render('product/index.html.twig', [
             'products' => $productRepository->findAll(),
-            // 'type' => $type,
         ]);
     }
 
@@ -59,12 +54,16 @@ class ProductController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_product_show', methods: ['GET'])]
-    public function show(Product $product): Response
+    public function show(Product $product, ProductRepository $productRepository): Response
     {
         $brand = $product->getFkBrand();
+
+        $type = $product->getType();
         return $this->render('product/show.html.twig', [
             'product' => $product,
             'brand' => $brand,
+            'type' => $type,
+            'products' => $productRepository->findAll(),
         ]);
     }
 
