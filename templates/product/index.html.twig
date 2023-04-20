@@ -4,6 +4,12 @@
 
 {% block body %}
 
+<div>
+    <h2>Categories</h2>
+     {% for product in products %}
+        <a href="{{ product.type }}" class="btn btn-secondary">{{ product.type }}</a>
+    {% endfor %} 
+</div>
     <h1>Product index</h1>
 
     <table class="table">
