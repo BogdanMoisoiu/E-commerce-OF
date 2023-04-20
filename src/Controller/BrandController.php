@@ -65,7 +65,7 @@ class BrandController extends AbstractController
             return $this->redirectToRoute('app_brand_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('brand/edit.html.twig', [
+        return $this->render('brand/edit.html.twig', [
             'brand' => $brand,
             'form' => $form,
         ]);
