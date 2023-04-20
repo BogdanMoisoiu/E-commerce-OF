@@ -29,9 +29,7 @@ class CartController extends AbstractController
     {
         
          $cart = new Cart();
-         $product = $productRepository->find($id);
-        $cart
-        ->add
+         
 
         //  $form = $this->createForm(CartType::class, $cart);
         //  $form->handleRequest($request);
@@ -45,7 +43,6 @@ class CartController extends AbstractController
         
         return $this->render('cart/new.html.twig', [
             'cart' => $cart,
-            'form' => $form,
         ]);
     }
 

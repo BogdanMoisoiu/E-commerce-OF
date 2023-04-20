@@ -22,7 +22,7 @@ class OrderItemController extends AbstractController
         ]);
     }
     #[Route('/order/item/add', name: 'app_order_item_add')]
-    public function addToCart(Request $request, OrderItemRepository $orderRepository): Response
+    public function addToCart(Request $request, OrderItemRepository $orderRepository, CartRepository $cartRepository): Response
     {$order = new OrderItem();
         $form = $this->createForm(OrderItemType::class, $order);
         $form->handleRequest($request);
