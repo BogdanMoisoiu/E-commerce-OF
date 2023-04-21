@@ -45,6 +45,12 @@ class ProductType extends AbstractType
                     'No' => false,
                 ],
             ])
+            ->add('approved', ChoiceType::class,  [
+                'choices'  => [
+                    'Yes' => true,
+                    'No' => false,
+                ],
+            ])
             ->add('quantity_left', IntegerType::class)
             ->add('material', TextType::class)
             ->add('special_features', TextType::class, ["attr"=>["value"=> null]])

@@ -68,6 +68,9 @@ class Product
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $picture = null;
 
+    #[ORM\Column]
+    private ?bool $approved = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -273,6 +276,18 @@ class Product
     public function setPicture(?string $picture): self
     {
         $this->picture = $picture;
+
+        return $this;
+    }
+
+    public function isApproved(): ?bool
+    {
+        return $this->approved;
+    }
+
+    public function setApproved(bool $approved): self
+    {
+        $this->approved = $approved;
 
         return $this;
     }

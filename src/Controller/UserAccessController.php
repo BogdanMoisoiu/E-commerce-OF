@@ -24,6 +24,7 @@ class UserAccessController extends AbstractController
     #[Route('/', name: 'app_user_access')]
     public function index(ProductRepository $productRepository): Response
     {
+        
         return $this->render('user_access/index.html.twig', [
             'products' => $productRepository->findAll(),
 

@@ -29,6 +29,7 @@
         </thead>
         <tbody>
         {% for product in products %}
+        {% if product.approved == 1 %}
             <tr>
                 <td>{{ product.id }}</td>
                 <td>{{ product.name }}</td>
@@ -50,6 +51,7 @@
 
                 </td>
             </tr>
+            {% endif %}
         {% else %}
             <tr>
                 <td colspan="17">no records found</td>
