@@ -14,17 +14,7 @@
                 <th>Price</th>
                 <th>Type</th>
                 <th>Brand</th>
-                <th>Prod_dimensions</th>
                 <th>Short_description</th>
-                <th>Description</th>
-                <th>Color</th>
-                <th>Power_max</th>
-                <th>Power_source</th>
-                <th>Availability</th>
-                <th>Quantity_left</th>
-                <th>Material</th>
-                <th>Special_features</th>
-                <th>Style</th>
                 <th>discount</th>
                 <th>Picture</th>
                 <th>actions</th>
@@ -34,21 +24,13 @@
         {% for product in products %}
             <tr>
                 <td>{{ product.id }}</td>
-                <td>{{ product.name }}</td>
+                <td>{{ product.name }}</td>               
+
                 <td>{{ product.price }}</td>
+                
                 <td>{{ product.type }}</td>
                 <td>{{ product.FkBrand.name }}</td>
-                <td>{{ product.prodDimensions }}</td>
                 <td>{{ product.shortDescription }}</td>
-                <td>{{ product.description }}</td>
-                <td>{{ product.color }}</td>
-                <td>{{ product.powerMax }}</td>
-                <td>{{ product.powerSource }}</td>
-                <td>{{ product.availability ? 'Yes' : 'No' }}</td>
-                <td>{{ product.quantityLeft }}</td>
-                <td>{{ product.material }}</td>
-                <td>{{ product.specialFeatures }}</td>
-                <td>{{ product.style }}</td>
                 <td>{{ product.discount}}</td>
                 <td><img src="{{ product.picture }}" alt="" height="70px"></td>
                 <td>

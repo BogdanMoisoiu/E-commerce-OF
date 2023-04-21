@@ -33,13 +33,17 @@ class UserAccessController extends AbstractController
     public function show(Product $product, ProductRepository $productRepository): Response
     {
         $brand = $product->getFkBrand();
-
         $type = $product->getType();
+
+        $discount = $product->getDiscount();
+        $price = $product->getPrice();
+        $discountPrice = $price - ($price * $discount);
         return $this->render('user_access/show.html.twig', [
             'product' => $product,
             'brand' => $brand,
             'type' => $type,
             'products' => $productRepository->findAll(),
+            'discountPrice' => $discountPrice,
         ]);
     }
 

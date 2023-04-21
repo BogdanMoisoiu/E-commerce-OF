@@ -14,16 +14,26 @@
             <tr>
                 <th>Name</th>
                 <td>{{ product.name }}</td>
-            </tr>
-            <tr>
-                <th>Price</th>
-                <td>{{ product.price }}</td>
-            </tr>
+            
+            {% if product.discount > 0 %}
+        </tr>
+            <th>Old price</th>
+            <td>{{ product.price }}</td>
+        </tr>
+        <tr>
+            <th>Price with discount</th>
+            <td>{{ discountPrice }}</td>
+        </tr>
+        {% else %}
+        <tr>
+            <th>Price</th>
+            <td>{{ product.price }}</td>
+        </tr>
+        {% endif %}
             <tr>
                 <th>Type</th>
                 <td>{{ product.type }}</td>
             </tr>
-            <tr>
             <tr>
                 <th>Brand</th>
                 {# for admin #}
@@ -34,10 +44,6 @@
             <tr>
                 <th>Prod_dimensions</th>
                 <td>{{ product.prodDimensions }}</td>
-            </tr>
-            <tr>
-                <th>Short_description</th>
-                <td>{{ product.shortDescription }}</td>
             </tr>
             <tr>
                 <th>Description</th>

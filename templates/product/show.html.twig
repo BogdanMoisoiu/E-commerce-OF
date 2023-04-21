@@ -15,15 +15,27 @@
                 <th>Name</th>
                 <td>{{ product.name }}</td>
             </tr>
-            <tr>
-                <th>Price</th>
-                <td>{{ product.price }}</td>
-            </tr>
+           
+                {% if product.discount > 0 %}
+                <tr>
+                    <th>Old price</th>
+                    <td>{{ product.price }}</td>
+                </tr>
+                <tr>
+                    <th>Price with discount</th>
+                    <td>{{ discountPrice }}</td>
+                </tr>
+                {% else %}
+                <tr>
+                    <th>Price</th>
+                    <td>{{ product.price }}</td>
+                </tr>
+                {% endif %}
+                
             <tr>
                 <th>Type</th>
                 <td>{{ product.type }}</td>
             </tr>
-            <tr>
             <tr>
                 <th>Brand</th>
                 {# for admin #}
@@ -34,10 +46,6 @@
             <tr>
                 <th>Prod_dimensions</th>
                 <td>{{ product.prodDimensions }}</td>
-            </tr>
-            <tr>
-                <th>Short_description</th>
-                <td>{{ product.shortDescription }}</td>
             </tr>
             <tr>
                 <th>Description</th>
@@ -75,10 +83,7 @@
                 <th>Style</th>
                 <td>{{ product.style }}</td>
             </tr>
-            <tr>
-                <th>discount</th>
-                <td>{{ product.discount }}</td>
-            </tr>
+
             <tr>
                 <th>Picture</th>
                 <td><img src="{{ product.picture }}" alt="" height="70px"></td>
@@ -94,7 +99,7 @@
 
     <div>
         <h2>All products from category {{ type }}</h2>
-        {% if type %}{% endif %}
+        {% if type %}
         {% for product in products %}
            <div>
             <img src="{{ product.picture }}" alt="" height="70px">
@@ -103,5 +108,8 @@
             <a href="{{ path('app_product_show', {'id': product.id}) }}">show</a>
            </div>
         {% endfor %}
+        {% else %}
+            <p>There's no products in category {{ type }}</p>
+        {% endif %}
     </div>
 {% endblock %}
