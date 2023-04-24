@@ -35,7 +35,7 @@
                         {% endif %}</td>
                     <td><img src="{{ item.fkProduct.picture }}" alt="" height="70px"></td>
               <td>{{ item.quantity }}</td>
-               <td>{{ include('order_item/_delete_form.html.twig') }}</td>
+               <td><a href="/user/order_item/delete/{{ item.id }}" class="btn btn-danger">Delete</a></td>
 </form></td>
                 </tr>
             {% else %}

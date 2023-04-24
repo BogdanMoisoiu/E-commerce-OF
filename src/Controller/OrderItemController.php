@@ -18,7 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class OrderItemController extends AbstractController
 {
     #[Route('/order/item', name: 'app_order_item')]
-    public function index(ProductRepository $productRepository, OrderItemRepository $orderItemRepository): Response
+    public function index(OrderItemRepository $orderItemRepository): Response
     {
         
         return $this->render('order_item/index.html.twig', [
@@ -45,19 +45,6 @@ class OrderItemController extends AbstractController
             'cart' => $order,
             'form' => $form,
         ]);
-    }
-
-    #[Route('/{id}', name: 'app_order_item_delete', methods: ['POST'])]
-    public function delete(ManagerRegistry $doctrine, Request $request, OrderItem $orderItem, OrderItemRepository $orderItemRepository, $cartItem): Response
-    {
-        $cartItem = $orderItem->getFkProduct();
-        $em = $doctrine->getManager();
-        $em->remove($cartItem);
-        
-        $em->flush();
-
-
-        return $this->redirectToRoute('app_order_item_index', [], Response::HTTP_SEE_OTHER);
     }
 }
 

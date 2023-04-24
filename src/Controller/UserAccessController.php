@@ -97,6 +97,18 @@ class UserAccessController extends AbstractController
 
         return $this->redirectToRoute('app_login', [], Response::HTTP_SEE_OTHER);
     }
+    
+    #[Route('/order_item/delete/{id}', name: 'app_user_access_delete_from_cart', methods: ['GET'])]
+    public function deleteFromCart(ManagerRegistry $doctrine, OrderItemRepository $orderItemRepository, $id): Response
+    {
+        $cartItem = $orderItemRepository->find($id);
+        $em = $doctrine->getManager();
+        $em->remove($cartItem);
+        $em->flush();
+
+        return $this->redirectToRoute('app_order_item', [], Response::HTTP_SEE_OTHER);
+    }
+
     #[Route('/addtocart/{id}', name: 'app_user_access_addtocart')]
     public function AddToCart(Request $request, Product $product, ProductRepository $productRepository, UserRepository $userRepository, OrderItemRepository $orderItemRepository): Response
     {
