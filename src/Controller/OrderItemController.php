@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Request as HttpFoundationRequest;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class OrderItemController extends AbstractController
@@ -22,13 +23,16 @@ class OrderItemController extends AbstractController
         ]);
     }
     #[Route('/order/item/add', name: 'app_order_item_add')]
-    public function addToCart(Request $request, OrderItemRepository $orderRepository, CartRepository $cartRepository): Response
+    public function addToCart(Request $request, OrderItemRepository $orderRepository, MailerInterface $mailer, CartRepository $cartRepository): Response
     {$order = new OrderItem();
         $form = $this->createForm(OrderItemType::class, $order);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $orderRepository->save($order, true);
+            // $sender = $form->get('email')->getData();
+            // $email = new MailController();
+            // $email->sendEmail($mailer, $sender);
 
             return $this->redirectToRoute('app_cart_index', [], Response::HTTP_SEE_OTHER);
         }
