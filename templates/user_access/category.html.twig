@@ -3,10 +3,12 @@
 {% block title %}Product index{% endblock %}
 
 {% block body %}
-<h5>categories</h5>
-    {% for product in products %}
-    <a href="{{ path('app_user_access_category', {'type':product.type}) }}">{{ product.type }}</a>
-    {% endfor %}
+
+    {# {% if  banMessage|default(null) %}
+        <div class="alert alert-danger">
+            {{ banMessage }}
+        </div>
+    {% endif %} #}
 
     <h1>Product index</h1>
 
@@ -31,12 +33,7 @@
             <tr>
                 <td>{{ product.id }}</td>
                 <td>{{ product.name }}</td>
-                {% if product.discount > 0 %}
-                <td><p style="text-decoration: line-through;">{{ product.price }} &#8364;</p>
-                <p>{{ product.price - (product.price * product.discount) }} &#8364;</p></td> 
-                {% else %}
-                    <td>{{ product.price }} &#8364;</td> 
-                {% endif %}
+                <td>{{ product.price }} &#8364;</td>
                 <td>{{ product.type }}</td>
                 <td>{{ product.FkBrand.name }}</td>
                 <td>{{ product.prodDimensions }}</td>

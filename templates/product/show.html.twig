@@ -19,16 +19,16 @@
                 {% if product.discount > 0 %}
                 <tr>
                     <th>Old price</th>
-                    <td>{{ product.price }}</td>
+                    <td>{{ product.price }} &#8364;</td>
                 </tr>
                 <tr>
                     <th>Price with discount</th>
-                    <td>{{ discountPrice }}</td>
+                    <td>{{ discountPrice }} &#8364;</td>
                 </tr>
                 {% else %}
                 <tr>
                     <th>Price</th>
-                    <td>{{ product.price }}</td>
+                    <td>{{ product.price }} &#8364;</td>
                 </tr>
                 {% endif %}
                 
@@ -104,7 +104,7 @@
            <div>
             <img src="{{ product.picture }}" alt="" height="70px">
             <p>{{ product.name }}</p>
-            <p>{{ product.price }}</p>
+            <p>{{ product.price }} &#8364;</p>
             <a href="{{ path('app_product_show', {'id': product.id}) }}">show</a>
            </div>
         {% endfor %}

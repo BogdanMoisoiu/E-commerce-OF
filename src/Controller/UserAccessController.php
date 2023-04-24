@@ -30,6 +30,15 @@ class UserAccessController extends AbstractController
 
         ]);
     }
+    #[Route('/category/{type}', name: 'app_user_access_category', methods: ['GET'])]
+    public function category(ProductRepository $productRepository, $type): Response
+    {
+
+
+        return $this->render('user_access/category.html.twig', [
+            'products' => $productRepository->findBy(array("type"=>$type)),
+        ]);
+    }
     #[Route('/show/{id}', name: 'app_user_access_show')]
     public function show(Product $product, ProductRepository $productRepository): Response
     {

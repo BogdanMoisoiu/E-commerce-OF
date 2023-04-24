@@ -20,6 +20,17 @@ class StaticController extends AbstractController
             'products' => $productRepository->findAll(),
         ]);
     }
+
+    #[Route('/category/{type}', name: 'app_static_category', methods: ['GET'])]
+    public function category(ProductRepository $productRepository, $type): Response
+    {
+
+
+        return $this->render('static/category.html.twig', [
+            'products' => $productRepository->findBy(array("type"=>$type)),
+        ]);
+    }
+
     #[Route('/show/{id}', name: 'app_static_show')]
     public function show(Product $product, ProductRepository $productRepository): Response
     {
