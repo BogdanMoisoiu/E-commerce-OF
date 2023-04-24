@@ -1,10 +1,7 @@
 {% extends 'base.html.twig' %}
-
 {% block title %}{% endblock %}
-
 {% block body %}
 <h1>Cart index</h1>
-    
         <table class="table">
             <thead>
                 <tr>
@@ -22,32 +19,25 @@
                 </tr>
             </thead>
             <tbody>
-            {% for product in products %}
-            {% if product.approved == 1 %}
-            
+            {% for item in items %}
                 <tr>
-                    <td>{{ product.id }}</td>
-                    <td>{{ product.name }}</td>
-                    <td>{{ product.price }}</td>
-                    <td>{{ product.type }}</td>
-                    <td>{{ product.FkBrand.name }}</td>
-                    <td>{{ product.prodDimensions }}</td>
-                    <td>{{ product.shortDescription }}</td>
-                    
-                    
-                    <td>{% if product.discount > 0 %}
-                        {{ product.discount }}
+                    <td>{{ item.fkProduct.id }}</td>
+                    <td>{{ item.fkProduct.name }}</td>
+                    <td>{{ item.fkProduct.price }}</td>
+                    <td>{{ item.fkProduct.type }}</td>
+                    <td>{{ item.fkProduct.FkBrand.name }}</td>
+                    <td>{{ item.fkProduct.prodDimensions }}</td>
+                    <td>{{ item.fkProduct.shortDescription }}</td>
+                    <td>{% if item.fkProduct.discount > 0 %}
+                        {{ item.fkProduct.discount }}
                         {% else %}
                             no discount
                         {% endif %}</td>
-                    <td><img src="{{ product.picture }}" alt="" height="70px"></td>
-                    {# <td>{{ quantity }}</td> #}
-                    <td>
-                        <a href="{{ path('app_static_show', {'id': product.id}) }}">show</a>
-    
-                    </td>
+                    <td><img src="{{ item.fkProduct.picture }}" alt="" height="70px"></td>
+              <td>{{ item.quantity }}</td>
+               <td>{{ include('order_item/_delete_form.html.twig') }}</td>
+</form></td>
                 </tr>
-                {% endif %}
             {% else %}
                 <tr>
                     <td colspan="17">no records found</td>
@@ -55,5 +45,4 @@
             {% endfor %}
             </tbody>
         </table>
-    
 {% endblock %}
