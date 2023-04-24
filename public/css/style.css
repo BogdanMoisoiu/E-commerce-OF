@@ -94,7 +94,7 @@ header {
 
 .indicator {
     position: absolute;
-    top: -50%;
+    top: -49%;
     width: 70px;
     height: 70px;
     background: white;
@@ -157,6 +157,7 @@ header {
     padding: 2rem;
     display: none;
     box-shadow: 10px 10px 2px 1px #222840;
+    z-index: 1;
 }
 
 .login-form.active {
@@ -200,10 +201,11 @@ header {
 .headline h2 {
     color: white;
     font-size: 7rem;
-    letter-spacing: .2rem;
+    letter-spacing: .1rem;
     text-transform: uppercase;
-    line-height: 5rem;
-}
+    line-height: 5.4rem;
+    font-weight: bolder;
+    font-family: 'Josefin Sans', sans-serif;}
 
 .fanImg img {
     max-width: 350%;
@@ -307,6 +309,10 @@ header h1 {
     gap: 1.5rem;
 }
 
+.container h1 {
+    writing-mode: vertical-lr;
+}
+
 .container p {
     text-align: start;
 }
@@ -326,14 +332,17 @@ main {
 .home-intro { 
     text-align: center;
     height: 50vh 0;
-    
+}
+
+.home-intro h1 {
+    text-transform: uppercase;
+    font-size: 4rem;
 }
 
 .home-about {
     padding: 4rem 0;
     max-width: 900px;
     margin: 0 auto;
-    
 }
 
 .home-about h2 {
@@ -452,17 +461,60 @@ main {
 }
 
 footer {
-    height: 30vh;
-    display: inline;
-    background: url(/pictures/bg1.jpg);
+    position: relative;
+    height: 25vh;
+    background: url(/pictures/bg1.jpg) no-repeat center; 
     padding: 2rem;
     font-size: 2rem;
 }
 
+.footer-box h3 {
+    font-size: 1.1rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+  }
+  .footer-box a,
+  .footer-box p {
+    color: #222840;
+    margin-bottom: 10px;
+  }
+  .footer-box a:hover {
+    color: #00AFF0;
+  }
+  .copyright {
+    padding: 20px;
+    text-align: center;
+    color: #222840;
+  }
+  /* Making Responsive */
+  @media (max-width: 1080px) {
+    .container {
+      margin-left: 1rem;
+      margin-right: 1rem;
+    }
+  }
+  @media (max-width: 991px) {
+    .nav {
+      padding: 15px 20px;
+    }
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
 .animate-border {
     position: relative;
     display: block;
-    width: 200px;
+    width: 800px;
     height: 3px;
     background: #00AFF0; 
 }
@@ -470,14 +522,14 @@ footer {
 .animate-border:after {
     position: absolute;
     content: "";
-    width: 35px;
+    width: 100px;
     height: 3px;
     left: 0;
     bottom: 0;
     border-left: 10px solid #fff;
     border-right: 10px solid #fff;
-    -webkit-animation: animborder 2s linear infinite;
-    animation: animborder 2s linear infinite; 
+    -webkit-animation: animborder 10s linear infinite;
+    animation: animborder 10s linear infinite; 
 }
 
 @-webkit-keyframes animborder {
@@ -485,16 +537,16 @@ footer {
       -webkit-transform: translateX(0px);
       transform: translateX(0px); }
     100% {
-      -webkit-transform: translateX(113px);
-      transform: translateX(113px); } }
+      -webkit-transform: translateX(400px);
+      transform: translateX(400px); } }
   
   @keyframes animborder {
     0% {
       -webkit-transform: translateX(0px);
       transform: translateX(0px); }
     100% {
-      -webkit-transform: translateX(113px);
-      transform: translateX(113px); } }
+      -webkit-transform: translateX(800px);
+      transform: translateX(800px); } }
   
   .animate-border.border-white:after {
     border-color: #fff; }
@@ -512,28 +564,10 @@ footer {
   
   .animate-border.border-offwhite:after {
     border-right-color: #00AFF0;
-    border-left-color: #00AFF0; }
-
-.footer-widget {
-    line-height: 2rem;
-    text-transform: uppercase;
-    color: #222840;
+    border-left-color: #00AFF0; 
 }
 
-.footer-widget ul {
-    list-style: none;
-}
 
-.footer-widget a {
-    font-size: 1.3rem;
-    line-height: 1.5rem;
-    color: #222840;
-    -webkit-transition: all 0.3s;
-    -o-transition: all 0.3s;
-    transition: all 0.3s; }
-.footer-widget a:hover {
-    color: #00AFF0; 
-}
 
 
 
@@ -624,7 +658,8 @@ footer {
 
 @media screen and (min-width: 640px) and (max-width: 920px) {
     .fanImg img {
-        opacity: 0;
+        opacity: 1;
+        display: none;
     }
 
     .handFan img {

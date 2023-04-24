@@ -81,7 +81,7 @@
             <div class="navbar">
                 <ul class="active">
                     <li class="list">
-                        <a href="#">
+                        <a href="{{ path('app_product_index') }}">
                             <span class="icon">
                                 <i class="fa-brands fa-shopify"></i>
                             </span>
@@ -89,7 +89,7 @@
                         </a>
                             </li>
                             <li class="list">
-                                <a href="#">
+                                <a href="{{ path('app_about') }}">
                                     <span class="icon">
                                         <i class="fa-solid fa-fan"></i>
                                     </span>
@@ -97,7 +97,7 @@
                                 </a>
                             </li>
                             <li class="list">
-                                <a href="#">
+                                <a href="{{ path('app_contact') }}">
                                     <span class="icon">
                                         <i class="fa-solid fa-phone-volume"></i>
                                     </span>
@@ -113,7 +113,7 @@
                                 </a>
                             </li>
                             <li class="list">
-                                <a href="#">
+                                <a href="{{ path('app_cart_index') }}">
                                     <span class="icon">
                                         <i class="fa-brands fa-opencart"></i>
                                     </span>
@@ -125,7 +125,7 @@
                     </div>
                 </div>
     
-                <form class="login-form slide-in from-right">
+                <form method="post" class="login-form slide-in from-right">
                     <h3>Login</h3>
                         <input type="email" name="email" placeholder="enter your email" class="box">
                         <input type="password" name="password" placeholder="enter your password" class="box">
@@ -133,11 +133,15 @@
                         <input type="checkbox" name="checkbox" id="remember-me">
                         <label for="remember-me">Remember Me</label>
                     </div>
-                    <input type="submit" name="sign" value="sign in" class="btn">
+                    <input type="hidden" name="_csrf_token"
+                    value="{{ csrf_token('authenticate') }}">
+                    <button class="btn btn-lg btn-primary" type="submit">
+                        Sign in
+                    </button>
                     <div class="links">
                         <a href="#">Forgot Password?</a>
-                        <a href="#">Logout</a>
-                        <a href="#">Sign Up</a>
+                        <a href="{{ path('app_logout') }}">Logout</a>
+                        <a href="{{ path('app_register') }}">Sign Up</a>
                     </div>
                 </form>
     
@@ -260,29 +264,12 @@
         <footer class="dk-footer" id="dk-footer">
             <div class="container1">
                     <div class="footer-widget footer-left-widget">
-                                    <div class="section-heading">
-                                        <h3>Fan Out</h3>
-                                        <span class="animate-border border-black"></span>
-                                    </div>
-                                    <ul>
-                                        <li>
-                                            <a href="#">About us</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Services</a>
-                                        </li>
-                                        
-                                        <li>
-                                            <a href="#">Our Team</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Contact us</a>
-                                        </li>
-                                    </ul>
-                                </div>
+                            <div class="section-heading">
+                                    <span class="animate-border border-black"></span>
                             </div>
                     </div>
             </div>
+            
         </footer>
 
 
