@@ -33,12 +33,12 @@ class ProductType extends AbstractType
                 // 'multiple' => true,
                 // 'expanded' => true,
             ])
-            ->add('prod_dimensions', TextType::class, ["attr"=>["value"=> null]])
+            ->add('prod_dimensions', TextType::class)
             ->add('short_description', TextType::class)
             ->add('description', TextType::class)
-            ->add('color', TextType::class, ["attr"=>["value"=> null]])
-            ->add('power_max', TextType::class, ["attr"=>["value"=> null]])
-            ->add('power_source', TextType::class, ["attr"=>["value"=> null]])
+            ->add('color', TextType::class)
+            ->add('power_max', TextType::class)
+            ->add('power_source', TextType::class)
             ->add('availability', ChoiceType::class,  [
                 'choices'  => [
                     'Yes' => true,
@@ -53,8 +53,8 @@ class ProductType extends AbstractType
             ])
             ->add('quantity_left', IntegerType::class)
             ->add('material', TextType::class)
-            ->add('special_features', TextType::class, ["attr"=>["value"=> null]])
-            ->add('style', TextType::class, ["attr"=>["value"=> null]])
+            ->add('special_features', TextType::class)
+            ->add('style', TextType::class)
             ->add('discount', ChoiceType::class,  [
                 'choices'  => [
                     'No discount' => '0',
@@ -69,7 +69,7 @@ class ProductType extends AbstractType
                     '45%' => '0.45',
                     '50%' => '0.50',
                 ],
-                "attr"=>["value"=> null],
+                
             ])
             ->add('picture', FileType::class, [
                 'label' => 'Upload Picture',
@@ -86,7 +86,7 @@ class ProductType extends AbstractType
                         'mimeTypesMessage' => 'Please upload a valid image file',
                     ])
                 ],
-                "attr"=>["value"=> null],
+                
             ])
         ;
     }

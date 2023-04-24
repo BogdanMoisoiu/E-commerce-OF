@@ -71,6 +71,15 @@ class ProductController extends AbstractController
             'discountPrice' => $discountPrice,
         ]);
     }
+    #[Route('/category/{type}', name: 'app_product_category', methods: ['GET'])]
+    public function category(ProductRepository $productRepository, $type): Response
+    {
+
+
+        return $this->render('product/category.html.twig', [
+            'products' => $productRepository->findBy(array("type"=>$type)),
+        ]);
+    }
 
     #[Route('/{id}/edit', name: 'app_product_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Product $product, ProductRepository $productRepository, FileUploader $fileUploader): Response

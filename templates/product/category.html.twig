@@ -3,10 +3,6 @@
 {% block title %}Product index{% endblock %}
 
 {% block body %}
-<h5>categories</h5>
-    {% for product in products %}
-    <a href="{{ path('app_product_category', {'type':product.type}) }}">{{ product.type }}</a>
-    {% endfor %}
 
     <h1>Product index</h1>
 
@@ -35,8 +31,7 @@
                 <td>{{ product.name }}</td> 
 
                 {% if product.discount > 0 %}
-                <td><p style="text-decoration: line-through;">{{ product.price }} &#8364;</p>
-                <p>{{ product.price - (product.price * product.discount) }} &#8364;</p></td> 
+                <td>{{ product.price - (product.price * product.discount) }} &#8364;</td> 
                 {% else %}
                     <td>{{ product.price }} &#8364;</td> 
                 {% endif %}
