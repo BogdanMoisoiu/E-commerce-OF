@@ -4,12 +4,6 @@
 
 {% block body %}
 
-    {# {% if  banMessage|default(null) %}
-        <div class="alert alert-danger">
-            {{ banMessage }}
-        </div>
-    {% endif %} #}
-
     <h1>Product index</h1>
 
     <table class="table">
@@ -29,7 +23,6 @@
         </thead>
         <tbody>
         {% for product in products %}
-        {% if product.approved == 1 %}
             <tr>
                 <td>{{ product.id }}</td>
                 <td>{{ product.name }}</td>
@@ -51,11 +44,10 @@
 
                 </td>
             </tr>
-            {% endif %}
-        {% else %}
+        {# {% else %}
             <tr>
                 <td colspan="17">no records found</td>
-            </tr>
+            </tr> #}
         {% endfor %}
         </tbody>
     </table>
