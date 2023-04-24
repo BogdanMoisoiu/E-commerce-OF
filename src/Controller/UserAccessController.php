@@ -120,6 +120,7 @@ class UserAccessController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $order->setFkProduct($product);
             $order->setFkUser($user);
+            $order->setStatus("cart");
             $orderItemRepository->save($order, true);
 
             return $this->redirectToRoute('app_order_item', [], Response::HTTP_SEE_OTHER);

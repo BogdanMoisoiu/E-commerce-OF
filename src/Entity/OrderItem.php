@@ -26,6 +26,9 @@ class OrderItem
     #[ORM\ManyToOne]
     private ?User $fk_user = null;
 
+    #[ORM\Column(length: 10, nullable: true)]
+    private ?string $status = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -87,6 +90,18 @@ public function getFkUser(): ?User
 public function setFkUser(?User $fk_user): self
 {
     $this->fk_user = $fk_user;
+
+    return $this;
+}
+
+public function getStatus(): ?string
+{
+    return $this->status;
+}
+
+public function setStatus(?string $status): self
+{
+    $this->status = $status;
 
     return $this;
 }
