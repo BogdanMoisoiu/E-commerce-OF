@@ -29,6 +29,10 @@ class Order
     #[ORM\OneToMany(mappedBy: 'orderRef', targetEntity: OrderItem::class, cascade: ["persist", "remove"], orphanRemoval: true)]
     private Collection $fk_orderitem;
 
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?OrderItem $Fk_order_item = null;
+
     public function __construct()
     {
         $this->fk_orderitem = new ArrayCollection();
@@ -98,7 +102,7 @@ class Order
         }
     }
     $this->fk_orderitem[] = $item;
-    $item->setOrderRef($this);
+    // $item->setOrderRef($this);
 
     return $this;
 }
@@ -114,12 +118,13 @@ class Order
 
     public function removeFkOrderitem(OrderItem $fkOrderitem): self
     {
-        if ($this->fk_orderitem->removeElement($fkOrderitem)) {
-            // set the owning side to null (unless already changed)
-            if ($fkOrderitem->getOrderRef() === $this) {
-                $fkOrderitem->setOrderRef(null);
-            }
-        }
+        // if ($this->fk_orderitem->removeElement($fkOrderitem)) {
+        //     // set the owning side to null (unless already changed)
+        //     if ($fkOrderitem->getOrderRef() === $this) {
+        //         $fkOrderitem->setOrderRef(null);
+        //     }
+        // }
+        $this->fk_orderitem->removeElement($fkOrderitem);
 
         return $this;
     }
@@ -155,6 +160,13 @@ public function getTotal(): float
         $total += $item->getTotal();
     }
     return $total;
+}
+
+public function setFkOrderItem(?OrderItem $Fk_order_item): self
+{
+    $this->Fk_order_item = $Fk_order_item;
+
+    return $this;
 }
 
 }
