@@ -504,17 +504,10 @@ footer {
   
   
   
-  
-  
-  
-  
-  
-  
-
 .animate-border {
     position: relative;
     display: block;
-    width: 800px;
+    width: 500px;
     height: 3px;
     background: #00AFF0; 
 }
