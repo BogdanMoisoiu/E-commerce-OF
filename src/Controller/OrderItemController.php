@@ -22,7 +22,7 @@ class OrderItemController extends AbstractController
         
         return $this->render('order_item/index.html.twig', [
             'products' => $productRepository->findAll(),
-            'product in cart' => $productRepository->()
+            'productInCart' => $orderItemRepository->findAll(),
         ]);
     }
     #[Route('/order/item/add', name: 'app_order_item_add')]

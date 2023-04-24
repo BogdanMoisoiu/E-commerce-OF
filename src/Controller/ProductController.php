@@ -3,13 +3,9 @@
 namespace App\Controller;
 
 use App\Service\FileUploader;
-use Symfony\Component\Validator\Constraints\File;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use App\Entity\Product;
 use App\Form\ProductType;
-use App\Repository\BrandRepository;
 use App\Repository\ProductRepository;
-use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
