@@ -7,6 +7,7 @@ use App\Form\OrderItemType;
 use App\Repository\CartRepository;
 use App\Repository\OrderItemRepository;
 use App\Repository\ProductRepository;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Request as HttpFoundationRequest;
@@ -21,8 +22,8 @@ class OrderItemController extends AbstractController
     {
         
         return $this->render('order_item/index.html.twig', [
-            'products' => $productRepository->findAll(),
-            'productInCart' => $orderItemRepository->findAll(),
+            'items' => $orderItemRepository->findBy(["fk_user"=>$this->getUser()]),
+            
         ]);
     }
     #[Route('/order/item/add', name: 'app_order_item_add')]
@@ -47,14 +48,17 @@ class OrderItemController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_cart_delete', methods: ['POST'])]
-    public function delete(Request $request, OrderItem $orderItem, OrderItemRepository $orderItemRepository): Response
+    #[Route('/{id}', name: 'app_order_item_delete', methods: ['POST'])]
+    public function delete(ManagerRegistry $doctrine, Request $request, OrderItem $orderItem, OrderItemRepository $orderItemRepository, $cartItem): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$orderItem->getId(), $request->request->get('_token'))) {
-            $orderItemRepository->remove($orderItem, true);
-        }
+        $cartItem = $orderItem->getFkProduct();
+        $em = $doctrine->getManager();
+        $em->remove($cartItem);
+        
+        $em->flush();
 
-        return $this->redirectToRoute('app_cart_index', [], Response::HTTP_SEE_OTHER);
+
+        return $this->redirectToRoute('app_order_item_index', [], Response::HTTP_SEE_OTHER);
     }
 }
 
