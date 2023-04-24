@@ -16,7 +16,7 @@ class OrderItem
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Product $Fk_product = null;
+    public ?Product $Fk_product = null;
 
     #[ORM\Column]
     private ?int $quantity = null;
