@@ -3,10 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\Brand;
+use App\Entity\OrderItem;
 use App\Entity\Product;
 use App\Entity\User;
+use App\Form\OrderItemType;
 use App\Form\UserType;
 use App\Form\RegistrationFormType;
+use App\Repository\OrderItemRepository;
 use App\Repository\ProductRepository;
 use App\Repository\UserRepository;
 use App\Service\FileUploader;
@@ -85,4 +88,26 @@ class UserAccessController extends AbstractController
 
         return $this->redirectToRoute('app_login', [], Response::HTTP_SEE_OTHER);
     }
+    #[Route('/addtocart/{id}', name: 'app_user_access_addtocart')]
+    public function AddToCart(Request $request, Product $product, ProductRepository $productRepository, UserRepository $userRepository, OrderItemRepository $orderItemRepository): Response
+    {
+        $order = new OrderItem();
+        $user = $this->getUser();
+        $form = $this->createForm(OrderItemType::class, $order);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $order->setFkProduct($product);
+            $order->setFkUser($user);
+            $orderItemRepository->save($order, true);
+
+            return $this->redirectToRoute('app_order_item', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('order_item/cart.html.twig', [
+            'form' => $form,
+        ]);
+
+    }
+
 }

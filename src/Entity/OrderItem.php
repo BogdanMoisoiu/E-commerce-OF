@@ -21,9 +21,10 @@ class OrderItem
     #[ORM\Column]
     private ?int $quantity = null;
 
-    #[ORM\ManyToOne(inversedBy: 'fk_orderitem')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Cart $orderRef = null;
+
+
+    #[ORM\ManyToOne]
+    private ?User $fk_user = null;
 
     public function getId(): ?int
     {
@@ -61,17 +62,7 @@ class OrderItem
     }
     */
 
-    public function getOrderRef(): ?Cart
-    {
-        return $this->orderRef;
-    }
-
-    public function setOrderRef(?Cart $orderRef): self
-    {
-        $this->orderRef = $orderRef;
-
-        return $this;
-    }
+  
 
     public function equals(OrderItem $item): bool
 {
@@ -86,5 +77,17 @@ class OrderItem
 public function getTotal(): float
 {
     return $this->getFkProduct()->getPrice() * $this->getQuantity();
+}
+
+public function getFkUser(): ?User
+{
+    return $this->fk_user;
+}
+
+public function setFkUser(?User $fk_user): self
+{
+    $this->fk_user = $fk_user;
+
+    return $this;
 }
 }

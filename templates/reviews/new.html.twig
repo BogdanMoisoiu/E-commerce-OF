@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Reviews{% endblock %}
+
+{% block body %}
+    <h1>Create new Reviews</h1>
+
+    {{ include('reviews/_form.html.twig') }}
+
+                <td>{{ review.fkAuthor}}</td>
+                <td>{{ review.fkProduct}}</td>
+    <a href="{{ path('app_reviews_index') }}">back to list</a>
+{% endblock %}

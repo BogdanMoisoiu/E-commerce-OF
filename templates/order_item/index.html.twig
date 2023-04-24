@@ -1,20 +1,59 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello OrderItemController!{% endblock %}
+{% block title %}{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/oksan/OneDrive/Desktop/symfony/Team-3-Project/src/Controller/OrderItemController.php'|file_link(0) }}">src/Controller/OrderItemController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/oksan/OneDrive/Desktop/symfony/Team-3-Project/templates/order_item/index.html.twig'|file_link(0) }}">templates/order_item/index.html.twig</a></code></li>
-    </ul>
-</div>
+<h1>Cart index</h1>
+    
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Type</th>
+                    <th>Brand</th>
+                    <th>Prod_dimensions</th>
+                    <th>Short_description</th>
+                    <th>discount</th>
+                    <th>Picture</th>
+                    <th>Quantity</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for product in products %}
+            {% if product.approved == 1 %}
+            
+                <tr>
+                    <td>{{ product.id }}</td>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.price }}</td>
+                    <td>{{ product.type }}</td>
+                    <td>{{ product.FkBrand.name }}</td>
+                    <td>{{ product.prodDimensions }}</td>
+                    <td>{{ product.shortDescription }}</td>
+                    
+                    
+                    <td>{% if product.discount > 0 %}
+                        {{ product.discount }}
+                        {% else %}
+                            no discount
+                        {% endif %}</td>
+                    <td><img src="{{ product.picture }}" alt="" height="70px"></td>
+                    <td>{{}}</td>
+                    <td>
+                        <a href="{{ path('app_static_show', {'id': product.id}) }}">show</a>
+    
+                    </td>
+                </tr>
+                {% endif %}
+            {% else %}
+                <tr>
+                    <td colspan="17">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    
 {% endblock %}

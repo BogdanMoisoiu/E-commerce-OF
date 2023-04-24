@@ -15,8 +15,6 @@ class OrderItemType extends AbstractType
     {
         $builder
             ->add('quantity', TypeNumberType::class)
-            ->add('Fk_product', TypeNumberType::class)
-            ->add('orderRef')
         ;
     }
 
