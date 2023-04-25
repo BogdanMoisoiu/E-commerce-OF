@@ -120,10 +120,15 @@
 <p>{{review.type}}</p>
 <p>{{review.title}}</p>
 <p>{{review.review}}</p>
+{% if review.fkAuthor.email == user.email %}
 <p>{{review.fkAuthor.email}}</p>
+<p>purchase confirmed</p>
+{% endif %}
 <p>{{review.rating}}</p>
     <td><a href="/user/reviews/{{ review.id }}" class="btn btn-danger">Delete</a></td>
     </div>
     {% endfor %}
+    
+    <a href="{{ path('app_reviews_new', {'id': product.id}) }}" class="btn btn-primary">Create New Review</a>
     <a href="/user/" class="btn btn-primary">Go Back</a>
 {% endblock %}
