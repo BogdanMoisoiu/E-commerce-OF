@@ -45,7 +45,7 @@ class UserAccessController extends AbstractController
         ]);
     }
     #[Route('/show/{id}', name: 'app_user_access_show')]
-    public function show(Product $product, ProductRepository $productRepository, ReviewsRepository $reviewsRepository, UserRepository $userRepository): Response
+    public function show(Product $product, ProductRepository $productRepository, ReviewsRepository $reviewsRepository): Response
     {
         $user = $this->getUser();
         $brand = $product->getFkBrand();

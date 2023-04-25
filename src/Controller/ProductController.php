@@ -54,6 +54,7 @@ class ProductController extends AbstractController
     #[Route('/{id}', name: 'app_product_show', methods: ['GET'])]
     public function show(Product $product, ProductRepository $productRepository, ReviewsRepository $reviewsRepository): Response
     {
+        $user = $this->getUser();
         $brand = $product->getFkBrand();
         $type = $product->getType();
 
@@ -67,7 +68,8 @@ class ProductController extends AbstractController
             'type' => $type,
             'products' => $productRepository->findAll(),
             'discountPrice' => $discountPrice,
-            'reviews' => $reviewsRepository->findBy(["fk_product"=>$product->getId()])
+            'reviews' => $reviewsRepository->findBy(["fk_product"=>$product->getId()]), 
+            'user' => $user,
         ]);
     }
     #[Route('/category/{type}', name: 'app_product_category', methods: ['GET'])]

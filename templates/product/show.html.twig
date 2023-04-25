@@ -126,7 +126,11 @@
 <p>{{review.type}}</p>
 <p>{{review.title}}</p>
 <p>{{review.review}}</p>
+{% if review.fkAuthor.email == user.email %}
+<p>{{review.fkAuthor.email}} <span style="color: red;">purchase confirmed</span></p>
+{% else %}
 <p>{{review.fkAuthor.email}}</p>
+{% endif %}
 <p>{{review.rating}}</p>
     <td><a href="/admin/product/reviews/{{ review.id }}" class="btn btn-danger">Delete</a></td>
     </div>

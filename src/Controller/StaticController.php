@@ -34,6 +34,7 @@ class StaticController extends AbstractController
     #[Route('/show/{id}', name: 'app_static_show')]
     public function show(Product $product, ProductRepository $productRepository): Response
     {
+        // $user = $this->getUser();
         $brand = $product->getFkBrand();
         $type = $product->getType();
 
@@ -46,6 +47,7 @@ class StaticController extends AbstractController
             'type' => $type,
             'products' => $productRepository->findAll(),
             'discountPrice' => $discountPrice,
+            // 'user' => $user,
         ]);
     }
 }
