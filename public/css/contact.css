@@ -6,30 +6,34 @@
 }
 
 body {
-    background-image: linear-gradient(to top left, #00AFF0,#7acae7, #b3d3e0);
-    display: inline;
+    background-image: linear-gradient(to bottom left, #00AFF0,#7acae7, #b3d3e0);
 }
 
 img {
     width: 35%;
     padding-bottom: 2rem;
+    padding-top: 2rem;
 }
 
 .contact {
-    padding: 2rem 0;
+    background: #222840;
+    padding: 3rem 0;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-bottom-left-radius: 3rem;
+    border-bottom-right-radius: 3rem;
 }
 
 .contact form {
     padding: 3rem 10%;
+    
 }
 
 .contact form h3 {
     font-family: 'PT Serif', serif;
     font-style:italic;
-    color: #222840;
+    color: #fff;
     font-size: 4rem;
     text-align: center;
     padding-bottom: 2rem;
@@ -65,14 +69,16 @@ textarea {
     display: inline-block;
     border-radius: 5rem;
     border-top-left-radius: 0;
-    border: .15rem solid #222840;
-    cursor: pointer;
+    border: .15rem solid #00AFF0;
     background: #fff;
     color: #222840;
     font-size: 1rem;
-    overflow: hidden;
-    z-index: 0;
-    position: relative;
+}
+
+.btn:hover {
+    cursor: pointer;
+    background: #00AFF0;
+    font-size: 1rem;
 }
 
 .container {
@@ -86,6 +92,7 @@ textarea {
     padding-top: 3rem;
     padding-bottom: 3rem;
     height: 10vh;
+    background: url(/pictures/bg1.jpg) center;
 }
 
 .footer .share {

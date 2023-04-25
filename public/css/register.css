@@ -10,7 +10,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: linear-gradient(to bottom left, #00AFF0,#7acae7, #b3d3e0);
+    background-image: linear-gradient(to right, #00AFF0,#7acae7, #b3d3e0);
+    color: #222840;
 }
 
 .card-body {
@@ -19,27 +20,6 @@ body {
     align-items: center;
 }
 
-.card h1 {
-    color: rgb(88, 88, 208);
-    text-align: center;
-    font-weight: bolder;
-    padding: 1rem;
-    font-style: oblique;
-}
 
-#submit {
-    text-align: center;
-    color: white;
-    background-image: radial-gradient(rgb(105, 189, 216),rgb(98, 98, 187),rgb(76, 76, 145));
-}
-
-.back {
-    padding: 1rem 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-image: url("https://png.pngtree.com/background/20210714/original/pngtree-white-grey-abstract-premium-checkered-square-background-picture-image_1221805.jpg");
-    opacity: .7;
-}
 
 
