@@ -69,7 +69,7 @@
                                 </a>
                             </li>
                             <li class="list">
-                                <a href="#">
+                                <a href="{{ path('app_login') }}">
                                     <span class="icon">
                                         <i class="fa-solid fa-user" id="login-btn"></i>
                                     </span>
@@ -89,7 +89,7 @@
                     </div>
             </div>
     
-                <form method="post" class="login-form slide-in from-right">
+                <!-- <form method="post" class="login-form slide-in from-right">
                     <h3>Login</h3>
                         <input type="email" name="email" placeholder="enter your email" class="box">
                         <input type="password" name="password" placeholder="enter your password" class="box">
@@ -97,14 +97,14 @@
                         <label for="remember-me">Remember Me</label>
                         <input type="hidden" name="_csrf_token"
                         value="{{ csrf_token('authenticate') }}">
-                    <button class="btn btn-lg btn-primary" type="submit">
+                    <a href="{{ path('app_login') }}" class="btn btn-lg btn-primary">
                         Sign in
-                    </button>
+                    </a>
                     <div class="links">
                         <a href="{{ path('app_logout') }}">Logout</a>
                         <a href="{{ path('app_register') }}">Sign Up</a>
                     </div>
-                </form>
+                </form> -->
 
     
 
