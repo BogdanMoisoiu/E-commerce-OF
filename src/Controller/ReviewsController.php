@@ -31,6 +31,7 @@ class ReviewsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $review->setType('review');
             $reviewsRepository->save($review, true);
 
             return $this->redirectToRoute('app_user_access', [], Response::HTTP_SEE_OTHER);
@@ -41,7 +42,26 @@ class ReviewsController extends AbstractController
             'form' => $form,
         ]);
     }
+    #[Route('/new/question', name: 'app_reviews_question', methods: ['GET', 'POST'])]
+    public function question(Request $request, ReviewsRepository $reviewsRepository): Response
+    {
+        $review = new Reviews();
+        $form = $this->createForm(ReviewsType::class, $review);
+        $form->handleRequest($request);
 
+        if ($form->isSubmitted() && $form->isValid()) {
+            $review->setType('question');
+            $reviewsRepository->save($review, true);
+
+            return $this->redirectToRoute('app_user_access', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('reviews/new.html.twig', [
+            'reviews' => $review,
+            'form' => $form,
+        ]);
+    }
+  
     #[Route('/{id}', name: 'app_reviews_show', methods: ['GET'])]
     public function show(Reviews $review, ReviewsRepository $reviewsRepository, $id): Response
     {

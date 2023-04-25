@@ -99,18 +99,16 @@
 
     <div>
         <h2>All products from category {{ type }}</h2>
-        {% if type %}
         {% for product in products %}
+        {% if type == product.type %}
            <div>
             <img src="{{ product.picture }}" alt="" height="70px">
             <p>{{ product.name }}</p>
             <p>{{ product.price }} &#8364;</p>
             <a href="{{ path('app_product_show', {'id': product.id}) }}">show</a>
            </div>
-        {% endfor %}
-        {% else %}
-            <p>There's no products in category {{ type }}</p>
-        {% endif %}
+           {% endif %}
+           {% endfor %}
     </div>
     <div>
     <h5>Questions</h5>

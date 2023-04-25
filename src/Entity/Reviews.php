@@ -14,14 +14,14 @@ class Reviews
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::SMALLINT)]
+    #[ORM\Column(type: Types::SMALLINT, nullable: true)]
     private ?int $rating = null;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 50, nullable: true)]
     private ?string $title = null;
 
-    #[ORM\Column]
-    private ?bool $type = null;
+    #[ORM\Column(length: 10, nullable: false)]
+    private ?string $type = null;
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
@@ -63,12 +63,12 @@ class Reviews
         return $this;
     }
 
-    public function isType(): ?bool
+    public function isType(): ?string
     {
         return $this->type;
     }
 
-    public function setType(bool $type): self
+    public function setType(string $type): self
     {
         $this->type = $type;
 
