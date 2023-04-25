@@ -39,6 +39,10 @@ class OrderController extends AbstractController
             $order->setDateTimeStamp($now);
 
             $orderRepository->save($order, true);
+            // $sender = $form->get('email')->getData();
+            // $email = new MailController();
+            // $email->sendEmail($mailer, $sender);
+
         }
             return $this->redirectToRoute('app_user_access', [], Response::HTTP_SEE_OTHER);
         }
