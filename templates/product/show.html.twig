@@ -112,25 +112,41 @@
     </div>
     <div>
     <h5>Questions</h5>
+    <a href="{{ path('app_reviews_question', {'id': product.id}) }}" class="btn btn-primary">Ask a question</a>
+    {% for review in reviews %}
+        {% if review.type == 'question' %}
+            <p>Question:</p>
+            <p>{{review.type}}</p>
+            <p>{{review.fkAuthor.email}}</p>
+            <p>{{review.review}}</p>
+            <a href="{{ path('app_reviews_answer', {'id': review.fkAuthor.id}) }}" class="btn btn-secondary">Answer a question</a>  
+        {% endif %}
+            {% if review.type == 'answer' %}
+            <p>Answer:</p>
+                <p>{{review.fkAuthor.email}}</p>
+                <p>{{review.review}}</p>             
+            {% endif %}
+        
+    {% endfor %}  
     </div>
 
-<div>
    <hr>
-    </div>
+ 
     <div>
     <h5>Reviews</h5>
 {% for review in reviews %}
 <div>
-<p>{{review.type}}</p>
-<p>{{review.title}}</p>
-<p>{{review.review}}</p>
-{% if review.fkAuthor.email == user.email %}
-<p>{{review.fkAuthor.email}} <span style="color: red;">purchase confirmed</span></p>
-{% else %}
-<p>{{review.fkAuthor.email}}</p>
-{% endif %}
-<p>{{review.rating}}</p>
-    <td><a href="/admin/product/reviews/{{ review.id }}" class="btn btn-danger">Delete</a></td>
+    <h5>{{review.title}}</h5>
+    <p>{{review.type}}</p>
+    <p>{{review.review}}</p>
+    {% if review.fkAuthor.email == user.email %}
+    <p>{{review.fkAuthor.email}} <span style="color: red;">purchase confirmed</span></p>
+    {% else %}
+    <p>{{review.fkAuthor.email}}</p>
+    {% endif %}
+    <p>{{review.rating}}</p>
+    <a href="/admin/product/reviews/{{ review.id }}" class="btn btn-danger">Delete</a>
     </div>
     {% endfor %}
+    </div>
 {% endblock %}

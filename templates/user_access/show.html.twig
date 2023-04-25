@@ -119,8 +119,14 @@
             <p>Type: {{review.type}}</p>
             <p>{{review.fkAuthor.email}}</p>
             <p>{{review.review}}</p>
-            <hr>
+            <a href="{{ path('app_reviews_answer', {'id': review.fkAuthor.id}) }}" class="btn btn-secondary">Answer a question</a>
         {% endif %}
+        {% if review.type == 'answer' %}
+        <p>Answer:</p>
+            <p>{{review.fkAuthor.email}}</p>
+            <p>{{review.review}}</p>                
+        {% endif %}
+            
     {% endfor %}    
     </div>
     <hr>
@@ -130,8 +136,8 @@
     {% for review in reviews %} 
         {% if review.type == 'review' %} 
             <div>
-                <a href="/user/reviews/delete/{{ review.id }}" class="btn btn-danger">Delete</a>
-                <p>Type: {{review.type}}</p>
+                <h5>{{review.title}}</h5>
+                {# <p>{{review.type}}</p> #}
                 {% if review.fkAuthor.email == user.email %}
                     <p>{{review.fkAuthor.email}} <span style="color: red;">purchase confirmed</span></p>
                 {% else %}
@@ -140,9 +146,8 @@
                 <p>Raiting: {{review.rating}}</p>
                 <p>{{review.title}}</p>
                 <p>{{review.review}}</p>
+                <a href="/user/reviews/delete/{{ review.id }}" class="btn btn-danger">Delete</a> 
             </div>
-            {% else %}
-                <p>There's no questions for this product</p>
         {% endif %}
     {% endfor %}
     <a href="{{ path('app_reviews_new', {'id' : product.id}) }}" class="btn btn-primary">Create New Review</a>

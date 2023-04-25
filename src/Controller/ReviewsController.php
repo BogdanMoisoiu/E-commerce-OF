@@ -61,6 +61,27 @@ class ReviewsController extends AbstractController
             'form' => $form,
         ]);
     }
+
+    #[Route('/new/answer/{id}', name: 'app_reviews_answer', methods: ['GET', 'POST'])]
+    public function answer(Request $request, ReviewsRepository $reviewsRepository): Response
+    {
+        $review = new Reviews();
+        $form = $this->createForm(ReviewsType::class, $review);
+        $form->handleRequest($request);
+
+       //get user's email or id, so we write answer for specific question
+        if ($form->isSubmitted() && $form->isValid()) {
+            $review->setType('answer');
+            $reviewsRepository->save($review, true);
+
+            return $this->redirectToRoute('app_user_access', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('reviews/new.html.twig', [
+            'reviews' => $review,
+            'form' => $form,
+        ]);
+    }
   
     #[Route('/{id}', name: 'app_reviews_show', methods: ['GET'])]
     public function show(Reviews $review, ReviewsRepository $reviewsRepository, $id): Response
