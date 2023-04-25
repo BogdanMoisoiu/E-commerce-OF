@@ -87,7 +87,7 @@
             </tr>
             <tr>
                 <th>Picture</th>
-                <td><img src="{{ product.picture }}" alt="" height="70px"></td>
+                <td><img src="{{ asset('pictures/' ~ product.picture) }}" alt="" height="70px"></td>
             </tr>
         </tbody>
     </table>
@@ -97,7 +97,7 @@
         {% for product in products %}
         {% if type == product.type %}
            <div>
-            <img src="{{ product.picture }}" alt="" height="70px">
+            <img src="{{ asset('pictures/' ~ product.picture) }}" alt="" height="70px">
             <p>{{ product.name }}</p>
             <p>{{ product.price }} &#8364;</p>
             <a href="{{ path('app_static_show', {'id': product.id}) }}">show</a>

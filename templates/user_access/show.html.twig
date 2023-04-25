@@ -99,7 +99,7 @@
         {% for product in products %}
         {% if type == product.type %}
            <div>
-            <img src="{{ product.picture }}" alt="" height="70px">
+            <img src="{{ asset('pictures/' ~ product.picture) }}" alt="" height="70px">
             <p>{{ product.name }}</p>
             <p>{{ product.price }} &#8364;</p>
             <a href="{{ path('app_product_show', {'id': product.id}) }}">show</a>
@@ -116,7 +116,8 @@
     <a href="{{ path('app_reviews_question', {'id': product.id}) }}" class="btn btn-primary">Ask a question</a>
     {% for review in reviews %}
         {% if review.type == 'question' %}
-            <p>Type: {{review.type}}</p>
+            {# <p>{{review.type}}</p> #}
+            {# <p><img src="{{ review.fkAuthor.picture }}" height="50px"></p> #}
             <p>{{review.fkAuthor.email}}</p>
             <p>{{review.review}}</p>
             <a href="{{ path('app_reviews_answer', {'id': review.fkAuthor.id}) }}" class="btn btn-secondary">Answer a question</a>
