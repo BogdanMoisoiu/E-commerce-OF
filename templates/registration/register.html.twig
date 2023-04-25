@@ -2,6 +2,11 @@
 
 {% block title %}Register{% endblock %}
 
+{% block stylesheets %} 
+        {{ parent() }}
+        <link rel="stylesheet" href="{{asset('css/register.css')}}">
+    {% endblock %}
+
 {% block body %}
     <h1>Register</h1>
 
