@@ -4,8 +4,10 @@ namespace App\Controller;
 
 use App\Service\FileUploader;
 use App\Entity\Product;
+use App\Entity\Reviews;
 use App\Form\ProductType;
 use App\Repository\ProductRepository;
+use App\Repository\ReviewsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -107,6 +109,16 @@ class ProductController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete'.$product->getId(), $request->request->get('_token'))) {
             $productRepository->remove($product, true);
+        }
+
+        return $this->redirectToRoute('app_product_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/reviews/{id}', name: 'app_reviews_delete', methods: ['POST'])]
+    public function deleteReviews(Request $request, Reviews $review, ReviewsRepository $reviewsRepository): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$review->getId(), $request->request->get('_token'))) {
+            $reviewsRepository->remove($review, true);
         }
 
         return $this->redirectToRoute('app_product_index', [], Response::HTTP_SEE_OTHER);

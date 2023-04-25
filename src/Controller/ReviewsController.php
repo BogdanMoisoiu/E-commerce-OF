@@ -33,7 +33,7 @@ class ReviewsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $reviewsRepository->save($review, true);
 
-            return $this->redirectToRoute('app_reviews_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_user_access_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('reviews/new.html.twig', [
@@ -70,13 +70,5 @@ class ReviewsController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_reviews_delete', methods: ['POST'])]
-    public function delete(Request $request, Reviews $review, ReviewsRepository $reviewsRepository): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$review->getId(), $request->request->get('_token'))) {
-            $reviewsRepository->remove($review, true);
-        }
-
-        return $this->redirectToRoute('app_reviews_index', [], Response::HTTP_SEE_OTHER);
-    }
+    
 }

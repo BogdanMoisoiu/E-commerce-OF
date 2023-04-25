@@ -5,12 +5,14 @@ namespace App\Controller;
 use App\Entity\Brand;
 use App\Entity\OrderItem;
 use App\Entity\Product;
+use App\Entity\Reviews;
 use App\Entity\User;
 use App\Form\OrderItemType;
 use App\Form\UserType;
 use App\Form\RegistrationFormType;
 use App\Repository\OrderItemRepository;
 use App\Repository\ProductRepository;
+use App\Repository\ReviewsRepository;
 use App\Repository\UserRepository;
 use App\Service\FileUploader;
 use Doctrine\Persistence\ManagerRegistry;
@@ -130,6 +132,16 @@ class UserAccessController extends AbstractController
             'form' => $form,
         ]);
 
+    }
+
+    #[Route('/reviews/{id}', name: 'user_reviews_delete', methods: ['POST'])]
+    public function deleteReviews(Request $request, Reviews $review, ReviewsRepository $reviewsRepository): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$review->getId(), $request->request->get('_token'))) {
+            $reviewsRepository->remove($review, true);
+        }
+
+        return $this->redirectToRoute('app_user_access_index', [], Response::HTTP_SEE_OTHER);
     }
 
 }
