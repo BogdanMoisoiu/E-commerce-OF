@@ -60,6 +60,7 @@ class UserAccessController extends AbstractController
             'products' => $productRepository->findAll(),
             'discountPrice' => $discountPrice,
             'reviews' => $reviewsRepository->findBy(["fk_product"=>$product->getId()]),
+            'user' => $user,
         ]);
     }
 
