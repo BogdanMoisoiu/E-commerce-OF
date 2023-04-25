@@ -2,8 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Order;
+use App\Form\OrderType;
 use App\Repository\OrderItemRepository;
+use App\Repository\OrderRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -21,18 +25,21 @@ class OrderController extends AbstractController
             "user" => $user,
         ]);
     }
-    #[Route('/check_out_confirm', name: 'app_order_confirm')]
-    public function confirm(OrderItemRepository $orderItemRepository): Response
+    #[Route('/check_out_confirm', name: 'app_order_confirm', methods: ['GET', 'POST'])]
+    public function confirm(OrderItemRepository $orderItemRepository, OrderRepository $orderRepository, Request $request): Response
     {
         $now = new \DateTime('now');
-        // need to update status in OrderItem and add to Order
-        
+           $orderUser = $orderItemRepository->findBy(['fk_user'=>$this->getUser()]);
+        //    dd($orderUser);
+        foreach ($orderUser as $val) {
+            $val->setStatus('order');
+            $orderItemRepository->save($val, true);
+            $order = new Order();
+            $order->setFkOrderItem($val);
+            $order->setDateTimeStamp($now);
 
-        // $user = $this->getUser();
-        return $this->render('order/index.html.twig', [
-
-            // 'items' => $orderItemRepository->findBy(["fk_user"=>$this->getUser()]),
-            // "user" => $user,
-        ]);
-    }
+            $orderRepository->save($order, true);
+        }
+            return $this->redirectToRoute('app_user_access', [], Response::HTTP_SEE_OTHER);
+        }
 }

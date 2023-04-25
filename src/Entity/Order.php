@@ -20,7 +20,7 @@ class Order
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date_time_stamp = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     // private ?string $status = null;
     private ?string $status = self::STATUS_CART;
 
@@ -33,10 +33,10 @@ class Order
     #[ORM\JoinColumn(nullable: false)]
     private ?OrderItem $Fk_order_item = null;
 
-    public function __construct()
-    {
-        $this->fk_orderitem = new ArrayCollection();
-    }  
+    // public function __construct()
+    // {
+    //     $this->fk_orderitem = new ArrayCollection();
+    // }  
 
     public function getId(): ?int
     {
