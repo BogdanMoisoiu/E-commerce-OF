@@ -9,67 +9,6 @@
     
     {% block body %}
     
-    <!-- <h5>categories</h5>
-    {% for product in products %}
-    <a href="{{ path('app_static_category', {'type':product.type}) }}">{{ product.type }}</a>
-    {% endfor %}
-        <h1>Product index</h1>
-    
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>Type</th>
-                    <th>Brand</th>
-                    <th>Prod_dimensions</th>
-                    <th>Short_description</th>
-                    <th>discount</th>
-                    <th>Picture</th>
-                    <th>actions</th>
-                </tr>
-            </thead>
-            <tbody>
-            {% for product in products %}
-            {% if product.approved == 1 %}
-            
-                <tr>
-                    <td>{{ product.id }}</td>
-                    <td>{{ product.name }}</td>
-                    
-                    {% if product.discount > 0 %}
-                <td><p style="text-decoration: line-through;">{{ product.price }} &#8364;</p>
-                <p>{{ product.price - (product.price * product.discount) }} &#8364;</p></td> 
-                {% else %}
-                    <td>{{ product.price }} &#8364;</td> 
-                {% endif %}
-
-                    <td>{{ product.type }}</td>
-                    <td>{{ product.FkBrand.name }}</td>
-                    <td>{{ product.prodDimensions }}</td>
-                    <td>{{ product.shortDescription }}</td>
-                    
-                    
-                    <td>{% if product.discount > 0 %}
-                        {{ product.discount }} 
-                        {% else %}
-                            no discount
-                        {% endif %}</td>
-                    <td><img src="{{ product.picture }}" alt="" height="70px"></td>
-                    <td>
-                        <a href="{{ path('app_static_show', {'id': product.id}) }}">show</a>
-    
-                    </td>
-                </tr>
-                {% endif %}
-            {% else %}
-                <tr>
-                    <td colspan="17">no records found</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table> -->
 
         <header class="header">
             <div class="text">
@@ -82,6 +21,9 @@
                                         NIGHTS</h2>
             </div>
 
+
+
+            
     
 
 
@@ -151,21 +93,19 @@
                     <h3>Login</h3>
                         <input type="email" name="email" placeholder="enter your email" class="box">
                         <input type="password" name="password" placeholder="enter your password" class="box">
-                    <div class="remember">
                         <input type="checkbox" name="checkbox" id="remember-me">
                         <label for="remember-me">Remember Me</label>
-                    </div>
-                    <input type="hidden" name="_csrf_token"
-                    value="{{ csrf_token('authenticate') }}">
+                        <input type="hidden" name="_csrf_token"
+                        value="{{ csrf_token('authenticate') }}">
                     <button class="btn btn-lg btn-primary" type="submit">
                         Sign in
                     </button>
                     <div class="links">
-                        <a href="#">Forgot Password?</a>
                         <a href="{{ path('app_logout') }}">Logout</a>
                         <a href="{{ path('app_register') }}">Sign Up</a>
                     </div>
                 </form>
+
     
 
 
@@ -306,7 +246,7 @@
                         <div class="container1">
                         <div class="footer-widget footer-left-widget">
                             <div class="section-heading">
-                                    <span class="animate-border border-black"></span>
+                                    <span class="animate-border"></span>
                             </div>
                         </div>
                     </div>
