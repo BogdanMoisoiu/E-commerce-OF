@@ -112,7 +112,6 @@
             <p>There's no products in category {{ type }}</p>
         {% endif %}
     </div>
-
     <div>
     <h5>Questions</h5>
     </div>
@@ -122,8 +121,14 @@
     </div>
     <div>
     <h5>Reviews</h5>
-
-
-    <td><a href="/admin/product/reviews/{{ product.id }}" class="btn btn-danger">Delete</a>
+{% for review in reviews %}
+<div>
+<p>{{review.type}}</p>
+<p>{{review.title}}</p>
+<p>{{review.review}}</p>
+<p>{{review.fkAuthor.email}}</p>
+<p>{{review.rating}}</p>
+    <td><a href="/admin/product/reviews/{{ review.id }}" class="btn btn-danger">Delete</a></td>
     </div>
+    {% endfor %}
 {% endblock %}

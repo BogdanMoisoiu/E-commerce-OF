@@ -7,7 +7,7 @@
 
     {{ include('reviews/_form.html.twig') }}
 
-                <td>{{ review.fkAuthor}}</td>
-                <td>{{ review.fkProduct}}</td>
+                <td>{{ reviews.fkAuthor}}</td>
+                <td>{{ reviews.fkProduct}}</td>
     <a href="{{ path('app_reviews_index') }}">back to list</a>
 {% endblock %}

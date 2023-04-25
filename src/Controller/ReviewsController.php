@@ -33,11 +33,11 @@ class ReviewsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $reviewsRepository->save($review, true);
 
-            return $this->redirectToRoute('app_user_access_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_user_access', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('reviews/new.html.twig', [
-            'review' => $review,
+            'reviews' => $review,
             'form' => $form,
         ]);
     }

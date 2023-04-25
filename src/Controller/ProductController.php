@@ -52,7 +52,7 @@ class ProductController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_product_show', methods: ['GET'])]
-    public function show(Product $product, ProductRepository $productRepository): Response
+    public function show(Product $product, ProductRepository $productRepository, ReviewsRepository $reviewsRepository): Response
     {
         $brand = $product->getFkBrand();
         $type = $product->getType();
@@ -67,6 +67,7 @@ class ProductController extends AbstractController
             'type' => $type,
             'products' => $productRepository->findAll(),
             'discountPrice' => $discountPrice,
+            'reviews' => $reviewsRepository->findBy(["fk_product"=>$product->getId()])
         ]);
     }
     #[Route('/category/{type}', name: 'app_product_category', methods: ['GET'])]
@@ -114,13 +115,13 @@ class ProductController extends AbstractController
         return $this->redirectToRoute('app_product_index', [], Response::HTTP_SEE_OTHER);
     }
 
-    #[Route('/reviews/{id}', name: 'app_reviews_delete', methods: ['POST'])]
-    public function deleteReviews(Request $request, Reviews $review, ReviewsRepository $reviewsRepository): Response
+    #[Route('/reviews/{id}', name: 'app_reviews_delete', methods: ['POST', 'GET'])]
+    public function deleteReviews(Request $request, Reviews $review, ReviewsRepository $reviewsRepository, $id): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$review->getId(), $request->request->get('_token'))) {
-            $reviewsRepository->remove($review, true);
-        }
+        $review = $reviewsRepository->find($id);
+        $idProduct = $review->getFkProduct()->getId();
+        $reviewsRepository->remove($review, true);
 
-        return $this->redirectToRoute('app_product_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_product_show', ["id" => $idProduct], Response::HTTP_SEE_OTHER);
     }
 }
