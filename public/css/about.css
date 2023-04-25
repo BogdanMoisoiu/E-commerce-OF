@@ -1,0 +1,138 @@
+/* General styling */
+body {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* About section */
+.about {
+  background-color: #f9f9f9;
+  padding: 80px 0;
+}
+
+.about-text {
+  text-align: center;
+}
+
+.about-text h1 {
+  font-size: 36px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.about-text h1 span {
+  color:  #00AFF0;
+}
+
+.about-text p {
+  font-size: 18px;
+  margin-top: 20px;
+}
+
+.about .btn {
+  display: inline-block;
+  background-image: linear-gradient(to bottom left, #00AFF0,#7acae7, #b3d3e0);
+  color: #fff;
+  padding: 12px 30px;
+  border-radius: 25px;
+  margin-top: 40px;
+  text-decoration: none;
+}
+
+.about .btn:hover {
+  background-image: linear-gradient(to bottom left, #00AFF0,#7acae7, #b3d3e0);
+}
+
+/* About container section */
+.about.container {
+  padding: 80px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.about.container .about-text {
+  max-width: 400px;
+}
+
+.about.container .about-text span {
+  display: block;
+  font-size: 20px;
+  font-weight: bold;
+  color: #00AFF0;
+  margin-bottom: 20px;
+}
+
+.about.container .about-text h2 {
+  font-size: 36px;
+  font-weight: bold;
+  margin: 0;
+  margin-bottom: 20px;
+}
+
+.about.container .about-text p {
+  font-size: 18px;
+  margin-top: 20px;
+}
+
+.about.container .btn {
+  background-color: #fff;
+  color:  #00AFF0;
+  border: 2px solid #00AFF0;
+}
+
+.about.container .btn:hover {
+  background-color:#00AFF0;
+  color: #fff;
+  border: 2px solid#00AFF0;
+}
+
+.about.container .about-img img {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+}
+
+/* Commercial section */
+#commercial {
+  background-color: #00AFF0;
+  color: #fff;
+  padding: 80px 0;
+  text-align: center;
+}
+
+#commercial h3 {
+  font-size: 36px;
+  font-weight: bold;
+  margin: 0;
+}
+
+#commercial .container video {
+  width: 100%;
+}
+
+/* Responsive styling */
+@media screen and (max-width: 768px) {
+  .about-text h1 {
+    font-size: 28px;
+  }
+
+  .about-text p {
+    font-size: 16px;
+  }
+
+  .about.container .about-text h2 {
+    font-size: 28px;
+  }
+
+  .about.container .about-text p {
+    font-size: 16px;
+  }
+}

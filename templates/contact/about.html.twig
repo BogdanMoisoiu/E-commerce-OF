@@ -2,6 +2,48 @@
 
 {% block title %}Hello ContactController!{% endblock %}
 
+{% block stylesheets %} 
+        {{ parent() }}
+        <link rel="stylesheet" href="{{asset('css/about.css')}}">
+    {% endblock %}
+
 {% block body %}
 <h1>About page</h1>
+ <section class="about" id="about">
+        <div class="about-text">
+            <h1>We Have Evey Kinds of Fans <br>Your <span>Fans</span> Waitings You</h1>
+            <p>Lorem ipsum dolor sit amet consectetur <br> adipisicing elit. Nulla, corporis.</p>
+            <!-- Home BUtton -->
+            <a href="#" class="btn">Search Your Interest</a>
+        </div>
+ 
+    </section>
+<section class="about container" id="about">
+    <div class="about-text">
+        <span>About Us</span>
+        <h2>Cheap Prices With <br>Quality Fans</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed laborum blanditiis ratione numquam odio ea!</p>
+        <!-- About Button -->
+        <a href="#" class="btn">Learn More</a>
+    </div>
+    <div class="about-img">
+        <img src="{{ asset('img/fan.jpg') }}" alt="">
+    </div>
+    <div id="commercial">
+        <h3>How it works our fans?</h3>
+        <div class="container">
+            <video controls autoplay>
+                <source src="{{ asset('img/advertisment.mp4') }}" type="video/mp4">
+            </video>
+        </div>
+    </div>
+    <div class="about-text">
+        <span>About Us</span>
+        <h2>Cheap Prices With <br>Quality Fans</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed laborum blanditiis ratione numquam odio ea!</p>
+        <!-- About Button -->
+        <a href="#" class="btn">Learn More</a>
+    </div>
+</section>
+
 {% endblock %}
