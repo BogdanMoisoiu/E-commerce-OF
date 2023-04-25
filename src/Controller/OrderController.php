@@ -9,6 +9,7 @@ use App\Repository\OrderRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/user/order')]
@@ -26,7 +27,7 @@ class OrderController extends AbstractController
         ]);
     }
     #[Route('/check_out_confirm', name: 'app_order_confirm', methods: ['GET', 'POST'])]
-    public function confirm(OrderItemRepository $orderItemRepository, OrderRepository $orderRepository, Request $request): Response
+    public function confirm(OrderItemRepository $orderItemRepository, OrderRepository $orderRepository, Request $request, MailerInterface $mailer): Response
     {
         $now = new \DateTime('now');
            $orderUser = $orderItemRepository->findBy(['fk_user'=>$this->getUser()]);
@@ -39,9 +40,9 @@ class OrderController extends AbstractController
             $order->setDateTimeStamp($now);
 
             $orderRepository->save($order, true);
-            // $sender = $form->get('email')->getData();
-            // $email = new MailController();
-            // $email->sendEmail($mailer, $sender);
+            
+            $email = new MailController();
+            $email->sendEmail($mailer);
 
         }
             return $this->redirectToRoute('app_user_access', [], Response::HTTP_SEE_OTHER);
