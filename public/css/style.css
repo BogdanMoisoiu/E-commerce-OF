@@ -374,6 +374,7 @@ main {
 }
 
 .columns h3 {
+    font-family: 'Playfair Display';
     text-align: center;
     font-size: 3rem;
     text-decoration: solid;
@@ -1080,6 +1081,7 @@ footer {
 
     .columns h3 {
         font-size: 2rem;
+
     }
 
     .home-about p {
