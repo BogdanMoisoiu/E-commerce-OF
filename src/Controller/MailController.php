@@ -25,6 +25,7 @@ class MailController extends AbstractController
             ->text('Your order from OnlyFans!')
             ->html('<p>Thanks for your order. Your products will be shipped in the next few days!</p>');
 
+        
         $mailer->send($email);
         return new Response('Order successfully submitted. You will shortly receive a confirmation email.');
         // ...
