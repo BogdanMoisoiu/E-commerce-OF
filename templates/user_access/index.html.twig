@@ -2,7 +2,13 @@
 
 {% block title %}Product index{% endblock %}
 
+{% block stylesheets %} 
+        {{ parent() }}
+        <link rel="stylesheet" href="{{asset('css/user.css')}}">
+{% endblock %}
+
 {% block body %}
+
 <h5>categories</h5>
     {% for product in products %}
     <a href="{{ path('app_user_access_category', {'type':product.type}) }}">{{ product.type }}</a>
@@ -50,8 +56,8 @@
                     {% endif %}</td>
                 <td><img src="{{ asset('pictures/' ~ product.picture) }}" alt="" height="70px"></td>
                 
-            
                 <td>
+                
                     <a href="{{ path('app_user_access_show', {'id': product.id}) }}" class="btn btn-primary">show</a>
                     <a href="{{ path('app_user_access_addtocart', {'id': product.id}) }}" class="btn btn-success">Add To Cart</a>
                 </td>
@@ -61,8 +67,194 @@
             <tr>
                 <td colspan="17">no records found</td>
             </tr>
+            </table>
         {% endfor %}
-        </tbody>
-    </table>
+       
+  </tbody>
+  </table>
+<div class="parts-container container">
+        <div class="box">
+        
+                <h3>Special Fans</h3>
+                <img src="{{ asset('pictures/fan1.jpg') }}" class="card-img-top" alt="Fan">
+                <h2 class="fans-title">Best Fans</h2><hr>
+                <span class="price">€100</span>
+                <i class='bx bx-shopping-bag add-cart'></i>
+            </div>
+            <!-- Box 2 -->
+            <div class="box">
+                <h3>Special Fans</h3>
+                <img src="{{ asset('pictures/fan2.jpg') }}" class="card-img-top" alt="Fan">
+                <h2 class="fans-title">Best Fans</h2><hr>
+                <span class="price">€100</span>
+                <i class='bx bx-shopping-bag add-cart'></i>
+            </div>
+            <!-- Box 3 -->
+            <div class="box">
+                <h3>Special Fans</h3>
+                <img src="{{ asset('pictures/fan3.jpg') }}" class="card-img-top" alt="Fan">
+                <h2 class="fans-title">Best Fans</h2><hr>
+                <span class="price">€100</span>
+                <i class='bx bx-shopping-bag add-cart'></i>
+            </div>
+            <!-- Box 4 -->
+            <div class="box">
+                <h3>Special Fans</h3>
+                <img src="{{ asset('pictures/fan4.jpg') }}" class="card-img-top" alt="Fan">
+                <h2 class="fans-title">Best Fans</h2><hr>
+                <span class="price">€390</span>
+                <i class='bx bx-shopping-bag add-cart'></i>
+            </div>
+            <!-- Box 5 -->
+            <div class="box">
+                <h3>Special Fans</h3>
+                <img src="{{ asset('pictures/fan5.jpg') }}" class="card-img-top" alt="Fan">
+                <h2 class="fans-title">Best Fans</h2><hr>
+                <span class="price">€500</span>
+                <i class='bx bx-shopping-bag add-cart'></i>
+            </div>
+            <!-- Box 6 -->
+            <div class="box">
+                <h3>Special Fans</h3>
+                <img src="{{ asset('pictures/fan6.jpg') }}" class="card-img-top" alt="Fan">
+                <h2 class="fans-title">Best Fans</h2><hr>
+                <span class="price">€500</span>
+                <i class='bx bx-shopping-bag add-cart'></i>
+            </div>
+            <!-- Box 7 -->
+            <div class="box">
+                <h3>Special Fans</h3>
+                <img src="{{ asset('pictures/fan7.jpg') }}" class="card-img-top" alt="Fan">
+                <h2 class="fans-title">Best Fans</h2><hr>
+                <span class="price">€700</span>
+                <i class='bx bx-shopping-bag add-cart'></i>
+            </div>
+            <!-- Box 8 -->
+            <div class="box">
+                <h3>Special Fans</h3>
+                <img src="{{ asset('pictures/fan8.jpg') }}" class="card-img-top" alt="Fan">
+                <h2 class="fans-title">Best Fans</h2><hr>
+                <span class="price">€450</span>
+                <i class='bx bx-shopping-bag add-cart'></i>
+            </div>
+        </div>
+        </section>
 
+
+    <section class="blog" id="blog">
+        <div class="heading">
+            {# <span>Blog & News</span> #}
+            <h2>Our Blog Content</h2>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto, doloremque.</p>
+        </div>
+        <!-- Blog Container -->
+        <div class="blog-container container">
+            <!-- Box 1 -->
+            <div class="box">
+                <img src="{{ asset('pictures/fan9.jpg') }}" class="card-img-top" alt="Fan">
+                <span>Feb 14 2021</span>
+                <h3>How To Get Perfect Fans At Low Price</h3>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Explicabo, veniam.</p>
+                <a href="#" class="blog-btn">Read More<i class='bx bx-right-arrow-alt' ></i></a>
+            </div>
+            <!-- Box 2 -->
+            <div class="box">
+                <img src="{{ asset('pictures/fan10.jpg') }}" class="card-img-top" alt="Fan">
+                <span>Feb 14 2021</span>
+                <h3>How To Get Perfect Fan At Low Price</h3>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Explicabo, veniam.</p>
+                <a href="#" class="blog-btn">Read More<i class='bx bx-right-arrow-alt' ></i></a>
+            </div>
+            <!-- Box 3 -->
+            <div class="box">
+                <img src="{{ asset('pictures/fan11.jpg') }}" class="card-img-top" alt="Fan">
+                <span>Feb 14 2021</span>
+                <h3>How To Get Perfect Fan At Low Price</h3>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Explicabo, veniam.</p>
+                <a href="#" class="blog-btn">Read More<i class='bx bx-right-arrow-alt' ></i></a>
+            </div>
+            <div class="box">
+                <img src="{{ asset('pictures/fan12.jpg') }}" class="card-img-top" alt="Fan">
+                <span>Feb 14 2021</span>
+                <h3>How To Get Perfect Fan At Low Price</h3>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Explicabo, veniam.</p>
+                <a href="#" class="blog-btn">Read More<i class='bx bx-right-arrow-alt' ></i></a>
+            </div>
+            <div class="box">
+                <img src="{{ asset('pictures/fan13.jpg') }}" class="card-img-top" alt="Fan">
+                <span>Feb 14 2021</span>
+                <h3>How To Get Perfect Fan At Low Price</h3>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Explicabo, veniam.</p>
+                <a href="#" class="blog-btn">Read More<i class='bx bx-right-arrow-alt' ></i></a>
+            </div>
+            <div class="box">
+                <img src="{{ asset('pictures/fan14.jpg') }}" class="card-img-top" alt="Fan">
+                <span>Feb 14 2021</span>
+                <h3>How To Get Perfect Fan At Low Price</h3>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Explicabo, veniam.</p>
+                <a href="#" class="blog-btn">Read More<i class='bx bx-right-arrow-alt' ></i></a>
+            </div>
+            <div class="box">
+                <img src="{{ asset('pictures/fan15.jpg') }}" class="card-img-top" alt="Fan">
+                <span>Feb 14 2021</span>
+                <h3>How To Get Perfect Fan At Low Price</h3>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Explicabo, veniam.</p>
+                <a href="#" class="blog-btn">Read More<i class='bx bx-right-arrow-alt' ></i></a>
+            </div>
+            <div class="box">
+                <img src="{{ asset('pictures/fan16.jpg') }}" class="card-img-top" alt="Fan">
+                <span>Feb 14 2021</span>
+                <h3>How To Get Perfect Fan At Low Price</h3>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Explicabo, veniam.</p>
+                <a href="#" class="blog-btn">Read More<i class='bx bx-right-arrow-alt' ></i></a>
+            </div>
+            <div class="box">
+                <img src="{{ asset('pictures/fan17.jpg') }}" class="card-img-top" alt="Fan">
+                <span>Feb 14 2021</span>
+                <h3>How To Get Perfect Fan At Low Price</h3>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Explicabo, veniam.</p>
+                <a href="#" class="blog-btn">Read More<i class='bx bx-right-arrow-alt' ></i></a>
+            </div>
+            <div class="box">
+                <img src="{{ asset('pictures/oldfan.jpg') }}" class="card-img-top" alt="Fan">
+                <span>Feb 14 2021</span>
+                <h3>How To Get Perfect Fan At Low Price</h3>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Explicabo, veniam.</p>
+                <a href="#" class="blog-btn">Read More<i class='bx bx-right-arrow-alt' ></i></a>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="blog-container container">
+        <h2>Our customer Reviews</h2>
+             <div class="box">
+            <img src="{{ asset('pictures/test1.jpg') }}" class="card-img-top" alt="Fan">
+            <h3 class="text-center">Anna Gomaz</h3>
+            <span>Feb 14 2022</span>
+            <h3>How it is our fan an amazing stuff</h3>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+          
+            <a href="#" class="blog-btn">Read More<i class='bx bx-right-arrow-alt' ></i></a>
+        </div>
+        <div class="box">
+           <img src="{{ asset('pictures/test2.jpg') }}" class="card-img-top" alt="Fan">
+            <span>Feb 14 2021</span>
+            <h3>Dian Otto</h3>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Explicabo, veniam.</p>
+           
+            <a href="#" class="blog-btn">Read More<i class='bx bx-right-arrow-alt' ></i></a>
+        </div>
+        <div class="box">
+            <img src="{{ asset('pictures/test3.jpg') }}" class="card-img-top" alt="Fan">
+            <span>Feb 14 2021</span>
+            <h3>Lisa Tola</h3>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Explicabo, veniam.</p>
+            
+            <a href="#" class="blog-btn">Read More<i class='bx bx-right-arrow-alt' ></i></a>
+        </div>
+    </div>
+    </div>
+</section> 
+<script src=" {{ asset('js/script.js') }}"></script>
 {% endblock %}
