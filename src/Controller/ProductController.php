@@ -4,8 +4,10 @@ namespace App\Controller;
 
 use App\Service\FileUploader;
 use App\Entity\Product;
+use App\Entity\Reviews;
 use App\Form\ProductType;
 use App\Repository\ProductRepository;
+use App\Repository\ReviewsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -50,7 +52,7 @@ class ProductController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_product_show', methods: ['GET'])]
-    public function show(Product $product, ProductRepository $productRepository): Response
+    public function show(Product $product, ProductRepository $productRepository, ReviewsRepository $reviewsRepository): Response
     {
         $brand = $product->getFkBrand();
         $type = $product->getType();
@@ -65,6 +67,7 @@ class ProductController extends AbstractController
             'type' => $type,
             'products' => $productRepository->findAll(),
             'discountPrice' => $discountPrice,
+            'reviews' => $reviewsRepository->findBy(["fk_product"=>$product->getId()])
         ]);
     }
     #[Route('/category/{type}', name: 'app_product_category', methods: ['GET'])]
@@ -110,5 +113,15 @@ class ProductController extends AbstractController
         }
 
         return $this->redirectToRoute('app_product_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/reviews/{id}', name: 'app_reviews_delete', methods: ['POST', 'GET'])]
+    public function deleteReviews(Request $request, Reviews $review, ReviewsRepository $reviewsRepository, $id): Response
+    {
+        $review = $reviewsRepository->find($id);
+        $idProduct = $review->getFkProduct()->getId();
+        $reviewsRepository->remove($review, true);
+
+        return $this->redirectToRoute('app_product_show', ["id" => $idProduct], Response::HTTP_SEE_OTHER);
     }
 }

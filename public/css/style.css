@@ -604,10 +604,27 @@ footer {
 
 
 
+@media screen and (min-width: 1100px) {
+    .handFan img {
+        width: 100%;
+        position: relative;
+        overflow-x: hidden;
+        bottom: 50%;
+        right: 50%;
+        opacity: 1;
+    }
+
+    .fanImg img {
+        width: 450%;
+        position: relative;
+        bottom: 15%;
+        opacity: 1;
+
+    }
+}
 
 
-
-@media screen and (min-width: 920px) and (max-width: 1073px){
+@media screen and (min-width: 990px) and (max-width: 1273px){
     .fanImg img {
         width: 450%;
         position: relative;
@@ -627,7 +644,7 @@ footer {
 
 
 
-@media screen and (min-width: 640px) and (max-width: 920px) {
+@media screen and (min-width: 640px) and (max-width: 990px) {
     .fanImg img {
         opacity: 1;
         display: none;
@@ -1059,6 +1076,16 @@ footer {
 
     .hero {
         align-self: center;
+    }
+
+    .columns h3 {
+        font-size: 2rem;
+    }
+
+    .home-about p {
+        font-size: 1rem;
+        text-align: center;
+        font-weight: 300;
     }
 
 }

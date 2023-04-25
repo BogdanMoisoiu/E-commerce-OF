@@ -1,0 +1,99 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    
+}
+
+body {
+    background-image: linear-gradient(to top left, #00AFF0,#7acae7, #b3d3e0);
+}
+
+
+.contact {
+    padding: 2rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact form {
+    padding: 3rem 10%;
+}
+
+.contact form h3 {
+    font-family: 'PT Serif', serif;
+    font-style:italic;
+    color: #222840;
+    font-size: 4rem;
+    text-align: center;
+    padding-bottom: 2rem;
+    text-decoration: overline;
+    
+}
+.contact form .box {
+    width: 100%;
+    border-bottom: .2rem solid #222840;
+    border-width: .1rem;
+    font-size: 1rem;
+    text-transform: none;
+    color: #222840;
+    padding: .9rem 0;
+    margin: 1rem 0;
+}
+
+.contact form textarea {
+    width: 100%;
+    border-bottom: .2rem solid #222840;
+    border-width: .1rem;
+    font-size: 1rem;
+    text-transform: none;
+    color: #00AFF0;
+    padding: 1.5rem 0;
+    margin: 1rem 0;
+}
+
+textarea {
+    height: 15rem;
+    resize: none;
+}
+
+.btn {
+    display: inline-block;
+    
+    border-radius: 5rem;
+    border-top-left-radius: 0;
+    border: .15rem solid #222840;
+    cursor: pointer;
+    background: #fff;
+    color: #222840;
+    font-size: 1rem;
+    overflow: hidden;
+    z-index: 0;
+    position: relative;
+}
+
+.footer {
+    position: relative;
+    background: var(--tan-white);
+    padding-top: 3rem;
+    padding-bottom: 2rem;
+    height: 20vh;
+}
+
+.footer .share {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.footer .share a {
+    color: #222840;
+    border: none;
+    background: none;
+}
+
+.footer .share a:hover {
+    color: #fff;
+}

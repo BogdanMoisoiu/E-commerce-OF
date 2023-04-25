@@ -105,4 +105,25 @@
            </div>
         {% endfor %}
     </div>
+<hr>
+    <div>
+    <h5>Questions</h5>
+    </div>
+
+<div>
+   <hr>
+    </div>
+    <div>
+    <h5>Reviews</h5>
+{% for review in reviews %}
+<div>
+<p>{{review.type}}</p>
+<p>{{review.title}}</p>
+<p>{{review.review}}</p>
+<p>{{review.fkAuthor.email}}</p>
+<p>{{review.rating}}</p>
+    <td><a href="/user/reviews/{{ review.id }}" class="btn btn-danger">Delete</a></td>
+    </div>
+    {% endfor %}
+    <a href="/user/" class="btn btn-primary">Go Back</a>
 {% endblock %}
