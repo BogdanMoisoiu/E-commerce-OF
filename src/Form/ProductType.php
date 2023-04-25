@@ -33,12 +33,12 @@ class ProductType extends AbstractType
                 // 'multiple' => true,
                 // 'expanded' => true,
             ])
-            ->add('prod_dimensions', TextType::class)
+            ->add('prod_dimensions', TextType::class, [ 'required' => false,])
             ->add('short_description', TextType::class)
             ->add('description', TextType::class)
-            ->add('color', TextType::class)
-            ->add('power_max', TextType::class)
-            ->add('power_source', TextType::class)
+            ->add('color', TextType::class, [ 'required' => false,])
+            ->add('power_max', TextType::class, [ 'required' => false,])
+            ->add('power_source', TextType::class, [ 'required' => false,])
             ->add('availability', ChoiceType::class,  [
                 'choices'  => [
                     'Yes' => true,
@@ -53,8 +53,8 @@ class ProductType extends AbstractType
             ])
             ->add('quantity_left', IntegerType::class)
             ->add('material', TextType::class)
-            ->add('special_features', TextType::class)
-            ->add('style', TextType::class)
+            ->add('special_features', TextType::class, [ 'required' => false,])
+            ->add('style', TextType::class, [ 'required' => false,])
             ->add('discount', ChoiceType::class,  [
                 'choices'  => [
                     'No discount' => '0',
@@ -69,7 +69,7 @@ class ProductType extends AbstractType
                     '45%' => '0.45',
                     '50%' => '0.50',
                 ],
-                
+                'required' => false,
             ])
             ->add('picture', FileType::class, [
                 'label' => 'Upload Picture',

@@ -136,7 +136,7 @@ class UserAccessController extends AbstractController
 
     }
 
-    #[Route('/reviews/{id}', name: 'user_reviews_delete', methods: ['POST', 'GET'])]
+    #[Route('/reviews/delete/{id}', name: 'user_reviews_delete', methods: ['POST', 'GET'])]
     public function deleteReviews(Request $request, ReviewsRepository $reviewsRepository, $id): Response
     {
         $review = $reviewsRepository->find($id);
@@ -145,5 +145,4 @@ class UserAccessController extends AbstractController
 
         return $this->redirectToRoute('app_user_access_show', ["id"=> $idProduct], Response::HTTP_SEE_OTHER);
     }
-
 }

@@ -26,11 +26,13 @@ class ReviewsType extends AbstractType
                 3 => '3',
                 4 => '4',
                 5 => '5'
-            ]])
-            ->add('title', TextType::class)
+            ],  
+            'required' => false,])
+            ->add('title', TextType::class, [ 'required' => false,])
             ->add('type', ChoiceType::class, ['choices' => [
                 'review' => 'review',
-                'question' => 'question'
+                'question' => 'question',
+                'answer' => 'answer',
             ]])
             ->add('review', TextType::class)
             ->add('fkAuthor', EntityType::class, [

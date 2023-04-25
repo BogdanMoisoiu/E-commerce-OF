@@ -94,14 +94,55 @@
 
     <div>
         <h2>All products from category {{ type }}</h2>
-        {% if type %}{% endif %}
         {% for product in products %}
+        {% if type == product.type %}
            <div>
             <img src="{{ product.picture }}" alt="" height="70px">
             <p>{{ product.name }}</p>
             <p>{{ product.price }} &#8364;</p>
             <a href="{{ path('app_static_show', {'id': product.id}) }}">show</a>
            </div>
-        {% endfor %}
+           {% endif %}
+           {% endfor %}
     </div>
+
+    <hr>
+
+
+    <div>
+    <h5>Questions</h5>
+    <a href="{{ path('app_reviews_question', {'id': product.id}) }}" class="btn btn-primary">Ask a question</a>
+    {% for review in reviews %}
+        {% if review.type == 'question' %}
+            <p>Type: {{review.type}}</p>
+            <p>{{review.fkAuthor.email}}</p>
+            <p>{{review.review}}</p>
+            <hr>
+        {% endif %}
+    {% endfor %}    
+    </div>
+    <hr>
+
+    <div>  
+    <h5>Reviews</h5>
+    {% for review in reviews %} 
+        {% if review.type == 'review' %} 
+            <div>
+                <a href="/user/reviews/delete/{{ review.id }}" class="btn btn-danger">Delete</a>
+                <p>Type: {{review.type}}</p>
+                {% if review.fkAuthor.email == user.email %}
+                    <p>{{review.fkAuthor.email}} <span style="color: red;">purchase confirmed</span></p>
+                {% else %}
+                    <p>{{review.fkAuthor.email}}</p>
+                {% endif %}
+                <p>Raiting: {{review.rating}}</p>
+                <p>{{review.title}}</p>
+                <p>{{review.review}}</p>
+            </div>
+            {% else %}
+                <p>There's no questions for this product</p>
+        {% endif %}
+    {% endfor %}
+    <a href="{{ path('app_reviews_new', {'id' : product.id}) }}" class="btn btn-primary">Create New Review</a>
+</div>
 {% endblock %}
