@@ -11,6 +11,22 @@
 
 
 {% block body %}
+
+<header class="header">
+    <div class="text">
+        <h1>ONLY<span>Fans</span></h1>
+            <div class="headline">
+                <h2>MUST 
+                    <br>
+                        BE
+                            <br>
+                                18+</h2>
+    </div>
+<br>
+</header>
+
+
+<div class="forms">
 <form method="post">
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -48,7 +64,12 @@
     </button>
     <a href="{{ path('app_register') }}">Not registered yet? Click here.</a>
 </form>
+</div>
 
+
+    <div class="container">
+        <img src="/pictures/Onlyfans-Logo.png" alt="">
+    </div>
 
 
 {% endblock %}
