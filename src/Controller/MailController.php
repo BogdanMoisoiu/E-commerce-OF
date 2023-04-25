@@ -11,12 +11,12 @@ use Symfony\Component\Mime\Email;
 class MailController extends AbstractController
 {
     #[Route('/mail', name: 'app_mail')]
-    public function sendEmail(MailerInterface $mailer): Response
+    public function sendEmail(MailerInterface $mailer ,$sender): Response
     {
         $email = (new Email())
             ->from('sontomson1@gmail.com')
-            ->to('sonnleitner.thomas@gmx.at') // $this->getUser()->getEMail()
-            //->cc('sonnleitner.thomas@gmx.at')
+            ->to( $sender) // $this->getUser()->getEMail()
+            ->cc('sonnleitner.thomas@gmx.at')
             //->bcc('bcc@example.com')
             //->replyTo('fabien@example.com')
             //->priority(Email::PRIORITY_HIGH)
