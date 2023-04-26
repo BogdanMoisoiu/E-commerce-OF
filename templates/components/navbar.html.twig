@@ -2,8 +2,7 @@
 
         <link rel="stylesheet" href="{{asset('css/navbar.css')}}">
 {% endblock %}
-<input type="text" id="searchbar">
-<button id="searchbtn">search</button>
+
 
 
 <div id="product">
@@ -73,6 +72,9 @@
                 <a class="nav-link" href="{{ path('app_login') }}">Sign in</a>
               </li>
             {% endif %}
+
+            <input class="searchB" type="text" id="searchbar">
+            <button id="searchbtn"><i class="fas fa-arrow-right"></i></button>
           
           {# <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
