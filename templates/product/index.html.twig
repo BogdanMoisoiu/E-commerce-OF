@@ -10,7 +10,7 @@
 
     <h1>Product index</h1>
 
-    <h5>all products that are not approved for display have pink background</h5>
+
     <table class="table">
         <thead>
             <tr>
@@ -28,8 +28,7 @@
         <tbody>
 
         {% for product in products %}
-        {% if product.approved == 1 %}
-        
+   
             <tr>
                 <td>{{ product.id }}</td>
                 <td>{{ product.name }}</td> 
@@ -51,28 +50,37 @@
                     <a href="{{ path('app_product_edit', {'id': product.id}) }}">edit</a>
                 </td>
             </tr>
-            {% else %}
-            <tr style="border: 2px solid rgb(255, 0, 170); background-color: rgb(249, 121, 249);">
-                <td>{{ product.id }}</td>
-                <td>{{ product.name }}</td> 
-
-                <td>{{ product.price }} &#8364;</td>
-                
-                <td>{{ product.type }}</td>
-                <td>{{ product.FkBrand.name }}</td>
-                <td>{{ product.shortDescription }}</td>
-                <td>{{ product.discount}}</td>
-                <td><img src="{{ asset('pictures/' ~ product.picture) }}" alt="" height="70px"></td>
-                <td>
-                    <a href="{{ path('app_product_show', {'id': product.id}) }}">show</a>
-                    <a href="{{ path('app_product_edit', {'id': product.id}) }}">edit</a>
-                </td>
-            </tr>
-            {% endif %}
+            
         {% else %}
             <tr>
                 <td colspan="17">no records found</td>
             </tr>
+        {% endfor %}
+
+   
+        {% for product in notproducts %}
+   
+        <tr style="background-color: palevioletred;">
+            <td>{{ product.id }}</td>
+            <td>{{ product.name }}</td> 
+
+            {% if product.discount > 0 %}
+            <td><p style="text-decoration: line-through;">{{ product.price }} &#8364;</p>
+            <p>{{ product.price - (product.price * product.discount) }} &#8364;</p></td> 
+            {% else %}
+                <td>{{ product.price }} &#8364;</td> 
+            {% endif %}
+
+            <td>{{ product.type }}</td>
+            <td>{{ product.FkBrand.name }}</td>
+            <td>{{ product.shortDescription }}</td>
+            <td>{{ product.discount}}</td>
+            <td><img src="{{ asset('pictures/' ~ product.picture) }}" alt="" height="70px"></td>
+            <td>
+                <a href="{{ path('app_product_show', {'id': product.id}) }}">show</a>
+                <a href="{{ path('app_product_edit', {'id': product.id}) }}">edit</a>
+            </td>
+        </tr>
         {% endfor %}
         </tbody>
     </table>
