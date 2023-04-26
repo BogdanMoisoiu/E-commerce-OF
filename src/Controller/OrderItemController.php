@@ -19,11 +19,12 @@ use Symfony\Component\Routing\Annotation\Route;
 class OrderItemController extends AbstractController
 {
     #[Route('/item', name: 'app_order_item')]
-    public function index(OrderItemRepository $orderItemRepository): Response
+    public function index(OrderItemRepository $orderItemRepository, ProductRepository $productRepository): Response
     // public function index(OrderItemRepository $orderItemRepository, OrderItem $orderItem): Response
     {
         $orderUser = $orderItemRepository->findBy(['fk_user'=>$this->getUser(), "status"=>"cart"]);
         $total= 0;
+        #$total = 0;
         
         // $total= $orderItem->getTotal();
 
@@ -31,7 +32,17 @@ class OrderItemController extends AbstractController
             // dd($val->getFkProduct()->getName());
             // dd($val->getFkProduct()->getPrice());
             // dd($val->getQuantity());
-            $total = $total + ($val->getFkProduct()->getPrice() * $val->getQuantity());
+            
+            $price = $val->getFkProduct()->getPrice();
+            $discount = $val->getFkProduct()->getDiscount();
+            $quantity = $val->getQuantity();
+            if ( $discount > 0) {
+                $total = $total + (($price -  ($price * $discount)) * $quantity);
+
+            } else{
+                $total = $total + ($price * $quantity);
+            }
+            
             // dd($total);
 
         }
