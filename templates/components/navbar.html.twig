@@ -6,12 +6,38 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
+
+            {% if is_granted('ROLE_ADMIN') %}
+            
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_product_index') }}">Products catalogue</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_product_new') }}">Add Product</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_brand_index') }}">Brands catalogue</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_brand_new') }}">Add Brand</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_user_index') }}">Manage Users</a>
+                </li>
+            {% elseif is_granted('ROLE_USER') %}
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Disabled</a>
+                </li><li class="nav-item">
+                    <a class="nav-link" href="#">Disabled</a>
+                </li>
+                </li><li class="nav-item">
+                    <a class="nav-link" href="#">Disabled</a>
+                </li>
+                {% else %}
+                    
+            {% endif %}
+            
+          
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Dropdown
@@ -24,7 +50,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link disabled">Disabled</a>
+            <a class="nav-link" href="#">Disabled</a>
           </li>
         </ul>
         <form class="d-flex" role="search">
