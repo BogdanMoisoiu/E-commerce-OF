@@ -39,7 +39,7 @@
             {% endif %}
             <p class="card_text">{{ product.shortDescription }}</p>
             <a href="{{ path('app_user_access_show', {'id': product.id}) }}" class="btn">Details</i></a> 
-            <a href="{{ path('app_user_access_addtocart', {'id': product.id}) }}" class="btn"><i class='bx bx-shopping-bag add-cart'></i></a> 
+            <a href="{{ path('app_user_access_addtocart', {'id': product.id}) }}" class="btn">Add to cart</a> 
             
         </div>
         {% endfor %}

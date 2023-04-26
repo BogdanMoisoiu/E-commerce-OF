@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Brand;
 use App\Entity\Product;
 use App\Repository\ProductRepository;
+use App\Repository\ReviewsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -39,7 +40,7 @@ class StaticController extends AbstractController
     }
 
     #[Route('/show/{id}', name: 'app_static_show')]
-    public function show(Product $product, ProductRepository $productRepository): Response
+    public function show(Product $product, ProductRepository $productRepository, ReviewsRepository $reviewsRepository): Response
     {
         // $user = $this->getUser();
         $brand = $product->getFkBrand();
@@ -54,6 +55,7 @@ class StaticController extends AbstractController
             'type' => $type,
             'products' => $productRepository->findAll(),
             'discountPrice' => $discountPrice,
+            'reviews' => $reviewsRepository->findBy(["fk_product"=>$product->getId()]),
             // 'user' => $user,
         ]);
     }

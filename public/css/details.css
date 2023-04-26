@@ -1,0 +1,11 @@
+.headline{
+    text-align: center;
+}
+.oldPrice{
+    text-decoration: line-through;
+    font-size: x-small;
+}
+
+.detailsImage{
+    width: 50em;
+}

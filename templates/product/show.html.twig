@@ -1,9 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Product{% endblock %}
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block stylesheets %} 
+        {{ parent() }}
+        <link rel="stylesheet" href="{{asset('css/details.css')}}">
+    {% endblock %}
 
 {% block body %}
-    <h1 class="headline">{{ product.name }} - details</h1>
+    <h1 class="headline">{{ product.name }}</h1>
 
     <div class="d-flex align-items-center">
         <div class="flex-shrink-0">
@@ -12,7 +17,7 @@
         <div class="flex-grow-1 ms-3">
             {% if product.discount > 0 %}
                 <p class="oldPrice detailsText">{{ product.price }} &#8364;</p>
-                <p class="price detailsText">{{ {{ discountPrice }} &#8364; }} &#8364;</p>
+                <p class="price detailsText">{{ discountPrice }} &#8364;</p>
             {% else %}
                 <p>{{ product.price }} &#8364;</p>
             {% endif %}
@@ -28,8 +33,6 @@
             <p class="detailsText">Material: {{ product.material }}</p>
             <p class="detailsText">Special features: {{ product.specialFeatures }}</p>
             <p class="detailsText">Style: {{ product.style }}</p>
-                {# for users #}
-                {# <p>Brand: <a href="{{ path('app_user_access_brand', {'id': brand.id}) }}">{{ brand.name }}</a></p> #}
                 <a href="{{ path('app_product_edit', {'id': product.id}) }}" class="btn">edit</a>
 
                 {{ include('product/_delete_form.html.twig') }}
@@ -37,23 +40,25 @@
       </div>
 {# need to change layout for category, questions and reviews #}
     <div class="categoryProducts">
-        <h2>All products from category {{ type }}</h2>
+        <h2 class="headline">All products from category {{ type }}</h2>
         {% for product in products %}
-        {% if type == product.type %}
-           <div>
-            <img src="{{ asset('pictures/' ~ product.picture) }}" alt="" height="70px">
-            <p>{{ product.name }}</p>
-            <p>{{ product.price }} &#8364;</p>
-            <a href="{{ path('app_product_show', {'id': product.id}) }}">show</a>
-           </div>
-           {% endif %}
+            {% if type == product.type %}
+                <div class="card" style="width: 15rem;">
+                    <img src="{{ asset('pictures/' ~ product.picture) }}" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <p class="card-text">{{ product.price }} &#8364;</p>
+                        <a href="{{ path('app_product_show', {'id': product.id}) }}" class="btn btn-primary">show</a>
+                    </div>
+                </div>
+            {% endif %}
            {% endfor %}
     </div>
 
 
-    <div>
-    <h5>Questions</h5>
-    <a href="{{ path('app_reviews_question', {'id': product.id}) }}" class="btn btn-primary">Ask a question</a>
+    <div class="questions">
+    <h5 class="headline">Questions</h5>
+    {# <a href="{{ path('app_reviews_question', {'id': product.id}) }}" class="btn btn-primary">Ask a question</a> #}
     {% for review in reviews %}
         {% if review.type == 'question' %}
             <p>Question:</p>
@@ -71,10 +76,52 @@
     {% endfor %}  
     </div>
 
+    <div class="questions">
+        <h5 class="headline">Questions</h5>
+        {% for question in reviews %}
+            {% if question.type == 'question' %}
+            <div class="d-flex">
+                <div class="flex-shrink-0">
+                    {% if question.fkAuthor.email == user.email %}
+                    <p>{{question.fkAuthor.email}}</p>
+                    {% else %}
+                    <p>{{question.fkAuthor.email}}</p>
+                    {% endif %}
+                    
+                </div>
+                <div class="flex-grow-1 ms-3">
+                    <p>{{question.review}}</p>
+                    <a href="{{ path('app_reviews_answer', {'id': review.fkAuthor.id}) }}" class="btn btn-secondary">Answer a question</a> 
+                    
+                </div>
+                
+            </div> 
+            {% endif %}
+    
+            {% if question.type == 'answer' %}
+            <h6>Answers</h6>
+            <div class="d-flex">
+                <div class="flex-shrink-0">
+                    
+                    {% if question.fkAuthor.email == user.email %}
+                    <p>{{question.fkAuthor.email}}</p>
+                    {% else %}
+                    <p>{{question.fkAuthor.email}}</p>
+                    {% endif %}
+                    
+                </div>
+                <div class="flex-grow-1 ms-3">
+                    <p>{{question.review}}</p>
+                </div>
+            </div>
+            {% endif %}
+        {% endfor %}    
+        </div>
+
    <hr>
  
-    <div>
-    <h5>Reviews</h5>
+    <div class="reviews">
+    <h5 class="headline">Reviews</h5>
 {% for review in reviews %}
     {% if review.type == 'review' %}
         <div>
@@ -82,7 +129,7 @@
             <p>{{review.type}}</p>
             <p>{{review.review}}</p>
             {% if review.fkAuthor.email == user.email %}
-                <p>{{review.fkAuthor.email}} <span style="color: red;">purchase confirmed</span></p>
+                <p>{{review.fkAuthor.email}} <span class="badge bg-warning">purchase confirmed</span></p>
             {% else %}
                 <p>{{review.fkAuthor.email}}</p>
             {% endif %}

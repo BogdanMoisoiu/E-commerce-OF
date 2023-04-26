@@ -1,153 +1,121 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Product{% endblock %}
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block stylesheets %} 
+        {{ parent() }}
+        <link rel="stylesheet" href="{{asset('css/details.css')}}">
+    {% endblock %}
 
 {% block body %}
-    <h1>Product</h1>
+    <h1 class="headline">{{ product.name }}</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ product.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ product.name }}</td>
-            
+    <div class="d-flex align-items-center">
+        <div class="flex-shrink-0">
+          <img src="{{ asset('pictures/' ~ product.picture) }}" class="detailsImage">
+        </div>
+        <div class="flex-grow-1 ms-3">
             {% if product.discount > 0 %}
-        </tr>
-            <th>Old price</th>
-            <td>{{ product.price }} &#8364;</td>
-        </tr>
-        <tr>
-            <th>Price with discount</th>
-            <td>{{ discountPrice }} &#8364;</td>
-        </tr>
-        {% else %}
-        <tr>
-            <th>Price</th>
-            <td>{{ product.price }} &#8364;</td>
-        </tr>
-        {% endif %}
-            <tr>
-                <th>Type</th>
-                <td>{{ product.type }}</td>
-            </tr>
-            <tr>
-                <th>Brand</th>
-                {# for admin #}
-                {# <td><a href="{{ path('app_brand_show', {'id': brand.id}) }}">{{ brand.name }}</a></td> #}
-                {# for users #}
-                <td><a href="{{ path('app_static_brand', {'id': brand.id}) }}">{{ brand.name }}</a></td>
-            </tr>
-            <tr>
-                <th>Prod_dimensions</th>
-                <td>{{ product.prodDimensions }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ product.description }}</td>
-            </tr>
-            <tr>
-                <th>Color</th>
-                <td>{{ product.color }}</td>
-            </tr>
-            <tr>
-                <th>Power_max</th>
-                <td>{{ product.powerMax }}</td>
-            </tr>
-            <tr>
-                <th>Power_source</th>
-                <td>{{ product.powerSource }}</td>
-            </tr>
-            <tr>
-                <th>Availability</th>
-                <td>{{ product.availability ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <th>Quantity_left</th>
-                <td>{{ product.quantityLeft }}</td>
-            </tr>
-            <tr>
-                <th>Material</th>
-                <td>{{ product.material }}</td>
-            </tr>
-            <tr>
-                <th>Special_features</th>
-                <td>{{ product.specialFeatures }}</td>
-            </tr>
-            <tr>
-                <th>Style</th>
-                <td>{{ product.style }}</td>
-            </tr>
-            <tr>
-                <th>discount</th>
-                <td>{{ product.discount }}</td>
-            </tr>
-            <tr>
-                <th>Picture</th>
-                <td><img src="{{ asset('pictures/' ~ product.picture) }}" alt="" height="70px"></td>
-            </tr>
-        </tbody>
-    </table>
+                <p class="oldPrice detailsText">{{ product.price }} &#8364;</p>
+                <p class="price detailsText">{{ discountPrice }} &#8364;</p>
+            {% else %}
+                <p>{{ product.price }} &#8364;</p>
+            {% endif %}
+            {# for users #}
+                <p>Brand: {{ brand.name }}</p>
+            <p class="detailsText">Dimentions: {{ product.prodDimensions }}</p>
+            <p class="detailsText">Description: {{ product.description }}</p>
+            <p class="detailsText">Color: {{ product.color }}</p>
+            <p class="detailsText">Max power: {{ product.powerMax }}</p>
+            <p class="detailsText">Power source: {{ product.powerSource }}</p>
+            <p class="detailsText">Availability: {{ product.availability ? 'Yes' : 'No' }}</p>
+            <p class="detailsText">Left in stock: {{ product.quantityLeft }}</p>
+            <p class="detailsText">Material: {{ product.material }}</p>
+            <p class="detailsText">Special features: {{ product.specialFeatures }}</p>
+            <p class="detailsText">Style: {{ product.style }}</p>
+        </div>
+    </div>
 
-    <div>
-        <h2>All products from category {{ type }}</h2>
+    <div class="categoryProducts">
+        <h2 class="headline">All products from category {{ type }}</h2>
         {% for product in products %}
-        {% if type == product.type %}
-           <div>
-            <img src="{{ asset('pictures/' ~ product.picture) }}" alt="" height="70px">
-            <p>{{ product.name }}</p>
-            <p>{{ product.price }} &#8364;</p>
-            <a href="{{ path('app_static_show', {'id': product.id}) }}">show</a>
-           </div>
-           {% endif %}
+            {% if type == product.type %}
+                <div class="card" style="width: 15rem;">
+                    <img src="{{ asset('pictures/' ~ product.picture) }}" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <p class="card-text">{{ product.price }} &#8364;</p>
+                        <a href="{{ path('app_static_show', {'id': product.id}) }}">show</a>
+                    </div>
+                </div>
+            {% endif %}
            {% endfor %}
     </div>
 
     <hr>
 
 
-    <div>
-    <h5>Questions</h5>
-    <a href="{{ path('app_reviews_question', {'id': product.id}) }}" class="btn btn-primary">Ask a question</a>
-    {% for review in reviews %}
-        {% if review.type == 'question' %}
-            {# <p>{{review.type}}</p> #}
-            <p>{{review.fkAuthor.email}}</p>
-            <p>{{review.review}}</p>
-            <a href="{{ path('app_reviews_answer', {'id': review.fkAuthor.id}) }}" class="btn btn-secondary">Answer a question</a>
- 
+    <div class="questions">
+    <h5 class="headline">Questions</h5>
+    {% for question in reviews %}
+        {% if question.type == 'question' %}
+        <div class="d-flex">
+            <div class="flex-shrink-0">
+                <h5>Question:</h5>
+                {% if question.fkAuthor.email == user.email %}
+                <p>{{question.fkAuthor.email}}</p>
+                {% else %}
+                <p>{{question.fkAuthor.email}}</p>
+                {% endif %}
+                
+            </div>
+            <div class="flex-grow-1 ms-3">
+                <p>{{question.review}}</p>
+            </div>
+        </div> 
         {% endif %}
-        {% if review.type == 'answer' %}
-            <p>Answer:</p>
-            <p>{{review.fkAuthor.email}}</p>
-            <p>{{review.review}}</p>
+
+        {% if question.type == 'answer' %}
+        <h6>Answers</h6>
+        <div class="d-flex">
+            <div class="flex-shrink-0">
+                {% if question.fkAuthor.email == user.email %}
+                <p>{{question.fkAuthor.email}}</p>
+                {% else %}
+                <p>{{question.fkAuthor.email}}</p>
+                {% endif %}
+                
+            </div>
+            <div class="flex-grow-1 ms-3">
+                <p>{{question.review}}</p>
+            </div>
+        </div>
         {% endif %}
     {% endfor %}    
     </div>
     <hr>
 
-    <div>  
-    <h5>Reviews</h5>
+    <div class="reviews">  
+    <h5 class="headline">Reviews</h5>
     {% for review in reviews %} 
         {% if review.type == 'review' %} 
-            <div>
-                <h5>{{review.title}}</h5>
-                {# <p>{{review.type}}</p> #}
-                {% if review.fkAuthor.email == user.email %}
-                    <p>{{review.fkAuthor.email}} <span style="color: red;">purchase confirmed</span></p>
-                {% else %}
-                    <p>{{review.fkAuthor.email}}</p>
-                {% endif %}
-                <p>Raiting: {{review.rating}}</p>
-                <p>{{review.review}}</p>
-                <a href="/user/reviews/delete/{{ review.id }}" class="btn btn-danger">Delete</a>
+            <div class="review">
+                <div class="d-flex">
+                    <div class="flex-shrink-0">
+                        {% if review.fkAuthor.email == user.email %}
+                            <p>{{review.fkAuthor.email}} <span class="badge bg-warning">purchase confirmed</span></p>
+                        {% else %}
+                            <p>{{review.fkAuthor.email}}</p>
+                        {% endif %}
+                    </div>
+                    <div class="flex-grow-1 ms-3">
+                        <h5>{{review.title}}</h5>
+                        <p>Raiting: {{review.rating}}</p>
+                        <p>{{review.review}}</p>
+                    </div>
+                </div>
             </div>
-
         {% endif %}
     {% endfor %}
-    <a href="{{ path('app_reviews_new', {'id' : product.id}) }}" class="btn btn-primary">Create New Review</a>
 </div>
 {% endblock %}
