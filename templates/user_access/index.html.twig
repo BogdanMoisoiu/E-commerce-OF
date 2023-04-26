@@ -75,9 +75,30 @@
             </table>
         {% endfor %}
        
+       
   </tbody>
   </table>
-      
+ 
+{% for product in products %}
+    <div class="col-md-4">
+      <div class="box">
+        <h3>{{ product.name }}</h3>
+        <img src="{{ asset('pictures/' ~ product.picture) }}" class="card-img-top" alt="{{ product.name }}">
+        <h4>{{ product.shortDescription }}</h4>
+        <p>Price: {{ product.price }} &#8364;</p>
+        {% if product.discount > 0 %}
+          <p>Discounted Price: {{ product.price - (product.price * product.discount) }} &#8364;</p>
+        {% endif %}
+        <a href="{{ path('app_user_access_show', {'id': product.id}) }}" class="btn btn-primary">Details</a>
+        <a href="{{ path('app_user_access_addtocart', {'id': product.id}) }}" class="btn btn-success">Add To Cart</a>
+      </div>
+    </div>
+{% endfor %}
+
+
+
+
+
 <div class="parts-container container">
   <div class="row">
     <div class="col-md-4">
@@ -86,7 +107,10 @@
         <img src="{{ asset('pictures/fan1.jpg') }}" class="card-img-top" alt="Fan">
         <h2 class="fans-title">Best Fans</h2>
         <hr>
-        <span class="price">€100</span>
+       <h4> KESSER® Table Fan Design Retro Full Metal Housing 80° Oscillation Silent Fan with 3 Speed Levels Switchable Wind Machine Inclination Angle Approximately 40° metal., Copper</h4> <h6 class="btn btn-danger">deal</h6> 
+
+       <span class="btn btn-danger">€-10%</span> <span class="price">€140</span>
+        <h6>Prices for items sold by Amazon include VAT. Depending on your delivery address, VAT may vary at Checkout. For other items, please see details</h6>
         <i class='bx bx-shopping-bag add-cart'></i>
       </div>
     </div>
@@ -96,7 +120,10 @@
         <img src="{{ asset('pictures/fan2.jpg') }}" class="card-img-top" alt="Fan">
         <h2 class="fans-title">Best Fans</h2>
         <hr>
-        <span class="price">€100</span>
+        <h4> KESSER® Table Fan Design Retro Full Metal Housing 80° Oscillation Silent Fan with 3 Speed Levels Switchable Wind Machine Inclination Angle Approximately 40° metal., Copper</h4> <h6 class="btn btn-danger">deal</h6> 
+
+       <span class="btn btn-danger">€-10%</span> <span class="price">€240</span>
+        <h6>Prices for items sold by Amazon include VAT. Depending on your delivery address, VAT may vary at Checkout. For other items, please see details</h6>
         <i class='bx bx-shopping-bag add-cart'></i>
       </div>
     </div>
@@ -106,7 +133,10 @@
         <img src="{{ asset('pictures/fan3.jpg') }}" class="card-img-top" alt="Fan">
         <h2 class="fans-title">Best Fans</h2>
         <hr>
-        <span class="price">€100</span>
+       <h4> KESSER® Table Fan Design Retro Full Metal Housing 80° Oscillation Silent Fan with 3 Speed Levels Switchable Wind Machine Inclination Angle Approximately 40° metal., Copper</h4> <h6 class="btn btn-danger">deal</h6> 
+
+       <span class="btn btn-danger">€-10%</span> <span class="price">€200</span>
+        <h6>Prices for items sold by Amazon include VAT. Depending on your delivery address, VAT may vary at Checkout. For other items, please see details</h6>
         <i class='bx bx-shopping-bag add-cart'></i>
       </div>
     </div>
@@ -116,19 +146,30 @@
       <div class="box">
         <h3>Special Fans</h3>
         <img src="{{ asset('pictures/fan4.jpg') }}" class="card-img-top" alt="Fan">
-        <h2 class="fans-title">Best Fans</h2>
+        <h2 class="fans-title"></h2>
         <hr>
-        <span class="price">€390</span>
+        <h4> KESSER® Table Fan Design Retro Full Metal Housing 80° Oscillation Silent Fan with 3 Speed Levels Switchable Wind Machine Inclination Angle Approximately 40° metal., Copper</h4> <h6 class="btn btn-danger">deal</h6> 
+
+       <span class="btn btn-danger">€-10%</span> <span class="price">€300</span>
+        <h6>Prices for items sold by Amazon include VAT. Depending on your delivery address, VAT may vary at Checkout. For other items, please see details</h6>
         <i class='bx bx-shopping-bag add-cart'></i>
       </div>
     </div>
+    <h5> About this item
+Powerful: <br> This powerful oscillating  fan features a power-<br>ful 30 watt motor to cool small to medium <br> rooms quickly and efficiently. It has 3 adjustable <br> speed settings.
+Oscillation function:</h5>
+
+
     <div class="col-md-4">
       <div class="box">
         <h3>Special Fans</h3>
         <img src="{{ asset('pictures/fan5.jpg') }}" class="card-img-top" alt="Fan">
         <h2 class="fans-title">Best Fans</h2>
         <hr>
-        <span class="price">€230</span>
+        <h4> KESSER® Table Fan Design Retro Full Metal Housing 80° Oscillation Silent Fan with 3 Speed Levels Switchable Wind Machine Inclination Angle Approximately 40° metal., Copper</h4> <h6 class="btn btn-danger">deal</h6> 
+
+       <span class="btn btn-danger">€-10%</span> <span class="price">€390</span>
+        <h6>Prices for items sold by Amazon include VAT. Depending on your delivery address, VAT may vary at Checkout. For other items, please see details</h6>
         <i class='bx bx-shopping-bag add-cart'></i>
       </div>
     </div>
@@ -138,7 +179,10 @@
         <img src="{{ asset('pictures/fan6.jpg') }}" class="card-img-top" alt="Fan">
         <h2 class="fans-title">Best Fans</h2>
         <hr>
-        <span class="price">€150</span>
+        <h4> KESSER® Table Fan Design Retro Full Metal Housing 80° Oscillation Silent Fan with 3 Speed Levels Switchable Wind Machine Inclination Angle Approximately 40° metal., Copper</h4> <h6 class="btn btn-danger">deal</h6> 
+
+       <span class="btn btn-danger">€-10%</span> <span class="price">€390</span>
+        <h6>Prices for items sold by Amazon include VAT. Depending on your delivery address, VAT may vary at Checkout. For other items, please see details</h6>
         <i class='bx bx-shopping-bag add-cart'></i>
       </div>
     </div>
@@ -150,11 +194,15 @@
         <img src="{{ asset('pictures/fan7.jpg') }}" class="card-img-top" alt="Fan">
         <h2 class="fans-title">Best Fans</h2>
         <hr>
-       <span class="price">€250</span>
+       <h4> KESSER® Table Fan Design Retro Full Metal Housing 80° Oscillation Silent Fan with 3 Speed Levels Switchable Wind Machine Inclination Angle Approximately 40° metal., Copper</h4> <h6 class="btn btn-danger">deal</h6> 
+
+       <span class="btn btn-danger">€-10%</span> <span class="price">€390</span>
+        <h6>Prices for items sold by Amazon include VAT. Depending on your delivery address, VAT may vary at Checkout. For other items, please see details</h6>
         <i class='bx bx-shopping-bag add-cart'></i>
       </div>
     </div>
   </div>
+  
 
 </section>
 
