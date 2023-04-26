@@ -22,11 +22,12 @@ class OrderItemController extends AbstractController
     public function index(OrderItemRepository $orderItemRepository): Response
     // public function index(OrderItemRepository $orderItemRepository, OrderItem $orderItem): Response
     {
-        $order = $orderItemRepository->findBy(['fk_user'=>$this->getUser()]);
+        $orderUser = $orderItemRepository->findBy(['fk_user'=>$this->getUser(), "status"=>"cart"]);
         $total= 0;
+        
         // $total= $orderItem->getTotal();
 
-        foreach ($order as $val) {
+        foreach ($orderUser as $val) {
             // dd($val->getFkProduct()->getName());
             // dd($val->getFkProduct()->getPrice());
             // dd($val->getQuantity());
