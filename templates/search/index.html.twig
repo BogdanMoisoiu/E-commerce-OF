@@ -3,18 +3,47 @@
 {% block title %}Hello SearchController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/sonnl/OneDrive/Desktop/Fullstack/Backend-Part/finalproject/Team-3-Project/src/Controller/SearchController.php'|file_link(0) }}">src/Controller/SearchController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/sonnl/OneDrive/Desktop/Fullstack/Backend-Part/finalproject/Team-3-Project/templates/search/index.html.twig'|file_link(0) }}">templates/search/index.html.twig</a></code></li>
-    </ul>
-</div>
+   <input type="text" id="searchbar">
+   <button id="searchbtn">search</button>
+ 
+   <h1>Products</h1>
+   <div id="product">
+
+   </div>
+
+   <script>
+     
+    document.getElementById("searchbtn").addEventListener("click", function(){
+        let value = document.getElementById("searchbar").value;
+        window.location.href = "/user/prod/search/"+value;
+    })
+    
+    //    document.getElementById("search").addEventListener("click", getProducts); //create an eventlistener to call getproducts) function when button clicked
+
+    //    function getProducts() {
+    //        const request = new XMLHttpRequest(); //create new request
+    //        request.open("GET", "/search/", true); //set request as a GET method connecting to search.php
+    //        request.onload = function () {
+    //            if (this.status == 200) {
+    //                let products = JSON.parse(this.responseText); //data received are turned to objects
+    //                console.log(products) //see the array of objects in your console
+    //                let output = ''; //create container variable
+    //                products.forEach(product => {
+    //                for (let i in products) {
+    //                    output += `<p>Name: ${products[i].name}
+    //                    price: ${products[i].price }</p>`;
+                   
+           
+                   
+    //                document.getElementById('product').innerHTML = output; 
+    //             }   
+    //         });
+    //             }
+    //        request.send("search=calzone"); //send request
+    //    }
+    //    }
+   </script>
+
 {% endblock %}
