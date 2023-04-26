@@ -3,59 +3,31 @@
 {% block title %}Product index{% endblock %}
 
 {% block body %}
+{% for product in products %}
+    <h1 class="headline">Category {{ product.type }}</h1>
+    {% endfor %}
 
-
-{% if  banMessage|default(null) %}
-    <div class="alert alert-danger">
-        {{ banMessage }}
-    </div>
-{% endif %}
-    <h1>Product index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Type</th>
-                <th>Brand</th>
-                <th>Prod_dimensions</th>
-                <th>Short_description</th>
-                <th>discount</th>
-                <th>Picture</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for product in products %}        
-            <tr>
-                <td>{{ product.id }}</td>
-                <td>{{ product.name }}</td>
-                <td>{{ product.price }} &#8364;</td>
-                <td>{{ product.type }}</td>
-                <td>{{ product.FkBrand.name }}</td>
-                <td>{{ product.prodDimensions }}</td>
-                <td>{{ product.shortDescription }}</td>
+    <div class="parts-container container">
+        <div class="row row-cols-md-3">
+            {% for product in products %}
+            <div class="box">
+                <h3>Special Fans</h3>
+                <img src="{{ asset('pictures/' ~ product.picture) }}" class="card-img-top" alt="Fan">
+                <h2 class="fans-title">{{ product.name }}</h2>
+                <hr>
+                <p class="type">{{ product.type }}</p>
+                {% if product.discount > 0 %}
+                <p class="oldPrice">{{ product.price }} &#8364;</p>
+                    <p class="price">{{ product.price - (product.price * product.discount) }} &#8364;</p>
+                {% else %}
+                    <p class="price">{{ product.price }} &#8364;</p>
+                {% endif %}
+                <a href="{{ path('app_static_show', {'id': product.id}) }}" class="btn">Details</i></a> 
                 
-                
-                <td>{% if product.discount > 0 %}
-                    {{ product.discount }} 
-                    {% else %}
-                        no discount
-                    {% endif %}</td>
-                <td><img src="{{ product.picture }}" alt="" height="70px"></td>
-                <td>
-                    <a href="{{ path('app_static_show', {'id': product.id}) }}">show</a>
+            </div>
+            {% endfor %}
+        </div>
+</div>
 
-                </td>
-            </tr>
-        {# {% else %}
-            <tr>
-                <td colspan="17">no records found</td>
-            </tr> #}
-        {% endfor %}
-        </tbody>
-    </table>
 
 {% endblock %}

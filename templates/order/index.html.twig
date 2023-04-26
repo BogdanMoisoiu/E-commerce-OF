@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello OrderController!{% endblock %}
+{% block title %}Check-out{% endblock %}
 
 {% block body %}
     <div>
@@ -8,7 +8,7 @@
 
         {% for item in items %}
         <div>
-            <img src="{{ item.fkProduct.picture }}" alt="">
+            <img src="{{ asset('pictures/' ~ item.fkProduct.picture) }}" alt="">
             <p>{{ item.fkProduct.name }}</p>
             <p>Price: {{ item.fkProduct.price }} &#8364;</p>
             <p>Quantity: {{ item.quantity }}</p>
@@ -20,9 +20,9 @@
     <hr>
 
     <div>
-        <h2>Buyer's details</h2>
+        {# <h2>Buyer's details</h2> #}
 
-        <p>You will recieve an email confirming your order details </p>
+        <p class="text-center">You will recieve an email confirming your order details </p>
     </div>
     <a href="/user/order/check_out_confirm" class="btn btn-success">Confirm</a>
 {% endblock %}

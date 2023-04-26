@@ -14,10 +14,10 @@ class BrandType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name', TextType::class)
-            ->add('country', TextType::class)
-            ->add('email', EmailType::class)
-            ->add('address', TextType::class)
+            ->add('name', TextType::class, [ 'attr' => ['class' => 'form-control m-2']])
+            ->add('country', TextType::class, [ 'attr' => ['class' => 'form-control m-2']])
+            ->add('email', EmailType::class, [ 'attr' => ['class' => 'form-control m-2']])
+            ->add('address', TextType::class, [ 'attr' => ['class' => 'form-control m-2']])
         ;
     }
 
