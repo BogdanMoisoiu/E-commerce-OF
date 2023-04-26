@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 26, 2023 at 01:06 PM
+-- Generation Time: Apr 26, 2023 at 02:58 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -27,7 +27,6 @@ SET time_zone = "+00:00";
 -- Table structure for table `brand`
 --
 
-DROP TABLE IF EXISTS `brand`;
 CREATE TABLE `brand` (
   `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
@@ -43,7 +42,8 @@ CREATE TABLE `brand` (
 INSERT INTO `brand` (`id`, `name`, `country`, `email`, `address`) VALUES
 (2, 'Honeywell Austria', 'Austria', ' info.austria@honeywell.com', 'Handelskai 388, 1023 Wien'),
 (3, 'Rowenta', 'Germany', 'info@rowenta.com', 'GROUPE SEB DEUTSCHLAND GMBH, Zentralkundendienst, Nümmener Feld 10, 42719 Solingen'),
-(4, 'Cecotec', 'Belgium', ' info@cecotec.com', ' Chem. des Maraudeurs 6, 4910 Theux, Belgium');
+(4, 'Cecotec', 'Belgium', ' info@cecotec.com', ' Chem. des Maraudeurs 6, 4910 Theux, Belgium'),
+(5, 'amajiji', 'China', 'info@amajiji.com', 'Fuhua Road Jinghai garden Room 11102 Shenzhen City Futian District 518033 CN');
 
 --
 -- Indexes for dumped tables
@@ -63,7 +63,7 @@ ALTER TABLE `brand`
 -- AUTO_INCREMENT for table `brand`
 --
 ALTER TABLE `brand`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
