@@ -13,6 +13,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class ProductType extends AbstractType
 {
@@ -21,7 +22,15 @@ class ProductType extends AbstractType
         $builder
             ->add('name', TextType::class)
             ->add('price')
-            ->add('type', TextType::class)
+            ->add('type', ChoiceType::class, [
+                'choices' => [
+                    'Ceiling Fan' => 'Ceiling Fan',
+                    'Floor Fan' => 'Floor Fan',
+                    'Table Fan' => 'Table Fan',
+                    'Folding Fan' => 'Folding Fan',
+                    'Handheld Fan' => 'Handheld Fan',
+                ]
+            ])
             ->add('fk_brand', EntityType::class, [
                 // looks for choices from this entity
                 'class' => Brand::class,
@@ -33,10 +42,27 @@ class ProductType extends AbstractType
                 // 'multiple' => true,
                 // 'expanded' => true,
             ])
-            ->add('prod_dimensions', TextType::class, [ 'required' => false,])
+            ->add('prod_dimensions', ChoiceType::class, [
+                'choices' => [
+                    '30 cm' => '30 cm',
+                    '42 cm' => '42 cm',
+                    '50 cm' => '50 cm',
+                    '72 cm' => '72 cm',
+                    '120 cm' => '120 cm',
+                    '125 cm' => '125 cm',
+                ]
+                ]
+                )
             ->add('short_description', TextType::class)
-            ->add('description', TextType::class)
-            ->add('color', TextType::class, [ 'required' => false,])
+            ->add('description', TextareaType::class)
+            ->add('color', ChoiceType::class, [
+                'choices' => [
+                    'Dark Bronze' => 'Dark Bronze',
+                    'Brushed Nickel' => 'Brushed Nickel',
+                    'Matte Black' => 'Matte Black',
+                    'Gloss White' => 'Gloss White',
+                ]
+                ])
             ->add('power_max', TextType::class, [ 'required' => false,])
             ->add('power_source', TextType::class, [ 'required' => false,])
             ->add('availability', ChoiceType::class,  [
