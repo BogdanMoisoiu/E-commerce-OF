@@ -31,7 +31,7 @@ class MailController extends AbstractController
         // ...
     }
 
-    public function confirmEmail($mailer, $sender): Response
+    public function confirmEmail($mailer, $sender, $text = "Registration!", $html = "<p>Thanks for your registration!</p>",$subject = "Thanks for your Registration!" ): Response
     {
         $email = (new Email())
             ->from('sontomson1@gmail.com')
@@ -40,10 +40,9 @@ class MailController extends AbstractController
             //->bcc('bcc@example.com')
             //->replyTo('fabien@example.com')
             //->priority(Email::PRIORITY_HIGH)
-            ->subject('
-            Thanks for your Registration!')
-            ->text('Registration!')
-            ->html('<p>Thanks for your registration!</p>');
+            ->subject($subject)
+            ->text($text)
+            ->html($html);
 
         $mailer->send($email);
         return new Response('You have succesfully registrated');
