@@ -103,7 +103,7 @@ body {
   font-size: 20px;
 }
 .blog-container .box .blog-btn:hover {
-  color: var(--main-color);
+  background: #00AFF0;
   column-gap: 0.7rem;
   transition: 0.4s;
 }
@@ -112,6 +112,6 @@ body {
  }
 
  .box {
-  background-color: #F0E68C; /* Change the background color of the box */
+  background: #00AFF0; /* Change the background color of the box */
   color: #000000; /* Change the text color of the elements in the box */
 }
