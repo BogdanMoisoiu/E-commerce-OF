@@ -147,4 +147,14 @@ class UserAccessController extends AbstractController
 
         return $this->redirectToRoute('app_user_access_show', ["id"=> $idProduct], Response::HTTP_SEE_OTHER);
     }
+
+    #[Route('/prod/search/{search}', name: 'user_search_bar')]
+    public function searchFunc(Request $request, ProductRepository $productRepository, $search): Response
+    {
+        $result = $productRepository->searchBy($search);
+        // dd($result);
+        return $this->render('user_access/index.html.twig', [
+            'products' => $result,
+
+        ]);    }
 }
