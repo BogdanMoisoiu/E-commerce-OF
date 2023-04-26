@@ -116,7 +116,12 @@ class UserAccessController extends AbstractController
     #[Route('/addtocart/{id}', name: 'app_user_access_addtocart')]
     public function AddToCart(Request $request, Product $product, ProductRepository $productRepository, UserRepository $userRepository, OrderItemRepository $orderItemRepository): Response
     {
-        $order = new OrderItem();
+        if ($order = $orderItemRepository->findBy(["fk_user"=>$this->getUser(), "fk_product"=>$product->getId()])) {
+            $quantity = $orderItemRepository->getQuantity();
+            $order =  $quantity + 1;
+        } else {
+            $order = new OrderItem();
+        }
         $user = $this->getUser();
         $form = $this->createForm(OrderItemType::class, $order);
         $form->handleRequest($request);

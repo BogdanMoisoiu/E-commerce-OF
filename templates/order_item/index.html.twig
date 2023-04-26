@@ -15,7 +15,6 @@
                     <th>Brand</th>
                     <th>Prod_dimensions</th>
                     <th>Short_description</th>
-                    <th>discount</th>
                     <th>Picture</th>
                     <th>Quantity</th>
                     <th>actions</th>
@@ -26,20 +25,23 @@
                 <tr>
                     <td>{{ item.fkProduct.id }}</td>
                     <td>{{ item.fkProduct.name }}</td>
-                    <td>{{ item.fkProduct.price }}</td>
+                    <td>
+                        {% if item.fkProduct.discount > 0 %}
+                        <p>{{ item.fkProduct.price }} </p>
+                        <p>Price with discount: {{ item.fkProduct.price - (item.fkProduct.price * item.fkProduct.discount) }}</p>  
+                        {% else %}
+                        {{ item.fkProduct.price }} 
+                        {% endif %}
+                    </td>
                     <td>{{ item.fkProduct.type }}</td>
                     <td>{{ item.fkProduct.FkBrand.name }}</td>
                     <td>{{ item.fkProduct.prodDimensions }}</td>
                     <td>{{ item.fkProduct.shortDescription }}</td>
-                    <td>{% if item.fkProduct.discount > 0 %}
-                        {{ item.fkProduct.discount }}
-                        {% else %}
-                            no discount
-                        {% endif %}</td>
                     <td><img src="{{ item.fkProduct.picture }}" alt="" height="70px"></td>
               <td>{{ item.quantity }}</td>
-               <td><a href="/user/order_item/delete/{{ item.id }}" class="btn btn-danger">Delete</a>
+               <td>
                 
+                <a href="/user/order_item/delete/{{ item.id }}" class="btn btn-danger">Delete</a>
                 </td>
                 </tr>
             {% else %}
@@ -47,6 +49,7 @@
                     <td colspan="17">no records found</td>
                 </tr>
             {% endfor %}
+            <h5>Total price: </h5>
             <a href="/user/order/check_out" class="btn btn-danger">Buy</a>
             </tbody>
         </table>

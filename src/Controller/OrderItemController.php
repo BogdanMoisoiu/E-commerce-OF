@@ -23,7 +23,7 @@ class OrderItemController extends AbstractController
     {
         
         return $this->render('order_item/index.html.twig', [
-            'items' => $orderItemRepository->findBy(["fk_user"=>$this->getUser()]),
+            'items' => $orderItemRepository->findBy(["fk_user"=>$this->getUser(), "status"=>"cart"]),
         ]);
     }
     #[Route('/item/add', name: 'app_order_item_add')]
