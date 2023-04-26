@@ -8,45 +8,62 @@
     {% endblock %}
 
 {% block body %}
-<h1>About page</h1>
- <section class="about" id="about">
+        {# <div class="headerImg">
+            <img src="/pictures/onlyF.png" alt="">
+        </div> #}
+
+
+        <section class="about" id="about">
+            <div class="about-text">
+                <h1>Your <span>Fans</span> Await You</h1>
+                <br>
+                <a href="#" class="btn">Search Your Interest</a>
+            </div>
+        </section>
+
+        <section class="video">
+            <div id="commercial">
+                <div class="container">
+                    <video controls autoplay>
+                        <source src="{{ asset('pictures/advertisment.mp4') }}" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </section>
+
+
+
+    <section class="about container" id="about">
         <div class="about-text">
-            <h1>We Have Every Kinds of Fans <br>Your <span>Fans</span> Waitings You</h1>
-            <p>Quality Fans with Fair Price <br> And Wholheartdly Service.</p>
-            <!-- Home BUtton -->
-            <a href="#" class="btn">Search Your Interest</a>
+            <hr>
+            <br>
+            <h2><span>Big</span>Stats</h2>
+
+        <div class="about-img">
+            <img src="{{ asset('pictures/revenue.png') }}" alt="">
         </div>
- 
+
+        <div class="about-img">
+            <img src="{{ asset('pictures/profits.png') }}" alt="">
+        </div>
+
+        <div class="about-img">
+            <img src="{{ asset('pictures/valuation.png') }}" alt="">
+        </div>
+        
+        <!-- <a href="#" class="btn">Learn More</a> -->
+    </div>
     </section>
-<section class="about container" id="about">
-    <div class="about-text">
-        <span>About Us</span>
-        <h2>Why you should buy our fans?</h2>
-        <p>Because it is so cool, YOU will become its fan!</p><br>
-        <p>Because it will make your hot nights MUCH more enjoyable!</p><br>
-        <p>Because our fans will give you the chills/thrills!</p><br>
-        <p>Because you deserve the best, so why settle for anything but THE BEST?</p><br>
-        <!-- About Button -->
-        <a href="#" class="btn">Learn More</a>
-    </div>
-    <div class="about-img">
-        <img src="{{ asset('pictures/fan.jpg') }}" alt="">
-    </div>
-    <div id="commercial">
-        <h3>How it works?</h3>
-        <div class="container">
-            <video controls autoplay>
-                <source src="{{ asset('pictures/advertisment.mp4') }}" type="video/mp4">
-            </video>
+
+    <footer class="footer">
+        <div class="share">
+            <a href="" class="btn"> <i class="fab fa-facebook-f"></i></a>
+            <a href="" class="btn"> <i class="fab fa-twitter"></i></a>
+            <a href="" class="btn"> <i class="fab fa-instagram"></i></a>
+            <a href="" class="btn"> <i class="fab fa-linkedin"></i></a>
+            <a href="" class="btn"> <i class="fab fa-pinterest"></i></a>
+            
         </div>
-    </div>
-    <div class="about-text">
-        <span>About Us</span>
-        <h2>Cheap Prices With <br>Quality Fans</h2>
-        <p>OnlyFans is one of the prominant Fans company around the world. We have beeen providing wondrful fans more than decade</p>
-        <!-- About Button -->
-        <a href="#" class="btn">Learn More</a>
-    </div>
-</section>
+    </footer>
 
 {% endblock %}

@@ -30,9 +30,17 @@ class OrderController extends AbstractController
     public function confirm(OrderItemRepository $orderItemRepository, OrderRepository $orderRepository, Request $request, MailerInterface $mailer): Response
     {
         $now = new \DateTime('now');
-           $orderUser = $orderItemRepository->findBy(['fk_user'=>$this->getUser()]);
-        //    dd($orderUser);
+        $orderUser = $orderItemRepository->findBy(['fk_user'=>$this->getUser()]);
+        $text = "";
+        $total= 0;
+        $sender = "";
         foreach ($orderUser as $val) {
+            // dd($val->getFkProduct()->getName());
+            // dd($val->getFkProduct()->getPrice());
+            // dd($val->getQuantity());
+            $sender = $val->getFkUser()->getEmail();
+            $total = $total + ($val->getFkProduct()->getPrice() * $val->getQuantity());
+            $text.= "<p>{$val->getFkProduct()->getName()} | {$val->getFkProduct()->getPrice()}</p>";
             $val->setStatus('order');
             $orderItemRepository->save($val, true);
             $order = new Order();
@@ -41,10 +49,13 @@ class OrderController extends AbstractController
 
             $orderRepository->save($order, true);
             
-            $email = new MailController();
-            $email->sendEmail($mailer);
+            
 
         }
-            return $this->redirectToRoute('app_user_access', [], Response::HTTP_SEE_OTHER);
-        }
+        $text.= "<p>$total</p>";
+        $email = new MailController();
+        $email->confirmEmail($mailer, $sender, "Order list", $text, "Conformation email and info about your bill");
+        
+        return $this->redirectToRoute('app_user_access', [], Response::HTTP_SEE_OTHER);
+    }
 }

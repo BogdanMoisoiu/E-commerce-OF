@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\ProductRepository;
+use PHPUnit\Util\Json;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\BrowserKit\Request;
 use Symfony\Component\HttpFoundation\Request as HttpFoundationRequest;
@@ -12,13 +13,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class SearchController extends AbstractController
 {
     #[Route('/search/{search}', name: 'app_search')]
-    public function index($search, ProductRepository $proRep): Response
+    public function index($search, ProductRepository $proRep): Json
     {
         $result = $proRep->searchBy($search);
-        dd($result);
-        return $this->render('search/index.html.twig', [
-            'controller_name' => 'SearchController',
-        ]);
+        $result = json_encode($result);
+        return new Json($result);
     }
 
     // public function searchAction(HttpFoundationRequest $request){

@@ -15,7 +15,11 @@
     {% endfor %}
 
     <h1>Product index</h1>
-
+    {# <div>
+        <label for="searchbox" class="is-size-5">Search</label>
+        <input class='input mb-5' type="search" 
+              id="searchbox" placeholder="Live search keyword..">
+   </div> #}
     <table class="table">
         <thead>
             <tr>
@@ -32,6 +36,7 @@
             </tr>
         </thead>
         <tbody>
+        {# <span class="is-hidden">secret</span>  #}
         {% for product in products %}
         {% if product.approved == 1 %}
             <tr>

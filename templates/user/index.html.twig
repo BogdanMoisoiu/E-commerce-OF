@@ -34,7 +34,7 @@
                 <td>{{ user.firstName }}</td>
                 <td>{{ user.lastName }}</td>
                 <td>{{ user.dateOfBirth ? user.dateOfBirth|date('Y-m-d') : '' }}</td>
-                <td>{{ user.picture }}</td>
+                <td><img src="{{ user.picture }}" height="70px"></td>
                 <td>{{ user.phoneNumber }}</td>
                 <td>{{ user.city }}</td>
                 <td>{{ user.street }}</td>

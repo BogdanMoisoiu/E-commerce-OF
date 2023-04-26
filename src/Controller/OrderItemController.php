@@ -20,14 +20,28 @@ class OrderItemController extends AbstractController
 {
     #[Route('/item', name: 'app_order_item')]
     public function index(OrderItemRepository $orderItemRepository): Response
+    // public function index(OrderItemRepository $orderItemRepository, OrderItem $orderItem): Response
     {
-        
+        $order = $orderItemRepository->findBy(['fk_user'=>$this->getUser()]);
+        $total= 0;
+        // $total= $orderItem->getTotal();
+
+        foreach ($order as $val) {
+            // dd($val->getFkProduct()->getName());
+            // dd($val->getFkProduct()->getPrice());
+            // dd($val->getQuantity());
+            $total = $total + ($val->getFkProduct()->getPrice() * $val->getQuantity());
+            // dd($total);
+
+        }
+
         return $this->render('order_item/index.html.twig', [
-            'items' => $orderItemRepository->findBy(["fk_user"=>$this->getUser()]),
+            'items' => $orderItemRepository->findBy(["fk_user"=>$this->getUser(), "status"=>"cart"]),
+            'total' => $total
         ]);
     }
     #[Route('/item/add', name: 'app_order_item_add')]
-    public function addToCart(Request $request, OrderItemRepository $orderRepository, MailerInterface $mailer, CartRepository $cartRepository): Response
+    public function addToCart(Request $request, OrderItemRepository $orderRepository, MailerInterface $mailer): Response
     {$order = new OrderItem();
         $form = $this->createForm(OrderItemType::class, $order);
         $form->handleRequest($request);
