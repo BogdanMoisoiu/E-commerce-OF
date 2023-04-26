@@ -6,7 +6,7 @@
         {{ parent() }}
         <link rel="stylesheet" href="{{asset('css/style.css')}}">
     {% endblock %}
-    
+    {% block navbar %} {% include "components/tempNav.html" %} {% endblock %}
     {% block body %}
     
 
@@ -45,7 +45,13 @@
             <div class="navbar">
                 <ul class="active">
                     <li class="list">
-                        <a href="{{ path('app_product_index') }}">
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <a href="{{ path('app_product_index') }}">
+                        {% elseif is_granted('ROLE_USER') %}
+                            <a href="{{ path('app_user_access') }}">
+                        {% else %}
+                        <a href="{{ path('app_static') }}">
+                        {% endif %}
                             <span class="icon">
                                 <i class="fa-brands fa-shopify"></i>
                             </span>
@@ -69,7 +75,11 @@
                                 </a>
                             </li>
                             <li class="list">
+                                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                                <a href="{{ path('app_logout') }}">
+                                {% else %}
                                 <a href="{{ path('app_login') }}">
+                                {% endif %}
                                     <span class="icon">
                                         <i class="fa-solid fa-user" id="login-btn"></i>
                                     </span>
