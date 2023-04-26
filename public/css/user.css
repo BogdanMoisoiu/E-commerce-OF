@@ -110,3 +110,8 @@ body {
 .review {
   text-align: center;
  }
+
+ .box {
+  background-color: #F0E68C; /* Change the background color of the box */
+  color: #000000; /* Change the text color of the elements in the box */
+}
