@@ -31,7 +31,7 @@ class UserAccessController extends AbstractController
     {
         
         return $this->render('user_access/index.html.twig', [
-            'products' => $productRepository->findAll(),
+            'products' => $productRepository->findBy(['approved' => '1']),
 
         ]);
     }

@@ -38,7 +38,7 @@
         <tbody>
         {# <span class="is-hidden">secret</span>  #}
         {% for product in products %}
-        {% if product.approved == 1 %}
+     
             <tr>
                 <td>{{ product.id }}</td>
                 <td>{{ product.name }}</td>
@@ -67,7 +67,7 @@
                     <a href="{{ path('app_user_access_addtocart', {'id': product.id}) }}" class="btn btn-success">Add To Cart</a>
                 </td>
             </tr>
-            {% endif %}
+
         {% else %}
             <tr>
                 <td colspan="17">no records found</td>
@@ -252,7 +252,7 @@
               <div class="box">
             <img src="{{ asset('pictures/test1.jpg') }}" class="card-img-top" alt="Fan">
             <h3 class="text-center">Anna Gomaz</h3>
-            <span>Feb 14 2023</span>
+            <span>Jan 25 2023</span>
             <h3>OnlyFans is more than what I expected. Their fans are not laud and comfortable including the sleeping time. </h3>
             <p>Also their durbilty and quality are fantastic</p>
           
@@ -260,16 +260,18 @@
         </div>
         <div class="box">
            <img src="{{ asset('pictures/test2.jpg') }}" class="card-img-top" alt="Fan">
-            <span>Feb 14 2023</span>
+            
             <h3>Dian Otto</h3>
+            <span>Feb 14 2023</span>
             <p>OnlyFans is more than what I expected. Their fans are not laud and comfortable including the sleeping time.Also their durbilty and quality are fantastic</p>
            
             <a href="#" class="blog-btn">Read More<i class='bx bx-right-arrow-alt' ></i></a>
         </div>
         <div class="box">
             <img src="{{ asset('pictures/test3.jpg') }}" class="card-img-top" alt="Fan">
-            <span>Feb 14 2023</span>
+            
             <h3>Lisa Tola</h3>
+            <span>Mar 4 2022</span>
             <p>OnlyFans is more than what I expected. Their fans are not laud and comfortable including the sleeping time.Also their durbilty and quality are fantastic.</p>
             
             <a href="#" class="blog-btn">Read More<i class='bx bx-right-arrow-alt' ></i></a>
