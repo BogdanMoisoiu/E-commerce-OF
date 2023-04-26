@@ -6,10 +6,27 @@ body {
   margin: 0;
 }
 
+.headerImg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.headerImg img {
+  width: 30%;
+  padding: 2rem;
+  border-radius: 50%;
+}
+
 /* About section */
 .about {
-  background-color: #f9f9f9;
-  padding: 80px 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(to bottom, #00AFF0,#7acae7, #b3d3e0);
+  padding: 2rem 0;
 }
 
 .about-text {
@@ -17,13 +34,15 @@ body {
 }
 
 .about-text h1 {
-  font-size: 36px;
-  font-weight: bold;
-  margin: 0;
+  font-size: 2rem;
+  text-transform: uppercase;
 }
 
 .about-text h1 span {
-  color:  #00AFF0;
+  font-weight: bolder;
+  font-size: 5rem;
+  font-family: 'Playfair Display';
+  color:  #fff;
 }
 
 .about-text p {
@@ -47,35 +66,26 @@ body {
 
 /* About container section */
 .about.container {
-  padding: 80px 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  border-radius: 1rem;
 }
 
-.about.container .about-text {
-  max-width: 400px;
-}
 
 .about.container .about-text span {
   display: block;
-  font-size: 20px;
-  font-weight: bold;
-  color: #00AFF0;
-  margin-bottom: 20px;
+  font-size: 5rem;
+  font-style: italic;
+  text-decoration: overline;
+  text-transform: uppercase;
+  color: #fff;
+  
 }
 
 .about.container .about-text h2 {
-  font-size: 36px;
-  font-weight: bold;
-  margin: 0;
-  margin-bottom: 20px;
+  font-size: 2rem;
+  text-transform: uppercase;
+  
 }
 
-.about.container .about-text p {
-  font-size: 18px;
-  margin-top: 20px;
-}
 
 .about.container .btn {
   background-color: #fff;
@@ -90,27 +100,46 @@ body {
 }
 
 .about.container .about-img img {
-  width: 100%;
-  max-width: 600px;
-  height: auto;
+  width: 50%;
 }
 
 /* Commercial section */
 #commercial {
-  background-color: #00AFF0;
+  background-image: #fff;
   color: #fff;
-  padding: 80px 0;
+  padding: 4rem;
   text-align: center;
-}
-
-#commercial h3 {
-  font-size: 36px;
-  font-weight: bold;
-  margin: 0;
 }
 
 #commercial .container video {
   width: 100%;
+  padding: 5rem 0;
+}
+
+.footer {
+  position: relative;
+  padding-top: 3rem;
+  padding-bottom: 5rem;
+  height: 15vh;
+  background: url(/pictures/bg1.jpg) center;
+}
+
+.footer .share {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.footer .share a {
+  color: #222840;
+  border: none;
+  background: none;
+  font-size: 2rem;
+}
+
+.footer .share a:hover {
+  color: #00AFF0;
 }
 
 /* Responsive styling */
