@@ -8,156 +8,43 @@
 {% endblock %}
 
 {% block body %}
-
-<h5>categories</h5>
+<div class="category">
+<h5 class="headline">Categories</h5>
     {% for product in products %}
-    <a href="{{ path('app_user_access_category', {'type':product.type}) }}">{{ product.type }}</a>
+    <a href="{{ path('app_user_access_category', {'type':product.type}) }}" class="btn">{{ product.type }}</a>
     {% endfor %}
+  </div>
 
-    <h1>Product index</h1>
+    <h1 class="headline">Product Catalogue</h1>
     {# <div>
         <label for="searchbox" class="is-size-5">Search</label>
         <input class='input mb-5' type="search" 
               id="searchbox" placeholder="Live search keyword..">
    </div> #}
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Type</th>
-                <th>Brand</th>
-                <th>Prod_dimensions</th>
-                <th>Short_description</th>
-                <th>discount</th>
-                <th>Picture</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {# <span class="is-hidden">secret</span>  #}
+<section class="products">
+  <div class="parts-container container">
+    <div class="row row-cols-md-3">
         {% for product in products %}
-     
-            <tr>
-                <td>{{ product.id }}</td>
-                <td>{{ product.name }}</td>
-                {% if product.discount > 0 %}
-                <td><p style="text-decoration: line-through;">{{ product.price }} &#8364;</p>
-                <p>{{ product.price - (product.price * product.discount) }} &#8364;</p></td> 
-                {% else %}
-                    <td>{{ product.price }} &#8364;</td> 
-                {% endif %}
-                <td>{{ product.type }}</td>
-                <td>{{ product.FkBrand.name }}</td>
-                <td>{{ product.prodDimensions }}</td>
-                <td>{{ product.shortDescription }}</td>
-                
-                
-                <td>{% if product.discount > 0 %}
-                    {{ product.discount }}
-                    {% else %}
-                        no discount
-                    {% endif %}</td>
-                <td><img src="{{ asset('pictures/' ~ product.picture) }}" alt="" height="70px"></td>
-                
-                <td>
-                
-                    <a href="{{ path('app_user_access_show', {'id': product.id}) }}" class="btn btn-primary">show</a>
-                    <a href="{{ path('app_user_access_addtocart', {'id': product.id}) }}" class="btn btn-success">Add To Cart</a>
-                </td>
-            </tr>
-
-        {% else %}
-            <tr>
-                <td colspan="17">no records found</td>
-            </tr>
-            </table>
+        <div class="box">
+            <h3>Special Fans</h3>
+            <img src="{{ asset('pictures/' ~ product.picture) }}" class="card-img-top" alt="Fan">
+            <h2 class="fans-title">{{ product.name }}</h2>
+            <hr>
+            <p class="card_text">{{ product.type }}</p>
+            {% if product.discount > 0 %}
+            <p class="card_text oldPrice">{{ product.price }} &#8364;</p>
+                <p class="card_text price">{{ product.price - (product.price * product.discount) }} &#8364;</p>
+            {% else %}
+                <p class="card_text price">{{ product.price }} &#8364;</p>
+            {% endif %}
+            <p class="card_text">{{ product.shortDescription }}</p>
+            <a href="{{ path('app_user_access_show', {'id': product.id}) }}" class="btn">Details</i></a> 
+            <a href="{{ path('app_user_access_addtocart', {'id': product.id}) }}" class="btn"><i class='bx bx-shopping-bag add-cart'></i></a> 
+            
+        </div>
         {% endfor %}
-       
-  </tbody>
-  </table>
-
-  {# <a href="" class="btn"><i class='bx bx-shopping-bag add-cart'></i></a>  #}
-      
-<div class="parts-container container">
-  <div class="row">
-    <div class="col-md-4">
-      <div class="box">
-        <h3>Special Fans</h3>
-        <img src="{{ asset('pictures/fan1.jpg') }}" class="card-img-top" alt="Fan">
-        <h2 class="fans-title">Best Fans</h2>
-        <hr>
-        <span class="price">€100</span>
-        <i class='bx bx-shopping-bag add-cart'></i>
-      </div>
     </div>
-    <div class="col-md-4">
-      <div class="box">
-        <h3>Special Fans</h3>
-        <img src="{{ asset('pictures/fan2.jpg') }}" class="card-img-top" alt="Fan">
-        <h2 class="fans-title">Best Fans</h2>
-        <hr>
-        <span class="price">€100</span>
-        <i class='bx bx-shopping-bag add-cart'></i>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="box">
-        <h3>Special Fans</h3>
-        <img src="{{ asset('pictures/fan3.jpg') }}" class="card-img-top" alt="Fan">
-        <h2 class="fans-title">Best Fans</h2>
-        <hr>
-        <span class="price">€100</span>
-        <i class='bx bx-shopping-bag add-cart'></i>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-4">
-      <div class="box">
-        <h3>Special Fans</h3>
-        <img src="{{ asset('pictures/fan4.jpg') }}" class="card-img-top" alt="Fan">
-        <h2 class="fans-title">Best Fans</h2>
-        <hr>
-        <span class="price">€390</span>
-        <i class='bx bx-shopping-bag add-cart'></i>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="box">
-        <h3>Special Fans</h3>
-        <img src="{{ asset('pictures/fan5.jpg') }}" class="card-img-top" alt="Fan">
-        <h2 class="fans-title">Best Fans</h2>
-        <hr>
-        <span class="price">€230</span>
-        <i class='bx bx-shopping-bag add-cart'></i>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="box">
-        <h3>Special Fans</h3>
-        <img src="{{ asset('pictures/fan6.jpg') }}" class="card-img-top" alt="Fan">
-        <h2 class="fans-title">Best Fans</h2>
-        <hr>
-        <span class="price">€150</span>
-        <i class='bx bx-shopping-bag add-cart'></i>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-4">
-      <div class="box">
-        <h3>Special Fans</h3>
-        <img src="{{ asset('pictures/fan7.jpg') }}" class="card-img-top" alt="Fan">
-        <h2 class="fans-title">Best Fans</h2>
-        <hr>
-       <span class="price">€250</span>
-        <i class='bx bx-shopping-bag add-cart'></i>
-      </div>
-    </div>
-  </div>
-
+</div>
 </section>
 
  <section class="blog" id="blog">
@@ -243,44 +130,5 @@
             </div>
         </div>
     </section>
-      
-<section class="review" id="review">
-        <div class="heading">
-            {# <span>Blog & News</span> #}
-            <h2>Customer Review</h2>
-            <h1>Here are some of the reviews from our pretious users!</h1>
-        </div>
-    <div class="blog-container container">
-              <div class="box">
-            <img src="{{ asset('pictures/test1.jpg') }}" class="card-img-top" alt="Fan">
-            <h3 class="text-center">Anna Gomaz</h3>
-            <span>Jan 25 2023</span>
-            <h3>OnlyFans is more than what I expected. Their fans are not laud and comfortable including the sleeping time. </h3>
-            <p>Also their durbilty and quality are fantastic</p>
-          
-            <a href="#" class="blog-btn">Read More<i class='bx bx-right-arrow-alt' ></i></a>
-        </div>
-        <div class="box">
-           <img src="{{ asset('pictures/test2.jpg') }}" class="card-img-top" alt="Fan">
-            
-            <h3>Dian Otto</h3>
-            <span>Feb 14 2023</span>
-            <p>OnlyFans is more than what I expected. Their fans are not laud and comfortable including the sleeping time.Also their durbilty and quality are fantastic</p>
-           
-            <a href="#" class="blog-btn">Read More<i class='bx bx-right-arrow-alt' ></i></a>
-        </div>
-        <div class="box">
-            <img src="{{ asset('pictures/test3.jpg') }}" class="card-img-top" alt="Fan">
-            
-            <h3>Lisa Tola</h3>
-            <span>Mar 4 2022</span>
-            <p>OnlyFans is more than what I expected. Their fans are not laud and comfortable including the sleeping time.Also their durbilty and quality are fantastic.</p>
-            
-            <a href="#" class="blog-btn">Read More<i class='bx bx-right-arrow-alt' ></i></a>
-        </div>
-    </div>
-    </div>
-
-</section> 
 <script src=" {{ asset('js/script.js') }}"></script>
 {% endblock %}
