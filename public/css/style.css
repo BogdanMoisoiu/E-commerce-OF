@@ -472,73 +472,29 @@ main {
 }
 
 footer {
-    height: 25vh;
     background: url(/pictures/bg1.jpg) no-repeat center; 
 }
-  
-  
-.animate-border {
-    position: relative;
-    display: block;
-    min-width: 250px;
-    height: 3px;
-    background: #00AFF0; 
-}
 
-.animate-border:after {
-    position: absolute;
-    content: "";
-    max-width: 100px;
-    height: 3px;
-    left: 0;
-    bottom: 0;
-    border-left: 10px solid #fff;
-    border-right: 10px solid #fff;
-    -webkit-animation: animborder 3s linear infinite;
-    animation: animborder 3s linear infinite; 
-}
-
-@-webkit-keyframes animborder {
-    0% {
-      -webkit-transform: translateX(0px);
-      transform: translateX(0px); }
-    100% {
-      -webkit-transform: translateX(500px);
-      transform: translateX(500px); } }
-  
-  @keyframes animborder {
-    0% {
-      -webkit-transform: translateX(0px);
-      transform: translateX(0px); }
-    100% {
-      -webkit-transform: translateX(800px);
-      transform: translateX(800px); } }
-
-
-.dk-footer {
-    padding: 5rem 0;
-}
-
-.search-container {
+.roww {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
+    writing-mode: vertical-rl;
 }
 
-  .search-button {
-    padding: .1rem;
-    background-color: #222840;
-    color: white;
-    border-radius: 1rem;
-    cursor: pointer;
-  }
 
-  .search-input {
-    padding: .1rem;
-    border: none;
-    border-radius: 1rem;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
-  }
+
+.social-icons .fab {
+    width: 2rem;
+    height: 2rem;
+    font-size: 2rem;
+    border-radius: 50%;
+    cursor: pointer;
+    background: #038bbc;
+}
+
+
+
 
 
 
