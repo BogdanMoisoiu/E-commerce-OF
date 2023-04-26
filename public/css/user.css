@@ -12,6 +12,10 @@ body {
   flex-direction: column;
   background:#B3D3E0;
   border-radius: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-top: 2rem;
 }.parts-container .box:hover {
     background: #00AFF0;
     --main-color:#00AFF0;
@@ -103,4 +107,6 @@ body {
   column-gap: 0.7rem;
   transition: 0.4s;
 }
-
+.review {
+  text-align: center;
+ }
