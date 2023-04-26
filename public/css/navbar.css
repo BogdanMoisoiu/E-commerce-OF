@@ -14,3 +14,29 @@ color: white;
         
     background-color: #00AFF0;
 }
+
+.btn {
+        border-radius: 2rem;
+        border-top-left-radius: 0;
+        background: #00AFF0;
+        color: #222840;
+        font-size: 1rem;
+        cursor: pointer;
+}
+
+input {
+    padding: .3rem;
+    background: transparent;
+    border: .1rem solid #222840;
+    border-radius: .5rem;
+    color: #fff;
+    outline: none;
+}
+
+#searchbtn {
+     background: transparent;
+     border: 0;
+     outline: none;
+     cursor: pointer;
+     padding-left: .5rem;
+}

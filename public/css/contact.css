@@ -45,6 +45,7 @@ img {
     border-width: .1rem;
     font-size: 1rem;
     text-transform: none;
+    background-color: #fff;
     color: #222840;
     padding: 1rem ;
     margin: 1rem 0;
@@ -55,7 +56,7 @@ img {
     border-width: .1rem;
     font-size: 1rem;
     text-transform: none;
-    color: #00AFF0;
+    color: #222840;
     padding: 1rem;
     margin: 1rem 0;
 }
