@@ -6,9 +6,8 @@
 } */
 
 body {
-    height: 100vh;
+    height: 150vh;
     background-image: linear-gradient(to bottom, #00AFF0,#7acae7, #b3d3e0);
-    
 }
 
 .container {
@@ -30,7 +29,7 @@ body {
 }
 
 .info {
-    border: .5rem solid #222840;
+    border: .2rem solid #222840;
     border-radius: 3rem;
     padding: 3rem;
     color: #222840;
