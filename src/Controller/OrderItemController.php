@@ -31,7 +31,7 @@ class OrderItemController extends AbstractController
             // dd($val->getFkProduct()->getName());
             // dd($val->getFkProduct()->getPrice());
             // dd($val->getQuantity());
-            $total = $total + ($val->getFkProduct()->getPrice() * $val->getQuantity()) * $val->getFkProduct()->getDiscount();
+            $total = $total + ($val->getFkProduct()->getPrice() * $val->getQuantity());
             // dd($total);
 
         }
