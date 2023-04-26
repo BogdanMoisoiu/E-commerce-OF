@@ -3,7 +3,8 @@
 {% block title %}Product index{% endblock %}
 
 {% block body %}
-{% block navbar %} {% include "components/tempNavCopy.html" %} {% endblock %}
+
+
 {% if  banMessage|default(null) %}
     <div class="alert alert-danger">
         {{ banMessage }}

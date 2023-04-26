@@ -21,7 +21,8 @@ class ProductController extends AbstractController
     {
         
         return $this->render('product/index.html.twig', [
-            'products' => $productRepository->findAll(),
+            'products' => $productRepository->findBy(['approved' => '1']),
+            'notproducts' => $productRepository->findBy(['approved' => '0']),
         ]);
     }
 
