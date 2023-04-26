@@ -11,13 +11,20 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class StaticController extends AbstractController
 {
-    #[Route('/', name: 'app_static')]
-    public function index(ProductRepository $productRepository): Response
+    #[Route('/', name: 'app_landing')]
+    public function landing(): Response
     {
 
         return $this->render('static/index.html.twig', [
-            'controller_name' => 'StaticController',
-            'products' => $productRepository->findAll(),
+ 
+        ]);
+    }
+    #[Route('/catalog', name: 'app_static')]
+    public function index(ProductRepository $productRepository): Response
+    {
+
+        return $this->render('static/catalog.html.twig', [
+            'products' => $productRepository->findBy(['approved' => '1']),
         ]);
     }
 
