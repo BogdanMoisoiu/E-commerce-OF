@@ -3,11 +3,13 @@
 {% block title %}Product index{% endblock %}
 
 {% block body %}
-<h5>categories</h5>
-    {% for product in products %}
-    <a href="{{ path('app_product_category', {'type':product.type}) }}">{{ product.type }}</a>
-    {% endfor %}
 
+    <div class="category">
+        <h5>Categories</h5>
+        {% for product in products %}
+        <a href="{{ path('app_product_category', {'type':product.type}) }}">{{ product.type }}</a>
+        {% endfor %}
+    </div>
     <h1>Product index</h1>
 
     <table class="table">

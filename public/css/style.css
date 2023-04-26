@@ -472,26 +472,38 @@ main {
 }
 
 footer {
-    background: url(/pictures/bg1.jpg) no-repeat center; 
+    background: url(/pictures/fann1.jpg) left, url(/pictures/fann2.jpg) right;
+    background-repeat: no-repeat; 
+    background-size: contain;
+    background-position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
 }
 
 .roww {
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    writing-mode: vertical-rl;
+    writing-mode: vertical-lr;
+    padding-bottom: 2rem;
 }
-
 
 
 .social-icons .fab {
-    width: 2rem;
-    height: 2rem;
-    font-size: 2rem;
-    border-radius: 50%;
+   color: #222840;
+    font-size: 3rem;
     cursor: pointer;
-    background: #038bbc;
+    opacity: .3;
 }
+
+.social-icons .fab:hover {
+    padding: .5rem;
+    border-radius: 50%;
+    background-image: linear-gradient(to bottom, #00AFF0,#7acae7, #b3d3e0, 
+    #fff);
+    opacity: 1;
+    transition: .7s;
+}
+
 
 
 

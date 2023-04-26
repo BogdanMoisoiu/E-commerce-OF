@@ -1,16 +1,41 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<style>
+    /* .navbar{
+        
+        background-color: antiquewhite;
+    } */
+    
+    /* .navbar-nav{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+    } */
+    /* .nav-link{
+        color: blue;
+    }
+    .navbar-brand{
+        color: blue;
+    }
+    .navbar-brand:hover{
+        color: rgb(255, 0, 89);
+    } */
+
+</style>
+
+{# <nav class="navbar navbar-expand-lg bg-body-tertiary"> #}
+<nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Navbar</a>
+      {# <a class="navbar-brand" href="{{ path('app_landing') }}">Home</a> #}
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
+        <ul class="navbar-nav m-auto mb-2 mb-lg-0">
+            <a class="navbar-brand" href="{{ path('app_landing') }}">Home</a>
             {% if is_granted('ROLE_ADMIN') %}
             
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('app_product_index') }}">Products catalogue</a>
+                    <a class="nav-link m5" href="{{ path('app_product_index') }}">Products catalogue</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('app_product_new') }}">Add Product</a>
@@ -26,21 +51,39 @@
                 </li>
             {% elseif is_granted('ROLE_USER') %}
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Disabled</a>
+                    <a class="nav-link" href="{{ path('app_user_access') }}">Products catalogue</a>
                 </li><li class="nav-item">
-                    <a class="nav-link" href="#">Disabled</a>
+                    <a class="nav-link" href="{{ path('app_user_access_edit') }}">Edit your profile</a>
                 </li>
                 </li><li class="nav-item">
-                    <a class="nav-link" href="#">Disabled</a>
+                    <a class="nav-link" href="{{ path('app_order_item') }}">Cart</a>
                 </li>
                 {% else %}
-                    
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_static') }}">Products catalogue</a>
+                  </li>
             {% endif %}
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_about') }}">About us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_contact') }}">Contact us</a>
+              </li>
             
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_logout') }}">Log out</a>
+              </li>
+            {% else %}
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_login') }}">Sign in</a>
+              </li>
+            {% endif %}
           
-          <li class="nav-item dropdown">
+          {# <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Dropdown
+              Category
             </a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="#">Action</a></li>
@@ -48,15 +91,12 @@
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="#">Something else here</a></li>
             </ul>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Disabled</a>
-          </li>
+          </li> #} 
         </ul>
-        <form class="d-flex" role="search">
+        {# <form class="d-flex" role="search">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
+        </form> #}
       </div>
     </div>
   </nav>
