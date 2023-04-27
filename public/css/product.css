@@ -50,7 +50,7 @@ body {
 
 .products h1 {
     color: #fff;
-    font-weight: lighter;
+    font-weight: bolder;
     font-family: 'PT Serif', serif;
     padding: 2rem;
     font-size: 4rem;
@@ -109,6 +109,7 @@ body {
 }
 
 .container {
+    padding: .5rem;
     border-radius: 2rem;
     background: linear-gradient(#222840, #00AFF0, #dfd2d2);
 }
@@ -129,6 +130,9 @@ body {
     font-style: italic;
 }
 
+.row {
+    padding: 2rem;
+}
 .card img {
     width: 100%;
 }
@@ -138,4 +142,65 @@ body {
     background: transparent;
     border: 5px solid #fff;
     border-radius: 2rem;
+    line-height: 2rem;
+}
+
+.card h5 {
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    color: #222840;
+    font-style: italic;
+   
+}
+
+.card-text {
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bolder;
+    text-decoration: underline;
+}
+
+.oldPrice {
+    text-decoration: line-through;
+}
+
+.newPrice {
+    color: red;
+}
+
+.btn1 {
+    border: 1px solid #fff;
+    border-radius: 2rem;
+    padding: .7rem;
+    color: #fff;
+    text-decoration: none;
+}
+
+.btn1:hover {
+    background: #222840;
+}
+
+.footer {
+    position: relative;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    height: 10vh;
+    background: url(/pictures/bg1.jpg) center;
+}
+
+.footer .share {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.footer .share a {
+    color: #222840;
+    border: none;
+    background: none;
+}
+
+.footer .share a:hover {
+    color: #fff;
 }
