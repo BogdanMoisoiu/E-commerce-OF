@@ -38,7 +38,7 @@
                 <p class="card_text price">{{ product.price }} &#8364;</p>
             {% endif %}
             <p class="card_text">{{ product.shortDescription }}</p>
-            <a href="{{ path('app_user_access_show', {'id': product.id}) }}" class="btn">Details</i></a> 
+            <a href="{{ path('app_user_access_show', {'id': product.id}) }}" class="btn">Details</a> 
             <a href="{{ path('app_user_access_addtocart', {'id': product.id}) }}" class="btn"><i class="fa-solid fa-cart-shopping"></i></a> 
             
         </div>
