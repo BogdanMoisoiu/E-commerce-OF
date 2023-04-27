@@ -19,11 +19,11 @@ body {
 
 .categoryBtn {
         text-decoration: none;
-        padding: 1rem;
+        padding: .5rem;
         border-radius: 2rem;
         border-top-left-radius: 0;
         background: #00AFF0;
-        color: #fff;
+        color: #222840;
         font-size: 1rem;
         cursor: pointer;
 }
@@ -42,12 +42,13 @@ body {
     color: #fff;
     font-weight: lighter;
     font-family: 'PT Serif', serif;
-    writing-mode: vertical-lr;
-    padding: 1rem;
+    padding: 2rem;
     font-size: 4rem;
+    text-transform: uppercase;
 }
 
  .products h1 span {
+    text-transform: capitalize;
     color: #038bbc;
     font-family: 'Playfair Display', cursive;
     font-style: italic;
