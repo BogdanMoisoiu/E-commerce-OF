@@ -14,10 +14,10 @@
                         <p>{{ item.fkProduct.name }}</p>
                         {{ item.fkProduct.type }}
                         {% if item.fkProduct.discount > 0 %}
-                        <p class="oldPrice">{{ item.fkProduct.price }} </p>
-                        <p class="price">Price with discount: {{ item.fkProduct.price - (item.fkProduct.price * item.fkProduct.discount) }}</p>  
+                        <p class="oldPrice">{{ item.fkProduct.price }} &#8364;</p>
+                        <p class="price">Price with discount: {{ item.fkProduct.price - (item.fkProduct.price * item.fkProduct.discount) }} &#8364;</p>  
                         {% else %}
-                        <p>{{ item.fkProduct.price }}</p> 
+                        <p>{{ item.fkProduct.price }} &#8364;</p> 
                         {% endif %}
                         <p>{{ item.quantity }}</p>
                         <a href="/user/order_item/delete/{{ item.id }}" class="btn btn-danger">Delete</a>
