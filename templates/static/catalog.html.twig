@@ -121,9 +121,12 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ product.name }}</h5>
                         <p class="card-text">{{ product.type }}</p>
-                        <p class="price{% if product.discount > 0 %} old-price{% endif %}}">{{ product.price }} &#8364;</p>
+
                         {% if product.discount > 0 %}
+                        <p class="oldPrice">{{ product.price }} &#8364;</p>
                         <p class="price">{{ product.price - (product.price * product.discount) }} &#8364;</p>
+                        {% else %}
+                        <p class="price">{{ product.price }} &#8364;</p>
                         {% endif %}
                         <a href="{{ path('app_static_show', {'id': product.id}) }}" class="btn btn-primary stretched-link">Details</a>
                     </div>
