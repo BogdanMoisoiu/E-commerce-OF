@@ -1,8 +1,20 @@
 {% extends 'base.html.twig' %}
 {% block title %}Cart{% endblock %}
 
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/cart.css') }}">
+
+{% endblock %}
 {% block body %}
+
 <h1 class="headline">Cart</h1>
+<div class="container">
+
+
+<br>
+<br>
 
 
             {% for item in items %}
@@ -20,12 +32,20 @@
                         <p>{{ item.fkProduct.price }} &#8364;</p> 
                         {% endif %}
                         <p>{{ item.quantity }}</p>
-                        <a href="/user/order_item/delete/{{ item.id }}" class="btn btn-danger">Delete</a>
+                        <a href="/user/order_item/delete/{{ item.id }}" class="btn2 btn-danger">Delete</a>
                     </div>
                 </div>
             {% endfor %}
-            <div>
-                <h5>Total price: {{ total }}</h5>
-                <a href="/user/order/check_out" class="btn btn-danger">Buy</a>
-            </div>
+
+        </div>
+        
+
+        <div class="total">
+
+        <h5>Total price: {{ total }}</h5>
+        <a href="/user/order/check_out" class="btn1 btn-danger">Buy</a>
+
+    </div>
+    </div>
+
 {% endblock %}
