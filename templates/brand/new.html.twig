@@ -1,11 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}New Brand{% endblock %}
+{% block stylesheets %} 
+        {{ parent() }}
+        <link rel="stylesheet" href="{{asset('css/edit.css')}}">
+    {% endblock %}
 
 {% block body %}
-    <h1>Create new Brand</h1>
-
+<div class="container">
+    <div class="info">
+        <h1>Create new Brand</h1>
     {{ include('brand/_form.html.twig') }}
-
-    <a href="{{ path('app_brand_index') }}">back to list</a>
+    </div>
+</div>
 {% endblock %}

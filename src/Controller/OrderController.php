@@ -34,13 +34,14 @@ class OrderController extends AbstractController
         $text = "";
         $total= 0;
         $sender = "";
+        $text.= "<h2 style= color:#00008B;>Thank you for your Order</h2>";
         foreach ($orderUser as $val) {
             // dd($val->getFkProduct()->getName());
             // dd($val->getFkProduct()->getPrice());
             // dd($val->getQuantity());
             $sender = $val->getFkUser()->getEmail();
             $total = $total + ($val->getFkProduct()->getPrice() * $val->getQuantity());
-            $text.= "<p>{$val->getFkProduct()->getName()} | {$val->getFkProduct()->getPrice()}</p>";
+            $text.= "<p style= color:#808080;> {$val->getFkProduct()->getName()}| Amount {$val->getQuantity()} pc. | Price in € {$val->getFkProduct()->getPrice()}</p>";
             $val->setStatus('order');
             $orderItemRepository->save($val, true);
             $order = new Order();
@@ -52,7 +53,7 @@ class OrderController extends AbstractController
             
 
         }
-        $text.= "<p>$total</p>";
+        $text.= "<h5 style= color:#4682B4;>Total: € $total</h5>";
         $email = new MailController();
         $email->confirmEmail($mailer, $sender, "Order list", $text, "Conformation email and info about your bill");
         

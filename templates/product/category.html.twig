@@ -2,34 +2,38 @@
 
 {% block title %}Category{% endblock %}
 
+{% block stylesheets %} 
+        {{ parent() }}
+        <link rel="stylesheet" href="{{asset('css/product.css')}}">
+    {% endblock %}
+     
 {% block body %}
 
-{% for product in products %}
-    <h1 class="headline">Category {{ product.type }}</h1>
+<section class="products">
+    {% for product in products %}
+    <h1 class="headline">Category <span>{{ product.type }}</span></h1>
     {% endfor %}
- 
-        <div class="parts-container container">
-          <div class="row row-cols-md-3">
-            {% for product in products %}
-                <div class="box">
-                    <h3>Special Fans</h3>
-                    <img src="{{ asset('pictures/' ~ product.picture) }}" class="card-img-top" alt="Fan">
-                    <h2 class="fans-title">{{ product.name }}</h2>
-                    <hr>
-                    <p class="card_text">{{ product.type }}</p>
-                    {% if product.discount > 0 %}
-                    <p class="card_text oldPrice">{{ product.price }} &#8364;</p>
-                        <p class="card_text price">{{ product.price - (product.price * product.discount) }} &#8364;</p>
-                    {% else %}
-                        <p class="card_text price">{{ product.price }} &#8364;</p>
-                    {% endif %}
-                    <p class="card_text">{{ product.shortDescription }}</p>
-                    <a href="{{ path('app_product_show', {'id': product.id}) }}" class="btn">Details</i></a> 
-                    <a href="{{ path('app_product_edit', {'id': product.id}) }}" class="btn">Edit</a>                  
-                </div>
-              {% endfor %}
-          </div>
-      </div>
-
+    <div class="parts-container container">
+      <div class="row row-cols-md-3"> 
+        {% for product in products %}
+        <div class="box">
+            <img src="{{ asset('pictures/' ~ product.picture) }}" class="card-img-top" alt="Fan">
+            <h2 class="fans-title">{{ product.name }}</h2>
+            <hr>
+            <p class="card_text">{{ product.type }}</p>
+            {% if product.discount > 0 %}
+            <p class="card_text oldPrice">{{ product.price }} &#8364;</p>
+                <p class="card_text price">{{ product.price - (product.price * product.discount) }} &#8364;</p>
+            {% else %}
+                <p class="card_text price">{{ product.price }} &#8364;</p>
+            {% endif %}
+            <p class="card_text">{{ product.shortDescription }}</p>
+            <a href="{{ path('app_product_show', {'id': product.id}) }}" class="btn">Details</i></a> 
+            <a href="{{ path('app_product_edit', {'id': product.id}) }}" class="btn">Edit</a>                  
+        </div>
+        {% endfor %}
+        </div>
+    </div>
+</section>
 
 {% endblock %}

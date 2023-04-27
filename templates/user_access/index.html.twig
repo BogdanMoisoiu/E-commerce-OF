@@ -4,29 +4,29 @@
 
 {% block stylesheets %} 
         {{ parent() }}
-        <link rel="stylesheet" href="{{asset('css/user.css')}}">
-{% endblock %}
+        <link rel="stylesheet" href="{{asset('css/product.css')}}">
+    {% endblock %}
 
 {% block body %}
 <div class="category">
-<h5 class="headline">Categories</h5>
+       
     {% for product in products %}
-    <a href="{{ path('app_user_access_category', {'type':product.type}) }}" class="btn">{{ product.type }}</a>
+    <a href="{{ path('app_user_access_category', {'type':product.type}) }}" class="categoryBtn">{{ product.type }}</a>
     {% endfor %}
-  </div>
-
-    <h1 class="headline">Product Catalogue</h1>
+</div>
+    
     {# <div>
         <label for="searchbox" class="is-size-5">Search</label>
         <input class='input mb-5' type="search" 
               id="searchbox" placeholder="Live search keyword..">
    </div> #}
 <section class="products">
+    <h1 class="headline">Product <span>Catalogue</span></h1>
   <div class="parts-container container">
     <div class="row row-cols-md-3">
         {% for product in products %}
         <div class="box">
-            <h3>Special Fans</h3>
+            
             <img src="{{ asset('pictures/' ~ product.picture) }}" class="card-img-top" alt="Fan">
             <h2 class="fans-title">{{ product.name }}</h2>
             <hr>
@@ -38,26 +38,22 @@
                 <p class="card_text price">{{ product.price }} &#8364;</p>
             {% endif %}
             <p class="card_text">{{ product.shortDescription }}</p>
-            <a href="{{ path('app_user_access_show', {'id': product.id}) }}" class="btn">Details</i></a> 
-            <a href="{{ path('app_user_access_addtocart', {'id': product.id}) }}" class="btn"><i class='bx bx-shopping-bag add-cart'></i></a> 
+            <a href="{{ path('app_user_access_show', {'id': product.id}) }}" class="btn">Details</a> 
+            <a href="{{ path('app_user_access_addtocart', {'id': product.id}) }}" class="btn"><i class="fa-solid fa-cart-shopping"></i></a> 
             
         </div>
         {% endfor %}
-       
-  </tbody>
-  </table>
-      
 </section>
 
- <section class="blog" id="blog">
+ <!-- <section class="blog" id="blog">
         <div class="heading">
             {# <span>Blog & News</span> #}
             <h2>Our Blog Content</h2>
             <p>We are focus on not only for quantity but a quality more.</p>
         </div>
-        <!-- Blog Container -->
+        
         <div class="blog-container container">
-            <!-- Box 1 -->
+            
             <div class="box">
                 <img src="{{ asset('pictures/fan9.jpg') }}" class="card-img-top" alt="Fan">
                 <span>Jan 10 2023</span>
@@ -65,7 +61,7 @@
                 <p>We are focus on not only for quantity but a quality more.</p>
                 <a href="#" class="blog-btn">Read More<i class='bx bx-right-arrow-alt' ></i></a>
             </div>
-            <!-- Box 2 -->
+            
             <div class="box">
                 <img src="{{ asset('pictures/fan10.png') }}" class="card-img-top" alt="Fan">
                 <span>Feb 11 2023</span>
@@ -73,7 +69,7 @@
                 <p>We are focus on not only for quantity but a quality more.</p>
                 <a href="#" class="blog-btn">Read More<i class='bx bx-right-arrow-alt' ></i></a>
             </div>
-            <!-- Box 3 -->
+            
             <div class="box">
                 <img src="{{ asset('pictures/fan11.jpg') }}" class="card-img-top" alt="Fan">
                 <span>March14 2023</span>
@@ -131,6 +127,6 @@
                 <a href="#" class="blog-btn">Read More<i class='bx bx-right-arrow-alt' ></i></a>
             </div>
         </div>
-    </section>
+    </section> -->
 <script src=" {{ asset('js/script.js') }}"></script>
 {% endblock %}

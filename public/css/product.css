@@ -1,0 +1,109 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    scroll-behavior: smooth;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+
+.category {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 2rem;
+    background: url(/pictures/bg1.jpg);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;  
+}
+
+.categoryBtn {
+        text-decoration: none;
+        padding: .8rem;
+        border-radius: 2rem;
+        border-top-left-radius: 0;
+        background: #00AFF0;
+        color: #222840;
+        font-size: 1rem;
+        cursor: pointer;
+}
+
+.categoryBtn:hover {
+    background: #fff;
+    cursor: pointer;
+}
+
+
+.products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background: linear-gradient(#222840, #00AFF0, #dfd2d2);
+    padding: 3rem;
+    color: #fff;
+}
+
+.products h1 {
+    color: #fff;
+    font-weight: lighter;
+    font-family: 'PT Serif', serif;
+    padding: 2rem;
+    font-size: 4rem;
+    text-transform: uppercase;
+}
+
+ .products h1 span {
+    text-transform: capitalize;
+    color: #038bbc;
+    font-family: 'Playfair Display', cursive;
+    font-style: italic;
+}
+
+
+.notApprovedProducts {
+    height: 15vh;
+    padding: 2rem;
+    text-align: center;
+    background: #00AFF0;
+}
+
+.parts-container {
+    padding: 1rem;
+}
+
+.box {
+    place-content: center;
+    padding: 1rem;
+    gap: 3rem;
+}
+
+.box h3 {
+    color: #fff;
+    font-weight: lighter;
+    font-family: 'PT Serif', serif;
+    padding: 1rem;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    text-decoration: underline;
+}
+
+.box img {
+    width: 100%;
+}
+
+.fans-title {
+    padding: 1rem;
+    font-size: 1rem;
+    text-transform: capitalize;
+    font-style: italic;
+}
+
+.card_text .oldPrice p {
+    color: #222840;
+    font-size: 2rem;
+}

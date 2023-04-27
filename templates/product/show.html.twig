@@ -56,25 +56,7 @@
     </div>
 
 
-    <div class="questions">
-    <h5 class="headline">Questions</h5>
-    {# <a href="{{ path('app_reviews_question', {'id': product.id}) }}" class="btn btn-primary">Ask a question</a> #}
-    {% for review in reviews %}
-        {% if review.type == 'question' %}
-            <p>Question:</p>
-            <p>{{review.type}}</p>
-            <p>{{review.fkAuthor.email}}</p>
-            <p>{{review.review}}</p>
-            <a href="{{ path('app_reviews_answer', {'id': review.fkAuthor.id}) }}" class="btn btn-secondary">Answer a question</a>  
-        {% endif %}
-            {% if review.type == 'answer' %}
-            <p>Answer:</p>
-                <p>{{review.fkAuthor.email}}</p>
-                <p>{{review.review}}</p>             
-            {% endif %}
-        
-    {% endfor %}  
-    </div>
+ 
 
     <div class="questions">
         <h5 class="headline">Questions</h5>
@@ -91,7 +73,7 @@
                 </div>
                 <div class="flex-grow-1 ms-3">
                     <p>{{question.review}}</p>
-                    <a href="{{ path('app_reviews_answer', {'id': review.fkAuthor.id}) }}" class="btn btn-secondary">Answer a question</a> 
+                    <a href="{{ path('app_reviews_answer', {'id': question.fkAuthor.id}) }}" class="btn btn-secondary">Answer a question</a> 
                     
                 </div>
                 

@@ -1,41 +1,32 @@
-body { 
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  margin-top: 2rem;
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  scroll-behavior: smooth;
 }
 .parts-container .box {
-  flex: 1 1 17rem;
-  position: relative;
-  padding: 20px;
   display: flex;
+  justify-content: center;
   flex-direction: column;
-  background:#B3D3E0;
-  border-radius: 0.5rem;
-  display: flex;
-  flex-wrap: wrap;
+  background:#fff;
+  border-radius: 1rem;
   gap: 2rem;
   margin-top: 2rem;
 }.parts-container .box:hover {
     background: #00AFF0;
-    --main-color:#00AFF0;
-
   background-image: linear-gradient(to top right, #00AFF0,#7ACAE7, );
 }
 .parts-container .box img {
   width: 100%;
-  height: 150px;
-  object-fit: contain;
+  object-fit: fill;
   object-position: center;
   margin-bottom: 1rem;
 }
 .parts-container .box h3 {
   font-size: 1.1rem;
-  font-weight: 600;
 }
 .parts-container .box span {
   font-size: 1.1rem;
-  font-weight: 600;
   color: var(--main-color);
 }
 .parts-container .box .bx {
@@ -58,13 +49,9 @@ body {
   color: var(--main-color);
   text-decoration: underline;
 }
-
-
 .blog {
-  
   text-align: center;
 }
-
 .blog-container {
   display: flex;
   flex-wrap: wrap;
@@ -79,7 +66,6 @@ body {
 .blog-container .box:hover {
   background: #00AFF0;
   --main-color:#00AFF0;
-
 }
 .blog-container .box span {
   font-size: 0.8rem;
@@ -91,7 +77,6 @@ body {
 .blog-container .box p {
   font-size: 0.938rem;
   margin: 4px 0;
-
 }
 .blog-container .box .blog-btn {
   display: flex;
@@ -113,15 +98,7 @@ body {
  .card-img-top {
   border: 1px solid #ccc;
 }
-
-
  .box {
   background: #00AFF0; /* Change the background color of the box */
   color: #000000; /* Change the text color of the elements in the box */
 }
-
-
-
-
-
-
