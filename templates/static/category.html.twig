@@ -2,32 +2,49 @@
 
 {% block title %}Product index{% endblock %}
 
-{% block body %}
-{% for product in products %}
-    <h1 class="headline">Category {{ product.type }}</h1>
-    {% endfor %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/product.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css"
+          integrity="sha384-0ks01E8M0+nRgMKNXG9OCKIbbEgjgfuBbGogoCfL/LtYY4L4z7cu4EZ2OTh3OrX9"
+          crossorigin="anonymous">
 
-    <div class="parts-container container">
-        <div class="row row-cols-md-3">
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        {% for product in products %}
+        <h1 class="headline text-center mb-5">Category <span>{{ product.type }}</span></h1>
+        {% endfor %}
+        <div class="row row-cols-md-3 g-4">
             {% for product in products %}
-            <div class="box">
-                <h3>Special Fans</h3>
-                <img src="{{ asset('pictures/' ~ product.picture) }}" class="card-img-top" alt="Fan">
-                <h2 class="fans-title">{{ product.name }}</h2>
-                <hr>
-                <p class="type">{{ product.type }}</p>
-                {% if product.discount > 0 %}
-                <p class="oldPrice">{{ product.price }} &#8364;</p>
-                    <p class="price">{{ product.price - (product.price * product.discount) }} &#8364;</p>
-                {% else %}
-                    <p class="price">{{ product.price }} &#8364;</p>
-                {% endif %}
-                <a href="{{ path('app_static_show', {'id': product.id}) }}" class="btn">Details</i></a> 
-                
+            <div class="col">
+                <div class="card h-100">
+                    <img src="{{ asset('pictures/' ~ product.picture)|raw }}" class="card-img-top" alt="{{ product.name }} fan">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <p class="card-text">{{ product.type }}</p>
+                        {% if product.discount > 0 %}
+                        <p class="oldPrice">{{ product.price }} &#8364;</p>
+                        <p class="newPrice"> Price: {{ product.price - (product.price * product.discount) }} &#8364;</p>
+                        {% else %}
+                        <p class="price"> Price: {{ product.price }} &#8364;</p>
+                        {% endif %}  
+                        <a href="{{ path('app_static_show', {'id': product.id}) }}" class="btn1">Details</a>
+                    </div>
+                </div>
             </div>
             {% endfor %}
         </div>
-</div>
+    </div>
 
-
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
+            integrity="sha384-ZbYKjRgkMw6Md/OI86TrQg8MsJ1OG/WKCrIayxmkG9e/+8oNKqqKyFk5H5Tk5A5/"
+            crossorigin="anonymous"></script>
 {% endblock %}
