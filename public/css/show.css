@@ -1,0 +1,106 @@
+/* Set font family and default font size */
+body {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+}
+
+/* Set responsive breakpoints */
+@media only screen and (max-width: 768px) {
+  /* Adjust font size for smaller screens */
+  body {
+    font-size: 14px;
+  }
+  
+  /* Center align h1 headline */
+  .headline {
+    text-align: center;
+  }
+  
+  /* Reduce card width */
+  .card {
+    width: 12rem;
+  }
+  
+  /* Adjust image size */
+  .detailsImage {
+    width: 100%;
+    background-color: #00AFF0; 
+  }
+}
+
+/* Style the product details section */
+.headline {
+  margin-top: 1rem;
+}
+
+.flex-shrink-0 {
+  width: 30%;
+}
+
+.detailsImage {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+}
+
+.price {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 0;
+}
+
+.oldPrice {
+  text-decoration: line-through;
+}
+
+.detailsText {
+  margin-bottom: 0.5rem;
+}
+
+.categoryProducts {
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.card {
+  margin-bottom: 1rem;
+  background-color: #00AFF0; 
+}
+
+/* Style the reviews section */
+.questions,
+.reviews {
+  margin-top: 2rem;
+}
+
+.review {
+  margin-bottom: 1rem;
+  border: 1px solid #cccccc;
+  padding: 1rem;
+}
+
+.review p {
+  margin: 0;
+}
+
+.review h5 {
+  margin-top: 0;
+}
+
+.badge {
+  font-size: 0.8rem;
+  margin-left: 0.5rem;
+  padding: 0.2rem 0.5rem;
+}
+
+/* Style the "show" link */
+a {
+  color: blue;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
