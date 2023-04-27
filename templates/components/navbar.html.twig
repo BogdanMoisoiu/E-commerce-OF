@@ -67,15 +67,16 @@
               </li>
             {% endif %}
 
-            <input class="searchB" type="text" id="searchbar">
+            <input class="searchB" type="text" id="searchbar" placeholder="search">
             <button id="searchbtn"><i class="fas fa-arrow-right"></i></button>
+
           <script>
-  
- document.getElementById("searchbtn").addEventListener("click", function(){
-     let value = document.getElementById("searchbar").value;
-     window.location.href = "/user/prod/search/"+value;
- })
-</script>
+            document.getElementById("searchbtn").addEventListener("click", function(){
+              let value = document.getElementById("searchbar").value;
+              window.location.href = "/user/prod/search/"+value;
+            })
+          </script>
+
           {# <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Category
