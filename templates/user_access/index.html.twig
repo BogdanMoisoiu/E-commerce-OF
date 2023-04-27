@@ -8,14 +8,8 @@
 {% endblock %}
 
 {% block body %}
-<div class="category">
-<h5 class="headline">Categories</h5>
-    {% for product in products %}
-    <a href="{{ path('app_user_access_category', {'type':product.type}) }}" class="btn">{{ product.type }}</a>
-    {% endfor %}
-  </div>
 
-    <h1 class="headline">Product Catalogue</h1>
+    
     {# <div>
         <label for="searchbox" class="is-size-5">Search</label>
         <input class='input mb-5' type="search" 
