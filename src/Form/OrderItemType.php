@@ -14,7 +14,7 @@ class OrderItemType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('quantity', TypeNumberType::class)
+            ->add('quantity', TypeNumberType::class, [ 'attr' => ['class' => 'form-control m-2']])
         ;
     }
 

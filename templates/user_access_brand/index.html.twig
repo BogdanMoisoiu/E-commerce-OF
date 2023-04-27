@@ -3,40 +3,29 @@
 {% block title %}Brand{% endblock %}
 
 {% block body %}
-    <h1>Brand info</h1>
+    <h1 class="headline">Brand info</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ brand.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ brand.name }}</td>
-            </tr>
-            <tr>
-                <th>Country</th>
-                <td>{{ brand.country }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ brand.email }}</td>
-            </tr>
-            <tr>
-                <th>Address</th>
-                <td>{{ brand.address }}</td>
-            </tr>
-        </tbody>
-    </table>
-<hr>
+   <div class="show">
+        <h2 class="fans-title">Name: {{ brand.name }}</h2>
+        <hr>
+        <p class="card_text">Country: {{ brand.country }}</p>
+    
+        <p class="card_text">Email: {{ brand.email }}</p>
+        <p class="card_text">Address: {{ brand.address }}</p>
+   </div>
+           
+           
 
 <div class="products">
-<h2>All product from this brand</h2>
+<h2 class="headline">All product from this brand</h2>
     {% for product in products %}
-    <div>
-        <img src="{{ asset('pictures/' ~ product.picture) }}" alt="{{ product.name }}" height="70px">
-        <p>{{ product.name }}</p>
+    <div class="card" style="width: 15rem;">
+        <img src="{{ asset('pictures/' ~ product.picture) }}" class="card-img-top">
+        <div class="card-body">
+            <h5 class="card-title">{{ product.name }}</h5>
+            <p class="card-text">{{ product.price }} &#8364;</p>
+            <a href="{{ path('app_user_access_show', {'id': product.id}) }}">show</a>
+        </div>
     </div>
         
     {% endfor %}

@@ -1,54 +1,31 @@
 {% extends 'base.html.twig' %}
-{% block title %}{% endblock %}
+{% block title %}Cart{% endblock %}
 
 {% block body %}
-<h1>Cart index</h1>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>Type</th>
-                    <th>Brand</th>
-                    <th>Prod_dimensions</th>
-                    <th>Short_description</th>
-                    <th>Picture</th>
-                    <th>Quantity</th>
-                    <th>actions</th>
-                </tr>
-            </thead>
-            <tbody>
+<h1 class="headline">Cart</h1>
+
+
             {% for item in items %}
-                <tr>
-                    <td>{{ item.fkProduct.id }}</td>
-                    <td>{{ item.fkProduct.name }}</td>
-                    <td>
+                <div class="d-flex align-items-center">
+                    <div class="flex-shrink-0">
+                        <img src="{{ asset('pictures/' ~ item.fkProduct.picture) }}" height="250px">
+                    </div>
+                    <div class="flex-grow-1 ms-3">
+                        <p>{{ item.fkProduct.name }}</p>
+                        {{ item.fkProduct.type }}
                         {% if item.fkProduct.discount > 0 %}
-                        <p>{{ item.fkProduct.price }} </p>
-                        <p>Price with discount: {{ item.fkProduct.price - (item.fkProduct.price * item.fkProduct.discount) }}</p>  
+                        <p class="oldPrice">{{ item.fkProduct.price }} </p>
+                        <p class="price">Price with discount: {{ item.fkProduct.price - (item.fkProduct.price * item.fkProduct.discount) }}</p>  
                         {% else %}
-                        {{ item.fkProduct.price }} 
+                        <p>{{ item.fkProduct.price }}</p> 
                         {% endif %}
-                    </td>
-                    <td>{{ item.fkProduct.type }}</td>
-                    <td>{{ item.fkProduct.FkBrand.name }}</td>
-                    <td>{{ item.fkProduct.prodDimensions }}</td>
-                    <td>{{ item.fkProduct.shortDescription }}</td>
-                    <td><img src="{{ item.fkProduct.picture }}" alt="" height="70px"></td>
-              <td>{{ item.quantity }}</td>
-               <td>
-                
-                <a href="/user/order_item/delete/{{ item.id }}" class="btn btn-danger">Delete</a>
-                </td>
-                </tr>
-            {% else %}
-                <tr>
-                    <td colspan="17">no records found</td>
-                </tr>
+                        <p>{{ item.quantity }}</p>
+                        <a href="/user/order_item/delete/{{ item.id }}" class="btn btn-danger">Delete</a>
+                    </div>
+                </div>
             {% endfor %}
-            <h5>Total price: {{ total }}</h5>
-            <a href="/user/order/check_out" class="btn btn-danger">Buy</a>
-            </tbody>
-        </table>
+            <div>
+                <h5>Total price: {{ total }}</h5>
+                <a href="/user/order/check_out" class="btn btn-danger">Buy</a>
+            </div>
 {% endblock %}

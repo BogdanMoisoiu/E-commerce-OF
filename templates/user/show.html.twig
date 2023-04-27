@@ -3,68 +3,27 @@
 {% block title %}User{% endblock %}
 
 {% block body %}
-    <h1>User</h1>
+    <h1 class="headline">User</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ user.id }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ user.email }}</td>
-            </tr>
-            <tr>
-                <th>Roles</th>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-            </tr>
-            <tr>
-                <th>Password</th>
-                <td>{{ user.password }}</td>
-            </tr>
-            <tr>
-                <th>First_name</th>
-                <td>{{ user.firstName }}</td>
-            </tr>
-            <tr>
-                <th>Last_name</th>
-                <td>{{ user.lastName }}</td>
-            </tr>
-            <tr>
-                <th>Date_of_birth</th>
-                <td>{{ user.dateOfBirth ? user.dateOfBirth|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Picture</th>
-                <td>{{ user.picture }}</td>
-            </tr>
-            <tr>
-                <th>Phone_number</th>
-                <td>{{ user.phoneNumber }}</td>
-            </tr>
-            <tr>
-                <th>City</th>
-                <td>{{ user.city }}</td>
-            </tr>
-            <tr>
-                <th>Street</th>
-                <td>{{ user.street }}</td>
-            </tr>
-            <tr>
-                <th>Str_number_ap_number</th>
-                <td>{{ user.strNumberApNumber }}</td>
-            </tr>
-            <tr>
-                <th>Post_code</th>
-                <td>{{ user.postCode }}</td>
-            </tr>
-        </tbody>
-    </table>
 
-    <a href="{{ path('app_user_index') }}">back to list</a>
+    <div class="d-flex">
+        <div class="flex-shrink-0">
+            <img src="{{ user.picture }}" width="300px">
+                {# <img src="{{ asset('pictures/' ~ user.picture) }}" width="20rem"> #}
+            <a href="{{ path('app_user_edit', {'id': user.id}) }}" class="btn">edit</a>
+            {{ include('user/_delete_form.html.twig') }}
+        </div>
+        <div class="flex-grow-1 ms-3">
+            <p>Id: {{ user.id }}</p>
+            <p>Email:{{ user.email }}</p>
+            <p>First name: {{ user.firstName }}</p>
+            <p>Last name:{{ user.lastName }}</p>
+            <p>Date of birth:{{ user.dateOfBirth ? user.dateOfBirth|date('Y-m-d') : '' }}</p>
+            <p>Roles: {{ user.roles ? user.roles|json_encode : '' }}</p>
+            <p>Password: {{ user.password }}</p>
+            <p>Phone number: {{ user.phoneNumber }}</p>
+            <p>Address: {{ user.street }} {{ user.strNumberApNumber }}, {{ user.postCode }} {{ user.city }}</p>
+        </div>
+      </div>
 
-    <a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
-
-    {{ include('user/_delete_form.html.twig') }}
 {% endblock %}

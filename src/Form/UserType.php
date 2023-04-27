@@ -22,7 +22,7 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email', EmailType::class)
+            ->add('email', EmailType::class, ['attr' => ['class' => 'form-control m-2']])
 
             ->add('roles', CollectionType::class, ['entry_type'  => ChoiceType::class, 
             'entry_options' => [
@@ -31,6 +31,7 @@ class UserType extends AbstractType
                     "User" => 'ROLE_USER',
                 ],  
             ], 
+            'attr' => ['class' => 'form-control m-2'],
             ])
 
 
@@ -50,11 +51,17 @@ class UserType extends AbstractType
                         'max' => 4096,
                          ]),
                         ],
+                        'attr' => ['class' => 'form-control m-2'],
                         ])
-            ->add('first_name', TextType::class, ['label' => 'First Name'])
-            ->add('last_name', TextType::class, ['label' => 'Last Name'])
+            ->add('first_name', TextType::class, ['label' => 'First Name',
+            'attr' => ['class' => 'form-control m-2'],
+            ])
+            ->add('last_name', TextType::class, ['label' => 'Last Name',
+            'attr' => ['class' => 'form-control m-2'],
+            ])
             ->add('date_of_birth', DateType::class, ['label' => 'Date of Birth', 
-                'years' => range(date('Y')-100, date('Y'))
+                'years' => range(date('Y')-100, date('Y')),
+                'attr' => ['class' => 'form-control m-2'],
                 ])
                 ->add('picture', FileType::class, [
                     'label' => 'Upload Picture',
@@ -71,18 +78,23 @@ class UserType extends AbstractType
                             'mimeTypesMessage' => 'Please upload a valid image file',
                         ])
                     ],
-                    "attr"=>["value"=> null],
+                    "attr"=>["value"=> null, 'class' => 'form-control m-2'],
                 ])
-            ->add('phone_number', TextType::class, ['label' => 'Phone Number',])
-            ->add('city', TextType::class)
-            ->add('street', TextType::class)
-            ->add('str_number_ap_number', TextType::class, ['label' => 'House Number/Appartment Number'])
-            ->add('post_code', TextType::class)
+            ->add('phone_number', TextType::class, ['label' => 'Phone Number', 
+            'attr' => ['class' => 'form-control m-2'],
+            ])
+            ->add('city', TextType::class, [ 'attr' => ['class' => 'form-control m-2']])
+            ->add('street', TextType::class, [ 'attr' => ['class' => 'form-control m-2']])
+            ->add('str_number_ap_number', TextType::class, ['label' => 'House Number/Appartment Number', 
+            'attr' => ['class' => 'form-control m-2'],
+            ])
+            ->add('post_code', TextType::class, [ 'attr' => ['class' => 'form-control m-2']])
             ->add('banned', ChoiceType::class, [
                 'choices'  => [
                     'Yes' => true,
                     'No' => false,
                 ],
+                'attr' => ['class' => 'form-control m-2'],
             ])
         ;
     }

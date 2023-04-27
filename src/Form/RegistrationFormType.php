@@ -22,11 +22,12 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('first_name', TextType::class, array("attr"=>["class"=>"form-control", "placeholder"=>"First Name"]))
-            ->add('last_name', TextType::class, array("attr"=>["class"=>"form-control", "placeholder"=>"Last Name"]))
-            ->add('email', EmailType::class, array("attr"=>["class"=>"form-control", "placeholder"=>"Email"]))
+            ->add('first_name', TextType::class, array("attr"=>["class"=>"form-control m-2", "placeholder"=>"First Name"]))
+            ->add('last_name', TextType::class, array("attr"=>["class"=>"form-control m-2", "placeholder"=>"Last Name"]))
+            ->add('email', EmailType::class, array("attr"=>["class"=>"form-control m-2", "placeholder"=>"Email"]))
             ->add('date_of_birth', DateType::class, [
-                'years' => range(date('Y')-100, date('Y'))
+                'years' => range(date('Y')-100, date('Y')),
+                'attr' => ['class' => 'form-control m-2'],
                 ])
             // ->add('date_of_birth', BirthdayType::class)
             ->add('picture', FileType::class, [
@@ -44,12 +45,13 @@ class RegistrationFormType extends AbstractType
                         'mimeTypesMessage' => 'Please upload a valid image file',
                     ])
                 ],
+                'attr' => ['class' => 'form-control m-2'],
             ])
-            ->add('phone_number', TextType::class)
-            ->add('city', TextType::class)
-            ->add('street', TextType::class)
-            ->add('str_number_ap_number', TextType::class)
-            ->add('post_code', TextType::class)
+            ->add('phone_number', TextType::class, [ 'attr' => ['class' => 'form-control m-2']])
+            ->add('city', TextType::class, [ 'attr' => ['class' => 'form-control m-2']])
+            ->add('street', TextType::class, [ 'attr' => ['class' => 'form-control m-2']])
+            ->add('str_number_ap_number', TextType::class, [ 'attr' => ['class' => 'form-control m-2']])
+            ->add('post_code', TextType::class, [ 'attr' => ['class' => 'form-control m-2']])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [
@@ -74,6 +76,7 @@ class RegistrationFormType extends AbstractType
                         'max' => 4096,
                     ]),
                 ],
+                'attr' => ['class' => 'form-control m-2'],
             ])
         ;
     }
