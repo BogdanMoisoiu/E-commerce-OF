@@ -8,10 +8,10 @@
     {% endblock %}
 
 {% block body %}
-<h1 class="headline">{{ product.name }}</h1>
+<h1 class="text-center m-5">{{ product.name }}</h1>
 
-<div class="d-flex align-items-center">
-    <div class="flex-shrink-0">
+<div class="d-flex align-items-center m-5 productBox bg-info">
+    <div class="flex-shrink-0 imgBox w-50 m-3">
       <img src="{{ asset('pictures/' ~ product.picture) }}" class="detailsImage">
     </div>
     <div class="flex-grow-1 ms-3">
@@ -37,27 +37,26 @@
     </div>
 </div>
 
+<h2 class="text-center m-5">All products from category {{ type }}</h2>
     <div class="categoryProducts">
-        <h2 class="headline">All products from category {{ type }}</h2>
        
         {% for product in products %}
             {% if type == product.type %}
-                <div class="card" style="width: 15rem;">
-                    <img src="{{ asset('pictures/' ~ product.picture) }}" class="card-img-top">
+                <div class="card" style="width: 15rem; height: 22rem">
+                    <img src="{{ asset('pictures/' ~ product.picture) }}" class="card-img-top" height="50%">
                     <div class="card-body">
                         <h5 class="card-title">{{ product.name }}</h5>
                         <p class="card-text">{{ product.price }} &#8364;</p>
-                        <a href="{{ path('app_user_access_show', {'id': product.id}) }}">show</a>
+                        <a href="{{ path('app_user_access_show', {'id': product.id}) }}" class="btn btns">Details</a>
                     </div>
                 </div>
             {% endif %}
         {% endfor %}
        
     </div>
-<hr>
 
-<div class="questions">
-    <h5 class="headline">Questions</h5>
+<div class="questions w-75 m-auto">
+    <h5 class="text-center">Questions</h5>
     <a href="{{ path('app_reviews_question', {'id': product.id}) }}" class="btn btn-primary">Ask a question</a>
     {% for question in reviews %}
         {% if question.type == 'question' %}
@@ -98,9 +97,9 @@
         {% endif %}
     {% endfor %}    
     </div>
-    <hr>
-    <div class="reviews">  
-        <h5 class="headline">Reviews</h5>
+    
+    <div class="reviews w-75 m-auto">  
+        <h5 class="text-center">Reviews</h5>
         <a href="{{ path('app_reviews_new', {'id' : product.id}) }}" class="btn btn-primary">Create New Review</a>
         {% for review in reviews %} 
             {% if review.type == 'review' %} 

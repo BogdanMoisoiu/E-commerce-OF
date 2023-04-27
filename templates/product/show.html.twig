@@ -8,10 +8,10 @@
     {% endblock %}
 
 {% block body %}
-    <h1 class="headline">{{ product.name }}</h1>
+    <h1 class="text-center m-5">{{ product.name }}</h1>
 
-    <div class="d-flex align-items-center">
-        <div class="flex-shrink-0">
+    <div class="d-flex align-items-center m-5 productBox bg-info">
+        <div class="flex-shrink-0 imgBox w-50 m-3">
           <img src="{{ asset('pictures/' ~ product.picture) }}" class="detailsImage">
         </div>
         <div class="flex-grow-1 ms-3">
@@ -33,22 +33,22 @@
             <p class="detailsText">Material: {{ product.material }}</p>
             <p class="detailsText">Special features: {{ product.specialFeatures }}</p>
             <p class="detailsText">Style: {{ product.style }}</p>
-                <a href="{{ path('app_product_edit', {'id': product.id}) }}" class="btn">edit</a>
+                <a href="{{ path('app_product_edit', {'id': product.id}) }}" class="btn">Edit</a>
 
                 {{ include('product/_delete_form.html.twig') }}
         </div>
       </div>
-{# need to change layout for category, questions and reviews #}
-    <div class="categoryProducts">
-        <h2 class="headline">All products from category {{ type }}</h2>
+
+      <h2 class="text-center m-5">All products from category {{ type }}</h2>
+      <div class="categoryProducts">
         {% for product in products %}
             {% if type == product.type %}
-                <div class="card" style="width: 15rem;">
-                    <img src="{{ asset('pictures/' ~ product.picture) }}" class="card-img-top">
+                <div class="card" style="width: 15rem; height: 22rem">
+                    <img src="{{ asset('pictures/' ~ product.picture) }}" class="card-img-top" height="50%">
                     <div class="card-body">
                         <h5 class="card-title">{{ product.name }}</h5>
                         <p class="card-text">{{ product.price }} &#8364;</p>
-                        <a href="{{ path('app_product_show', {'id': product.id}) }}" class="btn btn-primary">show</a>
+                        <a href="{{ path('app_product_show', {'id': product.id}) }}" class="btn btns">Details</a>
                     </div>
                 </div>
             {% endif %}
@@ -58,8 +58,8 @@
 
  
 
-    <div class="questions">
-        <h5 class="headline">Questions</h5>
+    <div class="questions w-75 m-auto">
+        <h5 class="text-center">Questions</h5>
         {% for question in reviews %}
             {% if question.type == 'question' %}
             <div class="d-flex">
@@ -102,8 +102,8 @@
 
    <hr>
  
-    <div class="reviews">
-    <h5 class="headline">Reviews</h5>
+    <div class="reviews w-75 m-auto">
+    <h5 class="text-center">Reviews</h5>
 {% for review in reviews %}
     {% if review.type == 'review' %}
         <div>

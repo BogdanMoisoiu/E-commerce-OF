@@ -2,8 +2,17 @@
 
 {% block title %}Brand{% endblock %}
 
+{% block stylesheets %} 
+        {{ parent() }}
+        <link rel="stylesheet" href="{{asset('css/show.css')}}">
+    {% endblock %}
+
 {% block body %}
-    <h1 class="headline">Brand info</h1>
+
+<div class="d-flex align-items-center m-5 productBox bg-info">
+         
+
+ <h3 class="text-center m-5">{{ brand.name }}</h3>
 
    <div class="show">
         <h2 class="fans-title">Name: {{ brand.name }}</h2>
@@ -14,17 +23,18 @@
         <p class="card_text">Address: {{ brand.address }}</p>
    </div>
            
-           
+    </div>       
 
-<div class="products">
-<h2 class="headline">All product from this brand</h2>
+    <h2 class="text-center">All product from this brand</h2>
+<div class="categoryProducts">
+
     {% for product in products %}
-    <div class="card" style="width: 15rem;">
-        <img src="{{ asset('pictures/' ~ product.picture) }}" class="card-img-top">
+    <div class="card" style="width: 15rem; height: 22rem">
+        <img src="{{ asset('pictures/' ~ product.picture) }}" class="card-img-top" height="50%">
         <div class="card-body">
             <h5 class="card-title">{{ product.name }}</h5>
             <p class="card-text">{{ product.price }} &#8364;</p>
-            <a href="{{ path('app_user_access_show', {'id': product.id}) }}">show</a>
+            <a href="{{ path('app_user_access_show', {'id': product.id}) }}" class="btn btns">Details</a>
         </div>
     </div>
         
