@@ -109,6 +109,7 @@ body {
 }
 
 .container {
+    border-radius: 2rem;
     background: linear-gradient(#222840, #00AFF0, #dfd2d2);
 }
 
@@ -133,7 +134,8 @@ body {
 }
 
 .card {
-    padding: 1rem;
+    padding: 2rem;
     background: transparent;
-    border: 1px solid #fff;
+    border: 5px solid #fff;
+    border-radius: 2rem;
 }
