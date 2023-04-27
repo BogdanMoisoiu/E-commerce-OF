@@ -110,6 +110,10 @@ body {
 .review {
   text-align: center;
  }
+ .card-img-top {
+  border: 1px solid #ccc;
+}
+
 
  .box {
   background: #00AFF0; /* Change the background color of the box */
