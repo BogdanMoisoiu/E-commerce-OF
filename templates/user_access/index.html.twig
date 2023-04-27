@@ -8,7 +8,12 @@
     {% endblock %}
 
 {% block body %}
-
+<div class="category">
+       
+    {% for product in products %}
+    <a href="{{ path('app_product_category', {'type':product.type}) }}" class="categoryBtn">{{ product.type }}</a>
+    {% endfor %}
+</div>
     
     {# <div>
         <label for="searchbox" class="is-size-5">Search</label>
@@ -16,6 +21,7 @@
               id="searchbox" placeholder="Live search keyword..">
    </div> #}
 <section class="products">
+    <h1 class="headline">Product <span>Catalogue</span></h1>
   <div class="parts-container container">
     <div class="row row-cols-md-3">
         {% for product in products %}
@@ -33,7 +39,7 @@
             {% endif %}
             <p class="card_text">{{ product.shortDescription }}</p>
             <a href="{{ path('app_user_access_show', {'id': product.id}) }}" class="btn">Details</i></a> 
-            <a href="{{ path('app_user_access_addtocart', {'id': product.id}) }}" class="btn"><i class='bx bx-shopping-bag add-cart'></i></a> 
+            <a href="{{ path('app_user_access_addtocart', {'id': product.id}) }}" class="btn"><i class="bx bx-shopping-bag add-cart"></i></a> 
             
         </div>
         {% endfor %}
