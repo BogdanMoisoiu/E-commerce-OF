@@ -2,26 +2,27 @@
 
 {% block title %}Brand index{% endblock %}
 
+{% block stylesheets %} 
+        {{ parent() }}
+        <link rel="stylesheet" href="{{asset('css/product.css')}}">
+{% endblock %}
+
 {% block body %}
 
-    <h1 class="headline">Brand Catalogue</h1>
-
-    <section class="brands">
-        <div class="parts-container container">
-          <div class="row row-cols-md-3">
-              {% for brand in brands %}
-                <div class="box">
-                    <h2 class="fans-title">{{ brand.name }}</h2>
-                    <hr>
-                    <p class="card_text">{{ brand.country }}</p>
-                   
-                    <p class="card_text">{{ brand.email }}</p>
-                    <p class="card_text">{{ brand.address }}</p>
-                    <a href="{{ path('app_brand_edit', {'id': brand.id}) }}" class="btn">Edit</a>  
-                    {{ include('brand/_delete_form.html.twig') }}                
-                </div>
-              {% endfor %}
-          </div>
-      </div>
-      </section>
+<section class="products">
+    <h1 class="headline">Brand <span>Catalogue</span></h1>
+  <div class="parts-container container">
+    <div class="row row-cols-md-3">
+        {% for brand in brands %}
+        <div class="box">
+            <h2 class="fans-title">{{ brand.name }}</h2>
+            <hr>
+            <p class="card_text">{{ brand.country }}</p>
+            <p class="card_text">{{ brand.email }}</p>
+            <p class="card_text">{{ brand.address }}</p>
+            <a href="{{ path('app_brand_edit', {'id': brand.id}) }}" class="btn">Edit</a> 
+            {{ include('brand/_delete_form.html.twig') }}   
+        </div>
+        {% endfor %}
+</section>
 {% endblock %}
