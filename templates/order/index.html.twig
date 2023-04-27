@@ -2,12 +2,16 @@
 
 {% block title %}Check-out{% endblock %}
 
+{% block stylesheets %} 
+        {{ parent() }}
+        <link rel="stylesheet" href="{{asset('css/cart.css')}}">
+    {% endblock %}
 {% block body %}
-    <div>
+    <div class="flex">
         <h2>Order details</h2>
 
         {% for item in items %}
-        <div>
+        <div class="smallImg">
             <img src="{{ asset('pictures/' ~ item.fkProduct.picture) }}" alt="">
             <p>{{ item.fkProduct.name }}</p>
             <p>Price: {{ item.fkProduct.price }} &#8364;</p>
