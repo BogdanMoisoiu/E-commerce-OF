@@ -15,6 +15,11 @@ body {
     justify-content: space-evenly;
     align-items: center;
     padding: 2rem;
+    background: url(/pictures/bg1.jpg);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;  
 }
 
 .categoryBtn {
@@ -26,6 +31,11 @@ body {
         color: #222840;
         font-size: 1rem;
         cursor: pointer;
+}
+
+.categoryBtn:hover {
+    background: #fff;
+    cursor: pointer;
 }
 
 
@@ -60,4 +70,39 @@ body {
     padding: 2rem;
     text-align: center;
     background: #00AFF0;
+}
+
+.parts-container {
+    padding: 1rem;
+}
+
+.box {
+    padding: 1rem;
+    gap: 3rem;
+}
+
+.box h3 {
+    color: #fff;
+    font-weight: lighter;
+    font-family: 'PT Serif', serif;
+    padding: 1rem;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    text-decoration: underline;
+}
+
+.box img {
+    width: 100%;
+}
+
+.fans-title {
+    padding: 1rem;
+    font-size: 1rem;
+    text-transform: capitalize;
+    font-style: italic;
+}
+
+.card_text .oldPrice p {
+    color: #222840;
+    font-size: 2rem;
 }
