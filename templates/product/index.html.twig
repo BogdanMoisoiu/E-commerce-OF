@@ -2,20 +2,27 @@
 
 {% block title %}Product index{% endblock %}
 
+
+{% block stylesheets %} 
+        {{ parent() }}
+        <link rel="stylesheet" href="{{asset('css/product.css')}}">
+    {% endblock %}
 {% block body %}
 
     <div class="category">
-        <h5 class="headline">Categories</h5>
+       
         {% for product in products %}
-        <a href="{{ path('app_product_category', {'type':product.type}) }}" class="btn">{{ product.type }}</a>
+        <a href="{{ path('app_product_category', {'type':product.type}) }}" class="categoryBtn">{{ product.type }}</a>
         {% endfor %}
     </div>
-    <h1 class="headline">Product Catalogue</h1>
+    
+    
+    
 
     <section class="products">
+        <h1 class="headline">Product <span>Catalogue</span></h1>
         <div class="parts-container container">
           <div class="row row-cols-md-3">
-            <h5 class="headline">Approved Products</h5>
               {% for product in products %}
                 <div class="box">
                     <h3>Special Fans</h3>
