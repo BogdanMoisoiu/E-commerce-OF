@@ -100,10 +100,7 @@ body {
 .answer{
   margin-left: 10rem;
 }
-hr{
-  width: 75%;
-  margin: auto;
-}
+
 
 .review, .question {
   /* margin-bottom: 1rem; */
