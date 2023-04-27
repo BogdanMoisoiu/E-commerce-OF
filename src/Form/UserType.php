@@ -39,7 +39,7 @@ class UserType extends AbstractType
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'mapped' => false,
-                'attr' => ['autocomplete' => 'new-password'],
+                'attr' => ['autocomplete' => 'new-password', 'class' => 'form-control m-2'],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Please enter a password',
@@ -51,7 +51,7 @@ class UserType extends AbstractType
                         'max' => 4096,
                          ]),
                         ],
-                        'attr' => ['class' => 'form-control m-2'],
+                        
                         ])
             ->add('first_name', TextType::class, ['label' => 'First Name',
             'attr' => ['class' => 'form-control m-2'],
