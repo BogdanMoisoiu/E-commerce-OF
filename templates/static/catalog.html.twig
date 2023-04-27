@@ -92,26 +92,22 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('css/static.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/product.css') }}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css"
           integrity="sha384-0ks01E8M0+nRgMKNXG9OCKIbbEgjgfuBbGogoCfL/LtYY4L4z7cu4EZ2OTh3OrX9"
           crossorigin="anonymous">
-    <style>
-        
 
-    </style>
 {% endblock %}
-
+{% block navbar %} {% include "components/navbar.html.twig" %} {% endblock %}
 {% block body %}
     <nav class="category">
-        <h2>Categories</h2>
         {% for product in products %}
-        <a href="{{ path('app_static_category', {'type':product.type}) }}">{{ product.type }}</a>
+        <a href="{{ path('app_static_category', {'type':product.type}) }}" class="categoryBtn">{{ product.type }}</a>
         {% endfor %}
     </nav>
 
     <div class="container">
-        <h1 class="headline text-center mb-5">Product Catalogue</h1>
+        <h1 class="headline text-center mb-5">Product <span>Catalogue</span></h1>
 
         <div class="row row-cols-md-3 g-4">
             {% for product in products %}
@@ -121,21 +117,35 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ product.name }}</h5>
                         <p class="card-text">{{ product.type }}</p>
-
                         {% if product.discount > 0 %}
                         <p class="oldPrice">{{ product.price }} &#8364;</p>
-                        <p class="price">{{ product.price - (product.price * product.discount) }} &#8364;</p>
+                        <p class="newPrice"> Price: {{ product.price - (product.price * product.discount) }} &#8364;</p>
                         {% else %}
-                        <p class="price">{{ product.price }} &#8364;</p>
+                        <p class="price"> Price: {{ product.price }} &#8364;</p>
                         {% endif %}
-                        <a href="{{ path('app_static_show', {'id': product.id}) }}" class="btn btn-primary stretched-link">Details</a>
+                        <a href="{{ path('app_static_show', {'id': product.id}) }}" class="btn1">Details</a>
                     </div>
                 </div>
             </div>
             {% endfor %}
         </div>
     </div>
+
+    <section class="footer">
+
+        <div class="share">
+            <a href="" class="btn"> <i class="fab fa-facebook-f"></i></a>
+            <a href="" class="btn"> <i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/onlyfans/" class="btn"> <i class="fab fa-instagram"></i></a>
+            <a href="" class="btn"> <i class="fab fa-linkedin"></i></a>
+            <a href="" class="btn"> <i class="fab fa-pinterest"></i></a>
+            
+        </div>
+        </section>
+
 {% endblock %}
+
+
 
 {% block javascripts %}
     {{ parent() }}
@@ -145,6 +155,4 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
             integrity="sha384-ZbYKjRgkMw6Md/OI86TrQg8MsJ1OG/WKCrIayxmkG9e/+8oNKqqKyFk5H5Tk5A5/"
             crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.min.js"
-            integrity="sha384-JQpnE
 {% endblock %}
