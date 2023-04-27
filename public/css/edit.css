@@ -1,0 +1,44 @@
+/* * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    
+} */
+
+body {
+    height: 160vh;
+    background-image: linear-gradient(to bottom, #00AFF0,#7acae7, #b3d3e0);
+}
+
+.container {
+    background-color: transparent;
+    padding: 2rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    
+}
+
+.container h1 {
+    color: #fff;
+    padding: 2rem;
+    font-size: 2.5rem;
+    font-style: italic;
+    text-decoration: overline;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.info {
+    border: .2rem solid #fff;
+    border-radius: 3rem;
+    padding: 3rem;
+    color: #222840;
+    line-height: 1rem;
+}
+
+
+
+
+
