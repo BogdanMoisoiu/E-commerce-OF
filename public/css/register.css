@@ -21,15 +21,17 @@ body {
 }
 
 .container h1 {
+    color: #fff;
     padding: 2rem;
     font-size: 2.5rem;
+    font-style: italic;
     text-decoration: overline;
     text-align: center;
     text-transform: uppercase;
 }
 
 .info {
-    border: .2rem solid #222840;
+    border: .2rem solid #fff;
     border-radius: 3rem;
     padding: 3rem;
     color: #222840;
