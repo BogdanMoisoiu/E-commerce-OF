@@ -36,7 +36,9 @@ p {
     text-transform: uppercase;
 }
 
-
+.smallImg img {
+    width: 30%;
+}
 
 .btn2 {
     border: 1px solid red;
@@ -82,3 +84,16 @@ p {
     text-decoration: none;
 }
 
+.flex h2 {
+    text-align: center;
+    font-family: 'PT Serif', serif;
+    text-transform: uppercase;
+    font-size: 5rem;
+    font-weight: bolder;
+    background: linear-gradient(#00AFF0,#90bbcc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+    padding: 2rem;
+
+}
