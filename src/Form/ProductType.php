@@ -13,6 +13,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class ProductType extends AbstractType
@@ -21,7 +22,7 @@ class ProductType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, ['attr' => ['class' => 'form-control m-2']])
-            ->add('price')
+            ->add('price', NumberType::class, ['attr' => ['class' => 'form-control m-2']])
             ->add('type', ChoiceType::class, [
                 'choices' => [
                     'Ceiling Fan' => 'Ceiling Fan',
@@ -83,10 +84,10 @@ class ProductType extends AbstractType
                 ],
                 'attr' => ['class' => 'form-control m-2'],
             ])
-            ->add('quantity_left', IntegerType::class)
-            ->add('material', TextType::class)
-            ->add('special_features', TextType::class, [ 'required' => false,])
-            ->add('style', TextType::class, [ 'required' => false,])
+            ->add('quantity_left', IntegerType::class, ['attr' => ['class' => 'form-control m-2']])
+            ->add('material', TextType::class, ['attr' => ['class' => 'form-control m-2']])
+            ->add('special_features', TextType::class, ['attr' => ['class' => 'form-control m-2']])
+            ->add('style', TextType::class, ['attr' => ['class' => 'form-control m-2']])
             ->add('discount', ChoiceType::class,  [
                 'choices'  => [
                     'No discount' => '0',

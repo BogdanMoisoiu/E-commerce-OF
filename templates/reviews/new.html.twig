@@ -1,11 +1,17 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}New Reviews{% endblock %}
-
+{% block stylesheets %} 
+        {{ parent() }}
+        <link rel="stylesheet" href="{{asset('css/edit.css')}}">
+    {% endblock %}
 {% block body %}
-    <h1 class="text-center m-5">Create new Reviews</h1>
+<div class="container">
+    <div class="info">
+        <h1>Create new Reviews</h1>
 
     {{ include('reviews/_form.html.twig') }}
-
-    {# <a href="{{ path('app_reviews_index') }}">back to list</a> #}
+    </div>
+</div>
+    
 {% endblock %}
