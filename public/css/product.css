@@ -107,3 +107,33 @@ body {
     color: #222840;
     font-size: 2rem;
 }
+
+.container {
+    background: linear-gradient(#222840, #00AFF0, #dfd2d2);
+}
+
+.container h1 {
+    color: #fff;
+    font-weight: lighter;
+    font-family: 'PT Serif', serif;
+    padding: 2rem;
+    font-size: 4rem;
+    text-transform: uppercase;
+}
+
+.container h1 span {
+    text-transform: capitalize;
+    color: #038bbc;
+    font-family: 'Playfair Display', cursive;
+    font-style: italic;
+}
+
+.card img {
+    width: 100%;
+}
+
+.card {
+    padding: 1rem;
+    background: transparent;
+    border: 1px solid #fff;
+}
