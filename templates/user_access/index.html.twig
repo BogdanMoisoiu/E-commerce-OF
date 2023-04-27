@@ -11,7 +11,7 @@
 <div class="category">
        
     {% for product in products %}
-    <a href="{{ path('app_product_category', {'type':product.type}) }}" class="categoryBtn">{{ product.type }}</a>
+    <a href="{{ path('app_user_access_category', {'type':product.type}) }}" class="categoryBtn">{{ product.type }}</a>
     {% endfor %}
 </div>
     
@@ -43,10 +43,6 @@
             
         </div>
         {% endfor %}
-       
-  </tbody>
-  </table>
-      
 </section>
 
  <section class="blog" id="blog">
