@@ -10,3 +10,62 @@
     width: 50em;
 }
 
+/* main styles */
+
+.headline {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .detailsImage {
+    max-width: 100%;
+  }
+  
+  .detailsText {
+    margin-top: 0.5rem;
+  }
+  
+  .categoryProducts {
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+  }
+  
+  .card {
+    flex-basis: 15rem;
+  }
+  
+  .questions {
+    margin-top: 2rem;
+  }
+  
+  .reviews {
+    margin-top: 2rem;
+  }
+  
+  .review {
+    margin-bottom: 2rem;
+  }
+  
+  /* media queries */
+  
+  @media (min-width: 576px) {
+    .detailsImage {
+      max-width: 50%;
+    }
+  }
+  
+  @media (min-width: 992px) {
+    .categoryProducts {
+      gap: 4rem;
+    }
+  }
+  
+  @media (min-width: 1200px) {
+    .card {
+      flex-basis: 20rem;
+    }
+  }
+  
